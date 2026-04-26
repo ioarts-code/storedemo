@@ -21,13 +21,13 @@ export function FeaturedProduct({
   return (
     <div className="flex-1 bg-black flex flex-col relative overflow-hidden">
       {/* Product Image */}
-      <div className="flex-1 relative flex items-center justify-center p-8 pb-0">
+      <div className="flex-1 relative flex items-center justify-center p-2 pb-0">
         <div className="relative w-full h-full">
           <Image
             src={image}
             alt={name}
             fill
-            className="object-contain"
+            className="object-contain scale-110"
             priority
           />
         </div>
