@@ -47,11 +47,9 @@ export default function Home() {
         GET_PRODUCTS
       );
       const allProducts = productsData.products;
-      console.log('[v0] All products:', allProducts.map(p => ({ name: p.name, slug: p.slug })));
       
       // Find featured product
-      const featured = allProducts.find((p) => p.slug === 'metroid-larva-pixel');
-      console.log('[v0] Featured product found:', featured?.name || 'NOT FOUND');
+      const featured = allProducts.find((p) => p.slug === 'elden-vector');
       setFeaturedProduct(featured || null);
       
       // Set remaining products
@@ -86,7 +84,7 @@ export default function Home() {
 
   // Filter products, excluding featured product
   const filteredProducts = useMemo(() => {
-    return products.filter((product) => product.slug !== 'metroid-larva-pixel');
+    return products.filter((product) => product.slug !== 'elden-vector');
   }, [products]);
 
   return (
