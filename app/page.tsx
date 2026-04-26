@@ -37,6 +37,9 @@ export default function Home() {
     localStorage.setItem('hygraph-config', JSON.stringify(newConfig));
     setConfigOpen(false);
   };
+
+  // Fetch products and categories
+  const fetchData = useCallback(async () => {
     if (!config) return;
 
     setIsLoading(true);
