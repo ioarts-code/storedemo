@@ -22,7 +22,7 @@ export function FeaturedProduct({
   const [imageError, setImageError] = useState(false);
 
   return (
-    <div className="relative w-full h-[1272px] overflow-clip bg-black">
+    <div className="relative w-full h-[1272px] overflow-clip bg-transparent">
       {/* Product Image - full container */}
       {image && !imageError ? (
         <Image
@@ -35,7 +35,7 @@ export function FeaturedProduct({
           unoptimized
         />
       ) : (
-        <div className="absolute inset-0 w-full h-full bg-gray-800 flex items-center justify-center">
+        <div className="absolute inset-0 w-full h-full bg-transparent flex items-center justify-center">
           <p className="text-gray-400">[Image Loading...]</p>
         </div>
       )}
@@ -68,7 +68,7 @@ export function FeaturedProduct({
       </div>
 
       {/* Black bar underneath */}
-      <div className="absolute bottom-0 h-[20px] w-full bg-black"></div>
+      <div className="absolute bottom-0 h-[20px] w-full bg-[#0F0F0F]"></div>
     </div>
   );
 }

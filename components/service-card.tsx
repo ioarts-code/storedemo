@@ -15,7 +15,7 @@ export function ServiceCard({ service }: ServiceCardProps) {
 
   return (
     <Link href={`/products/${service.slug}`}>
-      <div className="relative w-full h-[615px] overflow-clip cursor-pointer bg-black">
+      <div className="relative w-full h-[615px] overflow-clip cursor-pointer bg-transparent">
         {/* Product Image */}
         {firstImage && !imageError ? (
           <Image
@@ -27,7 +27,7 @@ export function ServiceCard({ service }: ServiceCardProps) {
             unoptimized
           />
         ) : (
-          <div className="absolute inset-0 w-full h-full bg-gray-800 flex items-center justify-center">
+          <div className="absolute inset-0 w-full h-full bg-transparent flex items-center justify-center">
             <p className="text-gray-400 text-sm">[Image]</p>
           </div>
         )}
@@ -50,7 +50,7 @@ export function ServiceCard({ service }: ServiceCardProps) {
         </div>
 
         {/* Black bar underneath */}
-        <div className="absolute bottom-0 h-[20px] w-full bg-black"></div>
+        <div className="absolute bottom-0 h-[20px] w-full bg-[#0F0F0F]"></div>
       </div>
     </Link>
   );
