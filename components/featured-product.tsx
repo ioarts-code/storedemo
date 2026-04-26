@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { useState } from 'react';
 
 interface FeaturedProductProps {
   label?: string;
@@ -15,19 +16,29 @@ export function FeaturedProduct({
   label = 'Top Pick',
   name = 'Metroid Larva Pixel motif',
   description = 'This is a **Fan-made** product Description: Introducing a vector image for flexibel use. They were individually created and vectorized. What You Get : .PNG, .EPS, .SVG format or any format you like. What You Can Do: Use it for your websites or create a custom painted gaming',
-  image = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Hygraph_start-P7IousmrjWQjcHVNIhzPstbxU28N0D.png',
+  image,
   slug = 'metroid-larva-pixel',
 }: FeaturedProductProps) {
+  const [imageError, setImageError] = useState(false);
+
   return (
     <div className="relative w-full h-[1272px] overflow-clip bg-black">
       {/* Product Image - full container */}
-      <Image
-        src={image}
-        alt={name}
-        fill
-        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-        priority
-      />
+      {image && !imageError ? (
+        <Image
+          src={image}
+          alt={name}
+          fill
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+          priority
+          onError={() => setImageError(true)}
+          unoptimized
+        />
+      ) : (
+        <div className="absolute inset-0 w-full h-full bg-gray-800 flex items-center justify-center">
+          <p className="text-gray-400">[Image Loading...]</p>
+        </div>
+      )}
 
       {/* Product Info Section - positioned at bottom */}
       <div className="absolute bottom-[160px] left-[80px] right-[80px]">

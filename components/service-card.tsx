@@ -3,6 +3,7 @@
 import { Product } from '@/lib/types';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 
 interface ServiceCardProps {
   service: Product;
@@ -10,18 +11,25 @@ interface ServiceCardProps {
 
 export function ServiceCard({ service }: ServiceCardProps) {
   const firstImage = service.images?.[0]?.url;
+  const [imageError, setImageError] = useState(false);
 
   return (
     <Link href={`/products/${service.slug}`}>
-      <div className="relative w-full h-[615px] overflow-clip cursor-pointer">
+      <div className="relative w-full h-[615px] overflow-clip cursor-pointer bg-black">
         {/* Product Image */}
-        {firstImage && (
+        {firstImage && !imageError ? (
           <Image
             src={firstImage}
             alt={service.name}
             fill
             className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+            onError={() => setImageError(true)}
+            unoptimized
           />
+        ) : (
+          <div className="absolute inset-0 w-full h-full bg-gray-800 flex items-center justify-center">
+            <p className="text-gray-400 text-sm">[Image]</p>
+          </div>
         )}
 
         {/* Info Section - Light gray background at bottom */}
