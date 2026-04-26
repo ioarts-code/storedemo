@@ -5,7 +5,6 @@ import { HygraphConfig, Product, Category } from '@/lib/types';
 import { createHygraphClient } from '@/lib/hygraph-client';
 import { GET_PRODUCTS, GET_CATEGORIES, SEARCH_PRODUCTS } from '@/lib/graphql-queries';
 import { ConfigPanel } from '@/components/config-panel';
-import { SearchFilter } from '@/components/search-filter';
 import { ServiceGrid } from '@/components/service-grid';
 import { Button } from '@/components/ui/button';
 import { Settings } from 'lucide-react';
@@ -15,9 +14,6 @@ import { FeaturedProduct } from '@/components/featured-product';
 export default function Home() {
   const [config, setConfig] = useState<HygraphConfig | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [configOpen, setConfigOpen] = useState(false);
@@ -44,12 +40,6 @@ export default function Home() {
 
     try {
       const client = createHygraphClient(config);
-
-      // Fetch categories
-      const categoriesData = await client.request<{ categories: Category[] }>(
-        GET_CATEGORIES
-      );
-      setCategories(categoriesData.categories);
 
       // Fetch products
       const productsData = await client.request<{ products: Product[] }>(
@@ -84,31 +74,10 @@ export default function Home() {
     }
   }, [config, fetchData]);
 
-  // Filter products based on search and category, excluding featured product
+  // Filter products, excluding featured product
   const filteredProducts = useMemo(() => {
-    let filtered = products.filter(
-      (product) => product.slug !== 'elden-vector'
-    );
-
-    // Filter by category
-    if (selectedCategory) {
-      filtered = filtered.filter(
-        (product) => product.categories?.some((cat) => cat.id === selectedCategory)
-      );
-    }
-
-    // Filter by search query
-    if (searchQuery) {
-      const query = searchQuery.toLowerCase();
-      filtered = filtered.filter(
-        (product) =>
-          product.name.toLowerCase().includes(query) ||
-          product.description.toLowerCase().includes(query)
-      );
-    }
-
-    return filtered;
-  }, [products, searchQuery, selectedCategory]);
+    return products.filter((product) => product.slug !== 'metroid-larva-pixel');
+  }, [products]);
 
   return (
     <main className="min-h-screen bg-black flex flex-col">
@@ -129,28 +98,8 @@ export default function Home() {
 
       {/* Products Section */}
       <div className="bg-white">
-        {/* Header */}
-        <div className="border-b bg-white sticky top-[64px] z-40">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <h1 className="text-3xl font-bold text-slate-900">Store</h1>
-                <p className="text-slate-600 mt-1">Explore our products</p>
-              </div>
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={() => setConfigOpen(true)}
-                title="Configure Hygraph API"
-              >
-                <Settings className="w-5 h-5" />
-              </Button>
-            </div>
-          </div>
-        </div>
-
-        {/* Products Content */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Products Grid */}
+        <div className="w-full px-4 sm:px-6 lg:px-8 py-8">
           {!config ? (
             // Setup state
             <div className="text-center py-20">
@@ -198,29 +147,12 @@ export default function Home() {
                 </div>
               )}
 
-              {/* Search and Filter */}
-              <div className="mb-8">
-                <SearchFilter
-                  categories={categories}
-                  onSearchChange={setSearchQuery}
-                  onCategoryChange={setSelectedCategory}
-                  isLoading={isLoading}
-                />
-              </div>
-
               {/* Product Grid */}
               <ServiceGrid
                 services={filteredProducts}
                 isLoading={isLoading && products.length === 0}
                 isEmpty={!isLoading && filteredProducts.length === 0}
               />
-
-              {/* Results count */}
-              {!isLoading && (
-                <div className="mt-8 text-center text-sm text-slate-600">
-                  Showing {filteredProducts.length} of {products.length} products
-                </div>
-              )}
             </>
           )}
         </div>
