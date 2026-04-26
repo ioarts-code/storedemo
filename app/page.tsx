@@ -32,8 +32,11 @@ export default function Home() {
     }
   }, []);
 
-  // Fetch services and categories
-  const fetchData = useCallback(async () => {
+  const handleConfigSaved = (newConfig: HygraphConfig) => {
+    setConfig(newConfig);
+    localStorage.setItem('hygraph-config', JSON.stringify(newConfig));
+    setConfigOpen(false);
+  };
     if (!config) return;
 
     setIsLoading(true);
@@ -114,7 +117,16 @@ export default function Home() {
 
       {/* Products Section - White background */}
       <div className="bg-white w-full">
-        <div className="w-full px-0 py-0">
+        <div className="w-full px-0 py-0 relative">
+          {/* Settings Button */}
+          <button
+            onClick={() => setConfigOpen(true)}
+            className="absolute top-4 right-4 z-10 p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            title="Configure Hygraph API"
+          >
+            <Settings className="w-5 h-5 text-gray-700" />
+          </button>
+
           {!config ? (
             // Setup state
             <div className="text-center py-20">
@@ -175,7 +187,7 @@ export default function Home() {
 
       {/* Config Panel Modal */}
       <ConfigPanel
-        onConfigSaved={setConfig}
+        onConfigSaved={handleConfigSaved}
         initialConfig={config || undefined}
         isOpen={configOpen}
         onOpenChange={setConfigOpen}
