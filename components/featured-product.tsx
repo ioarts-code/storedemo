@@ -42,24 +42,24 @@ export function FeaturedProduct({
 
       {/* Product Info Section - positioned at bottom */}
       <div className="absolute bottom-[160px] left-[80px] right-[80px]">
-        <div className="rounded-[6px] mx-[0px] mt-[15px] mb-[157px] px-[16px] pt-[15px] pb-[32px] bg-[#d9d9d9]">
+        <div className="rounded-[6px] mx-[0px] mt-[15px] mb-[157px] px-[16px] pt-[15px] pb-[32px] bg-[#ffffff33]">
           {label && (
-            <div className="rounded-full px-[16px] py-[4px] inline-block mx-[0px] my-[16px] bg-[#6f8298]">
-              <p className="font-['Inter:Bold',sans-serif] font-bold text-[11.6px] tracking-[-0.18px] leading-[14.4px] capitalize text-[#ffffff]">
+            <div className="rounded-full px-[16px] py-[4px] inline-block mx-[0px] my-[16px] bg-[#ffffff]">
+              <p className="font-['Inter:Bold',sans-serif] font-bold text-[11.6px] tracking-[-0.18px] leading-[14.4px] capitalize text-[#000000]">
                 {label}
               </p>
             </div>
           )}
 
-          <h3 className="font-['Inter:Bold',sans-serif] font-bold text-[23.4px] tracking-[-0.36px] leading-[28.8px] px-[0px] py-[3px] text-[#000000]">
+          <h3 className="font-['Inter:Bold',sans-serif] font-bold text-[23.4px] tracking-[-0.36px] leading-[28.8px] px-[0px] py-[3px] text-[#ffffff]">
             {name}
           </h3>
 
-          <p className="font-['Inter:Regular',sans-serif] font-normal text-[13.2px] tracking-[-0.21px] leading-[16.8px] mx-[0px] mt-[0px] mb-[19px] text-[#000000]">
+          <p className="font-['Inter:Regular',sans-serif] font-normal text-[13.2px] tracking-[-0.21px] leading-[16.8px] mx-[0px] mt-[0px] mb-[19px] text-[#ffffff]">
             {description}
           </p>
 
-          <button className="border-2 border-black rounded-[6px] hover:bg-black hover:text-white transition-colors px-[45px] py-[12px] bg-[#e8e8e8]">
+          <button className="border-2 border-black rounded-[6px] hover:bg-black hover:text-white transition-colors px-[45px] py-[12px] bg-[#ffffff]">
             <span className="font-['Inter:Bold',sans-serif] font-bold text-[20px] tracking-[-0.36px] uppercase leading-[28.8px]">
               Shop
             </span>
