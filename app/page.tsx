@@ -80,26 +80,25 @@ export default function Home() {
   }, [products]);
 
   return (
-    <main className="min-h-screen bg-black flex flex-col">
+    <main className="min-h-screen bg-white flex flex-col">
       {/* Hero Section with two columns */}
-      <div className="flex flex-1">
+      <div className="flex flex-1 bg-black">
         {/* Left Column */}
         <HeroLeftColumn />
         
         {/* Right Column - Featured Product */}
         <FeaturedProduct
           label="Top Pick"
-          name="Elden Vector"
-          description="Introducing a vector image for flexible use. They were individually created and vectorized. What You Get: High resolution files for your websites or create a custom painted gaming"
-          image="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Hygraph_start-XWq9wmFpjvxWGYrP85wilBbqMHLQXD.png"
-          slug="elden-vector"
+          name="Metroid Larva Pixel motif"
+          description="This is a **Fan-made** product Description: Introducing a vector image for flexibel use. They were individually created and vectorized. What You Get : .PNG, .EPS, .SVG format or any format you like. What You Can Do: Use it for your websites or create a custom painted gaming"
+          image="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Hygraph_start-P7IousmrjWQjcHVNIhzPstbxU28N0D.png"
+          slug="metroid-larva-pixel"
         />
       </div>
 
-      {/* Products Section */}
-      <div className="bg-white">
-        {/* Products Grid */}
-        <div className="w-full px-4 sm:px-6 lg:px-8 py-8">
+      {/* Products Section - White background */}
+      <div className="bg-white flex-1">
+        <div className="w-full px-0 py-0">
           {!config ? (
             // Setup state
             <div className="text-center py-20">

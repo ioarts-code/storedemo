@@ -20,8 +20,8 @@ export function FeaturedProduct({
 }: FeaturedProductProps) {
   return (
     <div className="flex-1 bg-black flex flex-col relative overflow-hidden">
-      {/* Product Image - takes up full space */}
-      <div className="flex-1 relative flex items-center justify-center p-8">
+      {/* Product Image */}
+      <div className="flex-1 relative flex items-center justify-center p-8 pb-0">
         <div className="relative w-full h-full">
           <Image
             src={image}
@@ -32,6 +32,35 @@ export function FeaturedProduct({
           />
         </div>
       </div>
+
+      {/* Product Info Section - Light gray at bottom */}
+      <div className="bg-[#d0d0d0] px-8 py-6 flex flex-col gap-3">
+        {/* Label */}
+        {label && (
+          <span className="inline-flex items-center bg-blue-400 text-black px-3 py-1 rounded-full text-xs font-bold w-fit">
+            {label}
+          </span>
+        )}
+        
+        {/* Title */}
+        <h2 className="text-base font-bold text-black">{name}</h2>
+        
+        {/* Description */}
+        <p className="text-xs text-gray-700 leading-relaxed line-clamp-3">
+          {description}
+        </p>
+
+        {/* Shop Button */}
+        <Link
+          href={`/products/${slug}`}
+          className="border-2 border-black px-4 py-1 text-black font-bold text-xs hover:bg-black hover:text-white transition-colors uppercase w-fit"
+        >
+          SHOP
+        </Link>
+      </div>
+
+      {/* Black bar underneath */}
+      <div className="h-4 bg-black"></div>
     </div>
   );
 }
