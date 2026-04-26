@@ -5,7 +5,7 @@ import { HygraphConfig } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { AlertCircle, Check } from 'lucide-react';
+import { AlertCircle, Check, ExternalLink } from 'lucide-react';
 
 interface ConfigPanelProps {
   onConfigSaved: (config: HygraphConfig) => void;
@@ -138,6 +138,21 @@ export function ConfigPanel({
               <p className="text-sm text-green-600">Configuration saved!</p>
             </div>
           )}
+
+          <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
+            <p className="text-sm font-medium text-blue-900 mb-2">Required Hygraph Models</p>
+            <p className="text-xs text-blue-800 mb-3">
+              Your Hygraph schema must include these models:
+            </p>
+            <ul className="text-xs text-blue-800 space-y-1 mb-3 font-mono">
+              <li>• Service (with: name, description, category, tags, url, icon, image)</li>
+              <li>• Category (with: name, slug)</li>
+              <li>• Tag (with: name, slug)</li>
+            </ul>
+            <p className="text-xs text-blue-800 mb-2">
+              Check the SCHEMA_SETUP.md file in your project for step-by-step instructions.
+            </p>
+          </div>
 
           <div className="flex gap-2 pt-4">
             <Button

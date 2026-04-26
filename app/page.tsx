@@ -55,9 +55,20 @@ export default function Home() {
       );
       setServices(servicesData.services);
     } catch (err) {
-      const message =
-        err instanceof Error ? err.message : 'Failed to fetch data';
-      setError(`Error: ${message}`);
+      let message = err instanceof Error ? err.message : 'Failed to fetch data';
+      
+      // Detect schema errors
+      if (message.includes('field') && message.includes('not defined')) {
+        const match = message.match(/field '([^']+)'/);
+        const fieldName = match ? match[1] : 'unknown field';
+        message = `Hygraph schema missing required model: "${fieldName}". Please create this model in your Hygraph dashboard. See SETUP_CHECKLIST.md for step-by-step instructions.`;
+      } else if (message.includes('401') || message.includes('Unauthorized')) {
+        message = 'Invalid API token or endpoint. Check your configuration.';
+      } else if (message.includes('404') || message.includes('Not Found')) {
+        message = 'API endpoint not found. Verify your Hygraph endpoint URL.';
+      }
+      
+      setError(message);
       console.error('[v0] Fetch error:', err);
     } finally {
       setIsLoading(false);
@@ -141,16 +152,31 @@ export default function Home() {
         ) : (
           <>
             {error && (
-              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
-                {error}
-                <Button
-                  variant="link"
-                  size="sm"
-                  onClick={() => setConfigOpen(true)}
-                  className="ml-2 text-red-700 underline"
-                >
-                  Update config
-                </Button>
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                <p className="text-red-900 font-semibold mb-2">Configuration Issue</p>
+                <p className="text-red-700 text-sm mb-4">{error}</p>
+                <div className="flex gap-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setConfigOpen(true)}
+                    className="text-red-700 border-red-300"
+                  >
+                    Update Config
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => {
+                      // Trigger retry
+                      setError('');
+                      fetchData();
+                    }}
+                    className="text-red-700"
+                  >
+                    Retry
+                  </Button>
+                </div>
               </div>
             )}
 
