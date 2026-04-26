@@ -89,20 +89,22 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-white flex flex-col">
-      {/* Hero Section with two columns */}
-      <div className="flex flex-1 bg-black">
+      {/* Hero Section with two columns - Fixed height 1282px */}
+      <div className="flex w-full h-[1282px] overflow-clip">
         {/* Left Column */}
         <HeroLeftColumn />
         
         {/* Right Column - Featured Product */}
         {featuredProduct ? (
-          <FeaturedProduct
-            label="Top Pick"
-            name={featuredProduct.name}
-            description={featuredProduct.description}
-            image={featuredProduct.images?.[0]?.url}
-            slug={featuredProduct.slug}
-          />
+          <div className="flex-1">
+            <FeaturedProduct
+              label="Top Pick"
+              name={featuredProduct.name}
+              description={featuredProduct.description}
+              image={featuredProduct.images?.[0]?.url}
+              slug={featuredProduct.slug}
+            />
+          </div>
         ) : (
           <div className="flex-1 bg-black flex items-center justify-center">
             <p className="text-white">Featured product loading...</p>
@@ -111,7 +113,7 @@ export default function Home() {
       </div>
 
       {/* Products Section - White background */}
-      <div className="bg-white flex-1">
+      <div className="bg-white w-full">
         <div className="w-full px-0 py-0">
           {!config ? (
             // Setup state
