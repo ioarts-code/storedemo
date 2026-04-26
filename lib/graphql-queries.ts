@@ -75,3 +75,25 @@ export const SEARCH_PRODUCTS = gql`
     }
   }
 `;
+
+export const GET_PRODUCT_BY_SLUG = gql`
+  query GetProductBySlug($slug: String!) {
+    products(where: { slug: $slug }, first: 1) {
+      id
+      name
+      slug
+      description
+      price
+      categories {
+        id
+        name
+        slug
+      }
+      images {
+        id
+        url
+        fileName
+      }
+    }
+  }
+`;

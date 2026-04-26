@@ -4,6 +4,7 @@ import { Product } from '@/lib/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface ServiceCardProps {
   service: Product;
@@ -13,7 +14,8 @@ export function ServiceCard({ service }: ServiceCardProps) {
   const firstImage = service.images?.[0];
 
   return (
-    <Card className="h-full flex flex-col hover:shadow-lg transition-shadow duration-300">
+    <Link href={`/products/${service.slug}`}>
+      <Card className="h-full flex flex-col hover:shadow-lg transition-shadow duration-300 cursor-pointer">
       {firstImage?.url && (
         <div className="relative w-full h-48 overflow-hidden rounded-t-lg">
           <Image
@@ -68,5 +70,6 @@ export function ServiceCard({ service }: ServiceCardProps) {
         )}
       </CardContent>
     </Card>
+    </Link>
   );
 }
