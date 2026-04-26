@@ -4,9 +4,10 @@ export function HeroLeftColumn() {
   return (
     <aside className="w-[624px] bg-[#0f0f0f] px-[24px] py-[190px] h-[1282px]">
       <h1 className="font-['Inter:Bold',sans-serif] font-bold text-[#f5f5f5] tracking-[-0.24px] uppercase leading-[36px] mb-[48px] text-[36px]">
-        ILLUSTRATIONS THAT MAKE SENSE.<br />
-        WHAT ABOUT DIGITAL ART?<br />
-        LET&apos;S MAKE EVERY PRODUCT YOURS FOR REAL.
+        HOLA,<br />
+        HERE COMES OUR NEW MERCH.<br />
+        <br />
+        ENJOY!
       </h1>
 
       <p className="font-['Inter:Regular',sans-serif] font-normal text-[14.8px] tracking-[-0.24px] leading-[19.2px] text-[#6f8298]">
