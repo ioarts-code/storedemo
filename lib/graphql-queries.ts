@@ -5,53 +5,41 @@ export const GET_PRODUCTS = gql`
     products(first: 100) {
       id
       name
+      slug
       description
-      shortDescription
-      url
-      icon
-      category {
+      price
+      categories {
         id
         name
         slug
       }
-      copyrights(first: 10) {
+      images {
         id
-        name
-        slug
-      }
-      image {
         url
-        alt: caption
+        fileName
       }
-      createdAt
     }
   }
 `;
 
 export const GET_PRODUCTS_BY_CATEGORY = gql`
   query GetProductsByCategory($categoryId: ID!) {
-    products(first: 100, where: { category: { id: $categoryId } }) {
+    products(first: 100, where: { categories_some: { id: $categoryId } }) {
       id
       name
+      slug
       description
-      shortDescription
-      url
-      icon
-      category {
+      price
+      categories {
         id
         name
         slug
       }
-      copyrights(first: 10) {
+      images {
         id
-        name
-        slug
-      }
-      image {
         url
-        alt: caption
+        fileName
       }
-      createdAt
     }
   }
 `;
@@ -71,25 +59,19 @@ export const SEARCH_PRODUCTS = gql`
     products(first: 100, where: { name_contains: $search }) {
       id
       name
+      slug
       description
-      shortDescription
-      url
-      icon
-      category {
+      price
+      categories {
         id
         name
         slug
       }
-      copyrights(first: 10) {
+      images {
         id
-        name
-        slug
-      }
-      image {
         url
-        alt: caption
+        fileName
       }
-      createdAt
     }
   }
 `;

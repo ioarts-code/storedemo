@@ -1,26 +1,45 @@
 export interface Product {
   id: string;
   name: string;
+  slug: string;
   description: string;
-  shortDescription?: string;
-  category?: Category;
-  copyrights?: Copyright[];
-  image?: {
-    url: string;
-    alt?: string;
-  };
-  url?: string;
-  icon?: string;
-  createdAt?: string;
+  price: number;
+  categories?: Category[];
+  images?: ProductImage[];
+  variants?: ProductVariant[];
+  reviews?: Review[];
+  collections?: Collection[];
+  orderItems?: OrderItem[];
 }
 
-export interface Category {
+export interface ProductImage {
+  id: string;
+  url: string;
+  fileName?: string;
+}
+
+export interface ProductVariant {
+  id: string;
+  [key: string]: any;
+}
+
+export interface Review {
+  id: string;
+  [key: string]: any;
+}
+
+export interface Collection {
   id: string;
   name: string;
   slug?: string;
 }
 
-export interface Copyright {
+export interface OrderItem {
+  id: string;
+  [key: string]: any;
+}
+
+export interface Category {
   id: string;
   name: string;
   slug?: string;

@@ -140,17 +140,16 @@ export function ConfigPanel({
           )}
 
           <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
-            <p className="text-sm font-medium text-blue-900 mb-2">Required Hygraph Models</p>
+            <p className="text-sm font-medium text-blue-900 mb-2">Required Hygraph Schema</p>
             <p className="text-xs text-blue-800 mb-3">
-              Your Hygraph schema must include these models:
+              Your app expects these models with required fields:
             </p>
             <ul className="text-xs text-blue-800 space-y-1 mb-3 font-mono">
-              <li>• Product (with: name, description, category, copyrights, url, icon, image)</li>
-              <li>• Category (with: name, slug)</li>
-              <li>• Copyright (with: name, slug)</li>
+              <li>• Product: name, slug, description, price, categories, images</li>
+              <li>• Category: name, slug</li>
             </ul>
             <p className="text-xs text-blue-800 mb-2">
-              Check the SCHEMA_SETUP.md file in your project for step-by-step instructions.
+              Check SCHEMA_SETUP.md for detailed field specifications.
             </p>
           </div>
 

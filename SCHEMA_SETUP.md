@@ -1,98 +1,86 @@
 # Hygraph Schema Setup Guide
 
-This guide shows you exactly how to create the required schema in Hygraph for this app to work.
+This guide shows you exactly how to configure your Hygraph schema to work with this store app.
 
 ## Quick Overview
 
-You need to create **3 models** in Hygraph:
-1. **Product** - The main content model
-2. **Category** - For organizing products
-3. **Copyright** - For copyright/attribution information
+Your Hygraph schema should have these **2 main models**:
+1. **Product** - The main product content model
+2. **Category** - For organizing/categorizing products
+
+The app will display products with their images, prices, categories, and more.
 
 ---
 
-## Step 1: Create the Category Model
+## Required Product Model Fields
 
-1. Go to **Hygraph Dashboard** → **Schema**
-2. Click **Create Model**
-3. Name: `Category`
-4. Click **Create**
+The **Product** model must have these fields (matching your Hygraph schema):
 
-### Add Fields to Category:
-- **name** (Text, required, Single line text)
-- **slug** (Text, required, Single line text)
-
----
-
-## Step 2: Create the Copyright Model
-
-1. Click **Create Model** again
-2. Name: `Copyright`
-3. Click **Create**
-
-### Add Fields to Copyright:
-- **name** (Text, required, Single line text)
-- **slug** (Text, required, Single line text)
+| Field | Type | Settings |
+|-------|------|----------|
+| **name** | Single line text | Required, Unique, Title |
+| **slug** | Slug | Required, Unique |
+| **description** | Markdown | Required |
+| **price** | Number (Int) | Required |
+| **categories** | Reference | Links to Category (Multiple, Two-way) |
+| **images** | Asset Picker | Multiple assets, Two-way reference |
+| **variants** | Reference | Links to Product Variant (optional) |
+| **collections** | Reference | Links to Collection (optional) |
+| **orderItems** | Reference | Links to Order Item (optional) |
+| **reviews** | Reference | Links to Review (optional) |
 
 ---
 
-## Step 3: Create the Product Model
+## Required Category Model Fields
 
-1. Click **Create Model** again
-2. Name: `Product`
-3. Click **Create**
+The **Category** model should have:
 
-### Add Fields to Product (in order):
-
-| Field Name | Type | Settings |
-|-----------|------|----------|
-| **name** | Text | Required, Single line |
-| **description** | Rich Text | Optional |
-| **shortDescription** | Text | Optional, Single line |
-| **url** | Text | Optional, URL |
-| **icon** | Text | Optional, Single line |
-| **category** | Reference | Link to Category (optional) |
-| **copyrights** | Reference | Link to Copyright (optional, allow multiple) |
-| **image** | Asset | Optional, single asset |
-| **createdAt** | DateTime | System field (auto) |
+| Field | Type | Settings |
+|-------|------|----------|
+| **name** | Text | Single line, Required |
+| **slug** | Slug | Required, Unique |
 
 ---
 
-## Step 4: Get Your API Endpoint
+---
 
-1. Go to **Project Settings** → **API Access**
-2. Look for **Content API**
-3. Copy the **Endpoint URL**
-4. Example: `https://api-eu-central-1.hygraph.com/content/abc123xyz/graphql`
+## Getting Your API Endpoint
+
+1. Go to **Hygraph Dashboard** → **Project Settings** → **API Access**
+2. Find the **Content API** section
+3. Copy your **Endpoint URL** (looks like: `https://api-eu-central-1.hygraph.com/content/abc123xyz/graphql`)
 
 ---
 
-## Step 5: Configure the App
+## Configuring the App
 
-1. Open the startpage in your browser
-2. Click the **⚙️ Settings** icon (top right)
-3. Paste your Hygraph API endpoint
-4. Click **Save Config**
-5. Done! You should see the configuration validated
+1. Open the store app in your browser
+2. Click the **⚙️ Settings** icon (top right corner)
+3. Paste your Hygraph **Content API endpoint**
+4. Optionally add an auth token if needed
+5. Click **Save Config**
+
+The app will validate your endpoint and fetch your products automatically.
 
 ---
 
-## Step 6: Add Sample Content (Optional)
+## Adding Sample Products
 
-To test the app, create some sample content in Hygraph:
+To test the app, add products in Hygraph:
 
-1. Go to **Content** section
-2. Click **Create** next to Product
-3. Fill in:
-   - **name**: "Premium Package"
-   - **description**: "Our best-selling product with all features"
-   - **url**: "https://yoursite.com/products/premium"
-   - **icon**: "star"
-   - **category**: Create or select a category
-   - **tags**: Add some tags
-   - **image**: Upload an image
-4. Publish the product
+1. Go to **Content** → **Product**
+2. Click **Create**
+3. Fill in required fields:
+   - **name**: "Wireless Headphones"
+   - **slug**: "wireless-headphones"
+   - **description**: "High-quality wireless headphones with noise cancellation"
+   - **price**: 129
+   - **categories**: Select or create a category
+   - **images**: Upload product images
+4. Click **Publish**
 5. Repeat for more products
+
+Your products will appear in the store immediately after publishing.
 
 ---
 

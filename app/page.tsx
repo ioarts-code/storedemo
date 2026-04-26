@@ -89,7 +89,7 @@ export default function Home() {
     // Filter by category
     if (selectedCategory) {
       filtered = filtered.filter(
-        (product) => product.category?.id === selectedCategory
+        (product) => product.categories?.some((cat) => cat.id === selectedCategory)
       );
     }
 
@@ -99,10 +99,7 @@ export default function Home() {
       filtered = filtered.filter(
         (product) =>
           product.name.toLowerCase().includes(query) ||
-          product.description.toLowerCase().includes(query) ||
-          product.copyrights?.some((copyright) =>
-            copyright.name.toLowerCase().includes(query)
-          )
+          product.description.toLowerCase().includes(query)
       );
     }
 
