@@ -91,7 +91,7 @@ export default function Home() {
   }, [products]);
 
   return (
-    <main className="min-h-screen bg-white flex flex-col">
+    <main className="min-h-screen bg-transparent flex flex-col">
       {/* Hero Section with two columns - Fixed height 1282px */}
       <div className="flex w-full h-[1282px] overflow-clip">
         {/* Left Column */}
@@ -109,32 +109,32 @@ export default function Home() {
             />
           </div>
         ) : (
-          <div className="flex-1 bg-black flex items-center justify-center">
+          <div className="flex-1 bg-transparent flex items-center justify-center">
             <p className="text-white">Featured product loading...</p>
           </div>
         )}
       </div>
 
-      {/* Products Section - White background */}
-      <div className="bg-white w-full">
+      {/* Products Section - Transparent */}
+      <div className="bg-transparent w-full">
         <div className="w-full px-0 py-0 relative">
           {/* Settings Button */}
           <button
             onClick={() => setConfigOpen(true)}
-            className="absolute top-4 right-4 z-10 p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            className="absolute top-4 right-4 z-10 p-2 hover:bg-[#1A1A1A] rounded-lg transition-colors"
             title="Configure Hygraph API"
           >
-            <Settings className="w-5 h-5 text-gray-700" />
+            <Settings className="w-5 h-5 text-gray-300" />
           </button>
 
           {!config ? (
             // Setup state
             <div className="text-center py-20">
-              <div className="rounded-lg bg-blue-50 border border-blue-200 p-8 max-w-md mx-auto">
-                <h2 className="text-xl font-semibold text-slate-900 mb-2">
+              <div className="rounded-lg bg-[#1A1A1A] border border-gray-700 p-8 max-w-md mx-auto">
+                <h2 className="text-xl font-semibold text-white mb-2">
                   Setup Required
                 </h2>
-                <p className="text-slate-600 mb-6">
+                <p className="text-gray-400 mb-6">
                   Click the settings icon to configure your Hygraph API endpoint
                   and start displaying products.
                 </p>
@@ -146,9 +146,9 @@ export default function Home() {
           ) : (
             <>
               {error && (
-                <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
-                  <p className="text-red-900 font-semibold mb-2">Configuration Issue</p>
-                  <p className="text-red-700 text-sm mb-4">{error}</p>
+                <div className="mb-6 p-4 bg-[#1A1A1A] border border-red-700 rounded-lg">
+                  <p className="text-red-400 font-semibold mb-2">Configuration Issue</p>
+                  <p className="text-red-300 text-sm mb-4">{error}</p>
                   <div className="flex gap-2">
                     <Button
                       variant="outline"
