@@ -1,9 +1,9 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { HygraphConfig, Service, Category } from '@/lib/types';
+import { HygraphConfig, Product, Category } from '@/lib/types';
 import { createHygraphClient } from '@/lib/hygraph-client';
-import { GET_SERVICES, GET_CATEGORIES, SEARCH_SERVICES } from '@/lib/graphql-queries';
+import { GET_PRODUCTS, GET_CATEGORIES, SEARCH_PRODUCTS } from '@/lib/graphql-queries';
 import { ConfigPanel } from '@/components/config-panel';
 import { SearchFilter } from '@/components/search-filter';
 import { ServiceGrid } from '@/components/service-grid';
@@ -12,7 +12,7 @@ import { Settings } from 'lucide-react';
 
 export default function Home() {
   const [config, setConfig] = useState<HygraphConfig | null>(null);
-  const [services, setServices] = useState<Service[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -49,11 +49,11 @@ export default function Home() {
       );
       setCategories(categoriesData.categories);
 
-      // Fetch services
-      const servicesData = await client.request<{ services: Service[] }>(
-        GET_SERVICES
+      // Fetch products
+      const productsData = await client.request<{ products: Product[] }>(
+        GET_PRODUCTS
       );
-      setServices(servicesData.services);
+      setProducts(productsData.products);
     } catch (err) {
       let message = err instanceof Error ? err.message : 'Failed to fetch data';
       
@@ -82,14 +82,14 @@ export default function Home() {
     }
   }, [config, fetchData]);
 
-  // Filter services based on search and category
-  const filteredServices = useMemo(() => {
-    let filtered = services;
+  // Filter products based on search and category
+  const filteredProducts = useMemo(() => {
+    let filtered = products;
 
     // Filter by category
     if (selectedCategory) {
       filtered = filtered.filter(
-        (service) => service.category?.id === selectedCategory
+        (product) => product.category?.id === selectedCategory
       );
     }
 
@@ -97,17 +97,17 @@ export default function Home() {
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
       filtered = filtered.filter(
-        (service) =>
-          service.name.toLowerCase().includes(query) ||
-          service.description.toLowerCase().includes(query) ||
-          service.tags?.some((tag) =>
+        (product) =>
+          product.name.toLowerCase().includes(query) ||
+          product.description.toLowerCase().includes(query) ||
+          product.tags?.some((tag) =>
             tag.name.toLowerCase().includes(query)
           )
       );
     }
 
     return filtered;
-  }, [services, searchQuery, selectedCategory]);
+  }, [products, searchQuery, selectedCategory]);
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
@@ -116,8 +116,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-slate-900">Services</h1>
-              <p className="text-slate-600 mt-1">Explore our services and offerings</p>
+              <h1 className="text-3xl font-bold text-slate-900">Store</h1>
+              <p className="text-slate-600 mt-1">Explore our products</p>
             </div>
             <Button
               variant="outline"
@@ -142,7 +142,7 @@ export default function Home() {
               </h2>
               <p className="text-slate-600 mb-6">
                 Click the settings icon to configure your Hygraph API endpoint
-                and start displaying services.
+                and start displaying products.
               </p>
               <Button onClick={() => setConfigOpen(true)} size="lg">
                 Configure Now
@@ -190,17 +190,17 @@ export default function Home() {
               />
             </div>
 
-            {/* Service Grid */}
+            {/* Product Grid */}
             <ServiceGrid
-              services={filteredServices}
-              isLoading={isLoading && services.length === 0}
-              isEmpty={!isLoading && filteredServices.length === 0}
+              services={filteredProducts}
+              isLoading={isLoading && products.length === 0}
+              isEmpty={!isLoading && filteredProducts.length === 0}
             />
 
             {/* Results count */}
             {!isLoading && (
               <div className="mt-8 text-center text-sm text-slate-600">
-                Showing {filteredServices.length} of {services.length} services
+                Showing {filteredProducts.length} of {products.length} products
               </div>
             )}
           </>

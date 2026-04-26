@@ -5,9 +5,9 @@ This guide shows you exactly how to create the required schema in Hygraph for th
 ## Quick Overview
 
 You need to create **3 models** in Hygraph:
-1. **Service** - The main content model
-2. **Category** - For organizing services
-3. **Tag** - For labeling services
+1. **Product** - The main content model
+2. **Category** - For organizing products
+3. **Tag** - For labeling products
 
 ---
 
@@ -36,13 +36,13 @@ You need to create **3 models** in Hygraph:
 
 ---
 
-## Step 3: Create the Service Model
+## Step 3: Create the Product Model
 
 1. Click **Create Model** again
-2. Name: `Service`
+2. Name: `Product`
 3. Click **Create**
 
-### Add Fields to Service (in order):
+### Add Fields to Product (in order):
 
 | Field Name | Type | Settings |
 |-----------|------|----------|
@@ -82,25 +82,25 @@ You need to create **3 models** in Hygraph:
 To test the app, create some sample content in Hygraph:
 
 1. Go to **Content** section
-2. Click **Create** next to Service
+2. Click **Create** next to Product
 3. Fill in:
-   - **name**: "Web Development"
-   - **description**: "Professional web development services"
-   - **url**: "https://yoursite.com/services/web"
-   - **icon**: "code"
+   - **name**: "Premium Package"
+   - **description**: "Our best-selling product with all features"
+   - **url**: "https://yoursite.com/products/premium"
+   - **icon**: "star"
    - **category**: Create or select a category
    - **tags**: Add some tags
    - **image**: Upload an image
-4. Publish the service
-5. Repeat for more services
+4. Publish the product
+5. Repeat for more products
 
 ---
 
 ## Troubleshooting
 
-**Error: "field 'services' is not defined"**
-- You haven't created the Service model yet
-- Check that the model name is exactly "Service" (capital S)
+**Error: "field 'products' is not defined"**
+- You haven't created the Product model yet
+- Check that the model name is exactly "Product" (capital P)
 - Refresh the app and try again
 
 **Error: "Unauthorized" or "401"**
@@ -133,9 +133,9 @@ If you want to see what fields are available in your schema:
 
 ## Next Steps
 
-- Customize the service cards in `components/service-card.tsx`
+- Customize the product cards in `components/service-card.tsx`
 - Modify the styling in `app/page.tsx`
-- Add more fields to your models as needed
+- Add more fields to your Product model as needed
 - Deploy to production when ready
 
 For more details, see the main README.md and HYGRAPH_SETUP.md files.

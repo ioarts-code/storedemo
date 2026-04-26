@@ -1,13 +1,13 @@
 'use client';
 
-import { Service } from '@/lib/types';
+import { Product } from '@/lib/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ExternalLink } from 'lucide-react';
 import Image from 'next/image';
 
 interface ServiceCardProps {
-  service: Service;
+  service: Product;
 }
 
 export function ServiceCard({ service }: ServiceCardProps) {

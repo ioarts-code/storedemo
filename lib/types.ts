@@ -1,4 +1,4 @@
-export interface Service {
+export interface Product {
   id: string;
   name: string;
   description: string;
@@ -31,6 +31,6 @@ export interface HygraphConfig {
   authToken?: string;
 }
 
-export interface ServicesResponse {
-  services: Service[];
+export interface ProductsResponse {
+  products: Product[];
 }

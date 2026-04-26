@@ -7,8 +7,8 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Services Showcase | Hygraph Startpage',
-  description: 'Discover our services and offerings. A modern startpage powered by Hygraph CMS.',
+  title: 'Store | Hygraph Powered',
+  description: 'Discover our products. A modern store powered by Hygraph CMS.',
   generator: 'v0.app',
   icons: {
     icon: [

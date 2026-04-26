@@ -145,7 +145,7 @@ export function ConfigPanel({
               Your Hygraph schema must include these models:
             </p>
             <ul className="text-xs text-blue-800 space-y-1 mb-3 font-mono">
-              <li>• Service (with: name, description, category, tags, url, icon, image)</li>
+              <li>• Product (with: name, description, category, tags, url, icon, image)</li>
               <li>• Category (with: name, slug)</li>
               <li>• Tag (with: name, slug)</li>
             </ul>

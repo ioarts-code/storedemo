@@ -1,8 +1,8 @@
 import { gql } from 'graphql-request';
 
-export const GET_SERVICES = gql`
-  query GetServices {
-    services(first: 100) {
+export const GET_PRODUCTS = gql`
+  query GetProducts {
+    products(first: 100) {
       id
       name
       description
@@ -28,9 +28,9 @@ export const GET_SERVICES = gql`
   }
 `;
 
-export const GET_SERVICES_BY_CATEGORY = gql`
-  query GetServicesByCategory($categoryId: ID!) {
-    services(first: 100, where: { category: { id: $categoryId } }) {
+export const GET_PRODUCTS_BY_CATEGORY = gql`
+  query GetProductsByCategory($categoryId: ID!) {
+    products(first: 100, where: { category: { id: $categoryId } }) {
       id
       name
       description
@@ -66,9 +66,9 @@ export const GET_CATEGORIES = gql`
   }
 `;
 
-export const SEARCH_SERVICES = gql`
-  query SearchServices($search: String!) {
-    services(first: 100, where: { name_contains: $search }) {
+export const SEARCH_PRODUCTS = gql`
+  query SearchProducts($search: String!) {
+    products(first: 100, where: { name_contains: $search }) {
       id
       name
       description
