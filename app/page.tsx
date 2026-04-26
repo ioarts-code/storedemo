@@ -84,9 +84,11 @@ export default function Home() {
     }
   }, [config, fetchData]);
 
-  // Filter products based on search and category
+  // Filter products based on search and category, excluding featured product
   const filteredProducts = useMemo(() => {
-    let filtered = products;
+    let filtered = products.filter(
+      (product) => product.slug !== 'elden-vector'
+    );
 
     // Filter by category
     if (selectedCategory) {
