@@ -13,15 +13,15 @@ interface FeaturedProductProps {
 
 export function FeaturedProduct({
   label = 'Top Pick',
-  name = 'Elden Vector',
-  description = 'Introducing a vector image for flexible use. They were individually created and vectorized. What You Get: High resolution files for your websites or create a custom painted gaming',
-  image = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Hygraph_start-XWq9wmFpjvxWGYrP85wilBbqMHLQXD.png',
-  slug = 'elden-vector',
+  name = 'Metroid Larva Pixel motif',
+  description = 'This is a **Fan-made** product Description: Introducing a vector image for flexibel use. They were individually created and vectorized. What You Get : .PNG, .EPS, .SVG format or any format you like. What You Can Do: Use it for your websites or create a custom painted gaming',
+  image = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Hygraph_start-P7IousmrjWQjcHVNIhzPstbxU28N0D.png',
+  slug = 'metroid-larva-pixel',
 }: FeaturedProductProps) {
   return (
     <div className="flex-1 bg-black flex flex-col relative overflow-hidden">
-      {/* Product Image - takes up upper portion */}
-      <div className="flex-1 relative flex items-center justify-center p-8">
+      {/* Product Image - takes up most of the space */}
+      <div className="flex-1 relative flex items-center justify-center p-8 pb-0">
         <div className="relative w-full h-full">
           <Image
             src={image}
@@ -33,29 +33,31 @@ export function FeaturedProduct({
         </div>
       </div>
 
-      {/* Product Info Section */}
-      <div className="bg-[#404040] px-12 py-8 min-h-[180px] flex flex-col justify-between">
-        {/* Label and Title */}
-        <div>
-          {label && (
-            <p className="text-xs font-bold text-white tracking-widest mb-2 uppercase">
-              {label}
-            </p>
-          )}
-          <h2 className="text-xl font-bold text-white mb-3">{name}</h2>
-          <p className="text-xs text-gray-300 line-clamp-2 leading-relaxed">
-            {description}
-          </p>
-        </div>
-      </div>
+      {/* Product Info Section - Light gray at bottom */}
+      <div className="bg-[#d0d0d0] px-8 py-6 flex flex-col gap-4">
+        {/* Label */}
+        {label && (
+          <span className="inline-flex items-center bg-blue-300 text-black px-3 py-1 rounded-full text-xs font-bold w-fit">
+            {label}
+          </span>
+        )}
+        
+        {/* Title */}
+        <h2 className="text-lg font-bold text-black">{name}</h2>
+        
+        {/* Description */}
+        <p className="text-sm text-gray-700 leading-relaxed line-clamp-3">
+          {description}
+        </p>
 
-      {/* Shop Button - positioned absolutely on left bottom */}
-      <Link
-        href={`/products/${slug}`}
-        className="absolute bottom-8 left-12 border-2 border-white px-6 py-2 text-white font-bold text-xs hover:bg-white hover:text-black transition-colors uppercase"
-      >
-        SHOP
-      </Link>
+        {/* Shop Button */}
+        <Link
+          href={`/products/${slug}`}
+          className="border-2 border-black px-6 py-2 text-black font-bold text-sm hover:bg-black hover:text-white transition-colors uppercase w-fit"
+        >
+          SHOP
+        </Link>
+      </div>
     </div>
   );
 }
