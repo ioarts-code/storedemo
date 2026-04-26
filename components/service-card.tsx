@@ -1,84 +1,75 @@
 'use client';
 
 import { Product } from '@/lib/types';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import Image from 'next/image';
 import Link from 'next/link';
 
 interface ServiceCardProps {
   service: Product;
-  size?: 'normal' | 'large';
 }
 
-export function ServiceCard({ service, size = 'normal' }: ServiceCardProps) {
-  const firstImage = service.images?.[0]?.url || '/placeholder-image.png';
-  const isLarge = size === 'large';
-
-  if (!isLarge) {
-    return (
-      <Link href={`/products/${service.slug}`}>
-        <div className="relative w-full h-[615px] overflow-clip cursor-pointer group">
-          <img
-            src={firstImage}
-            alt={service.name}
-            className="absolute inset-0 w-full h-full object-cover pointer-events-none group-hover:opacity-90 transition-opacity"
-          />
-
-          <div className="absolute bottom-[87px] left-[49px] right-[81px]">
-            <div className="bg-[#d9d9d9] min-h-[75px] py-[14px] relative rounded-[6px] flex items-center px-[16px]">
-              <div className="absolute left-[24px] top-1/2 -translate-y-1/2 font-bold text-[14px] text-black tracking-[0.5px] leading-[18px] max-w-[55%]">
-                <p className="leading-[18px] line-clamp-3">{service.name}</p>
-              </div>
-
-              <div className="absolute right-[16px] top-1/2 -translate-y-1/2">
-                <button className="bg-[#e8e8e8] h-[48px] rounded-[6px] w-[106px] border-2 border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors">
-                  <p className="font-bold text-[20px] tracking-[-0.36px] uppercase leading-[28.8px]">
-                    Shop
-                  </p>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Link>
-    );
-  }
+export function ServiceCard({ service }: ServiceCardProps) {
+  const firstImage = service.images?.[0];
 
   return (
     <Link href={`/products/${service.slug}`}>
-      <div className="relative w-full h-[1272px] overflow-clip rounded-[6px] cursor-pointer group">
-        <img
-          src={firstImage}
-          alt={service.name}
-          className="absolute inset-0 w-full h-full object-cover pointer-events-none group-hover:opacity-90 transition-opacity"
-        />
+      <Card className="h-full flex flex-col hover:shadow-lg transition-shadow duration-300 cursor-pointer">
+      {firstImage?.url && (
+        <div className="relative w-full h-48 overflow-hidden rounded-t-lg">
+          <Image
+            src={firstImage.url}
+            alt={firstImage.fileName || service.name}
+            fill
+            className="object-cover"
+          />
+        </div>
+      )}
 
-        <div className="absolute bottom-[160px] left-[80px] right-[80px]">
-          <div className="rounded-[6px] mx-[0px] mt-[15px] mb-[157px] px-[16px] pt-[15px] pb-[32px] bg-[#ffffff33]">
+      <CardHeader className="flex-1">
+        <div className="flex items-start justify-between gap-2">
+          <div className="flex-1">
+            <CardTitle className="line-clamp-2">{service.name}</CardTitle>
             {service.categories && service.categories.length > 0 && (
-              <div className="rounded-full px-[16px] py-[4px] inline-block mx-[0px] my-[16px] bg-[#ffffff]">
-                <p className="font-bold text-[11.6px] tracking-[-0.18px] leading-[14.4px] capitalize text-[#000000]">
-                  {service.categories[0].name}
-                </p>
-              </div>
+              <CardDescription className="mt-1">
+                {service.categories.map((cat) => cat.name).join(', ')}
+              </CardDescription>
             )}
-
-            <h3 className="font-bold text-[23.4px] tracking-[-0.36px] leading-[28.8px] px-[0px] py-[3px] text-[#ffffff]">
-              {service.name}
-            </h3>
-
-            <p className="font-normal text-[13.2px] tracking-[-0.21px] leading-[16.8px] mx-[0px] mt-[0px] mb-[19px] text-[#ffffff] line-clamp-4">
-              {service.description}
-            </p>
-
-            <div className="flex items-center gap-4 mb-4">
-              <span className="text-[20px] font-bold text-[#ffffff]">${service.price}</span>
-            </div>
-
-            <button className="border-2 border-black rounded-[6px] hover:bg-black hover:text-white transition-colors px-[45px] py-[12px] bg-[#ffffff]">
-              <span className="font-bold text-[20px] tracking-[-0.36px] uppercase leading-[28.8px]">Shop</span>
-            </button>
           </div>
         </div>
-      </div>
+      </CardHeader>
+
+      <CardContent className="flex-1 flex flex-col">
+        <p className="text-sm text-muted-foreground line-clamp-3 mb-4">
+          {service.description}
+        </p>
+
+        <div className="flex items-baseline gap-2 mb-4">
+          <span className="text-lg font-bold text-primary">${service.price}</span>
+        </div>
+
+        {service.images && service.images.length > 1 && (
+          <div className="flex gap-1 mb-4">
+            {service.images.slice(0, 3).map((img) => (
+              <div key={img.id} className="w-12 h-12 relative rounded overflow-hidden">
+                <Image
+                  src={img.url}
+                  alt={img.fileName || 'Product image'}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            ))}
+            {service.images.length > 3 && (
+              <div className="w-12 h-12 bg-muted rounded flex items-center justify-center text-xs">
+                +{service.images.length - 3}
+              </div>
+            )}
+          </div>
+        )}
+      </CardContent>
+    </Card>
     </Link>
   );
 }
