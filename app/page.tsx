@@ -4,10 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { HygraphConfig, Product } from '@/lib/types';
 import { createHygraphClient } from '@/lib/hygraph-client';
 import { GET_PRODUCTS } from '@/lib/graphql-queries';
-import { ConfigPanel } from '@/components/config-panel';
 import { ServiceGrid } from '@/components/service-grid';
-import { Button } from '@/components/ui/button';
-import { Settings } from 'lucide-react';
 import { HeroLeftColumn } from '@/components/hero-left-column';
 import { FeaturedProduct } from '@/components/featured-product';
 
@@ -117,15 +114,7 @@ export default function Home() {
 
       {/* Products Section - Transparent */}
       <div className="bg-transparent w-full">
-        <div className="w-full px-0 py-0 relative">
-          {/* Settings Button */}
-          <button
-            onClick={() => setConfigOpen(true)}
-            className="absolute top-4 right-4 z-10 p-2 hover:bg-[#1A1A1A] rounded-lg transition-colors"
-            title="Configure Hygraph API"
-          >
-            <Settings className="w-5 h-5 text-gray-300" />
-          </button>
+        <div className="w-full px-0 py-0">
 
           {!config ? (
             // Setup state
@@ -185,12 +174,6 @@ export default function Home() {
       </div>
 
       {/* Config Panel Modal */}
-      <ConfigPanel
-        onConfigSaved={handleConfigSaved}
-        initialConfig={config || undefined}
-        isOpen={configOpen}
-        onOpenChange={setConfigOpen}
-      />
     </main>
   );
 }
