@@ -1,9 +1,9 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { HygraphConfig, Product, Category } from '@/lib/types';
+import { HygraphConfig, Product } from '@/lib/types';
 import { createHygraphClient } from '@/lib/hygraph-client';
-import { GET_PRODUCTS, GET_CATEGORIES, SEARCH_PRODUCTS } from '@/lib/graphql-queries';
+import { GET_PRODUCTS } from '@/lib/graphql-queries';
 import { ConfigPanel } from '@/components/config-panel';
 import { ServiceGrid } from '@/components/service-grid';
 import { Button } from '@/components/ui/button';
@@ -38,7 +38,7 @@ export default function Home() {
     setConfigOpen(false);
   };
 
-  // Fetch products and categories
+  // Fetch products from Hygraph
   const fetchData = useCallback(async () => {
     if (!config) return;
 
@@ -47,8 +47,6 @@ export default function Home() {
 
     try {
       const client = createHygraphClient(config);
-
-      // Fetch products
       const productsData = await client.request<{ products: Product[] }>(
         GET_PRODUCTS
       );
@@ -58,16 +56,15 @@ export default function Home() {
       const featured = allProducts.find((p) => p.slug === 'elden-vector');
       setFeaturedProduct(featured || null);
       
-      // Set remaining products
+      // Set all products
       setProducts(allProducts);
     } catch (err) {
       let message = err instanceof Error ? err.message : 'Failed to fetch data';
       
-      // Detect schema errors
       if (message.includes('field') && message.includes('not defined')) {
         const match = message.match(/field '([^']+)'/);
         const fieldName = match ? match[1] : 'unknown field';
-        message = `Hygraph schema missing required model: "${fieldName}". Please create this model in your Hygraph dashboard. See SETUP_CHECKLIST.md for step-by-step instructions.`;
+        message = `Hygraph schema missing required model: "${fieldName}". Please create this model in your Hygraph dashboard.`;
       } else if (message.includes('401') || message.includes('Unauthorized')) {
         message = 'Invalid API token or endpoint. Check your configuration.';
       } else if (message.includes('404') || message.includes('Not Found')) {
@@ -165,7 +162,6 @@ export default function Home() {
                       variant="ghost"
                       size="sm"
                       onClick={() => {
-                        // Trigger retry
                         setError('');
                         fetchData();
                       }}
