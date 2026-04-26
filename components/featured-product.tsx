@@ -20,6 +20,11 @@ export function FeaturedProduct({
   slug = 'metroid-larva-pixel',
 }: FeaturedProductProps) {
   const [imageError, setImageError] = useState(false);
+  
+  // Truncate description to 200 characters
+  const truncatedDescription = description && description.length > 200 
+    ? description.substring(0, 200) + '...' 
+    : description;
 
   return (
     <div className="relative w-full h-[1272px] overflow-clip bg-transparent">
@@ -56,7 +61,7 @@ export function FeaturedProduct({
           </h3>
 
           <p className="font-['Inter:Regular',sans-serif] font-normal text-[13.2px] tracking-[-0.21px] leading-[16.8px] mx-[0px] mt-[0px] mb-[19px] text-[#ffffff]">
-            {description}
+            {truncatedDescription}
           </p>
 
           <button className="border-2 border-black rounded-[6px] hover:bg-black hover:text-white transition-colors px-[45px] py-[12px] bg-[#ffffff]">
