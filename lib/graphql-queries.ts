@@ -14,7 +14,7 @@ export const GET_PRODUCTS = gql`
         name
         slug
       }
-      tags(first: 10) {
+      copyrights(first: 10) {
         id
         name
         slug
@@ -42,7 +42,7 @@ export const GET_PRODUCTS_BY_CATEGORY = gql`
         name
         slug
       }
-      tags(first: 10) {
+      copyrights(first: 10) {
         id
         name
         slug
@@ -80,7 +80,7 @@ export const SEARCH_PRODUCTS = gql`
         name
         slug
       }
-      tags(first: 10) {
+      copyrights(first: 10) {
         id
         name
         slug

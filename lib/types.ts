@@ -4,7 +4,7 @@ export interface Product {
   description: string;
   shortDescription?: string;
   category?: Category;
-  tags?: Tag[];
+  copyrights?: Copyright[];
   image?: {
     url: string;
     alt?: string;
@@ -20,7 +20,7 @@ export interface Category {
   slug?: string;
 }
 
-export interface Tag {
+export interface Copyright {
   id: string;
   name: string;
   slug?: string;

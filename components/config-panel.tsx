@@ -145,9 +145,9 @@ export function ConfigPanel({
               Your Hygraph schema must include these models:
             </p>
             <ul className="text-xs text-blue-800 space-y-1 mb-3 font-mono">
-              <li>• Product (with: name, description, category, tags, url, icon, image)</li>
+              <li>• Product (with: name, description, category, copyrights, url, icon, image)</li>
               <li>• Category (with: name, slug)</li>
-              <li>• Tag (with: name, slug)</li>
+              <li>• Copyright (with: name, slug)</li>
             </ul>
             <p className="text-xs text-blue-800 mb-2">
               Check the SCHEMA_SETUP.md file in your project for step-by-step instructions.

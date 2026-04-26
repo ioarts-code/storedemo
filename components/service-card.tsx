@@ -45,16 +45,16 @@ export function ServiceCard({ service }: ServiceCardProps) {
           {service.shortDescription || service.description}
         </p>
 
-        {service.tags && service.tags.length > 0 && (
+        {service.copyrights && service.copyrights.length > 0 && (
           <div className="flex flex-wrap gap-1 mb-4">
-            {service.tags.slice(0, 3).map((tag) => (
-              <Badge key={tag.id} variant="secondary" className="text-xs">
-                {tag.name}
+            {service.copyrights.slice(0, 3).map((copyright) => (
+              <Badge key={copyright.id} variant="secondary" className="text-xs">
+                {copyright.name}
               </Badge>
             ))}
-            {service.tags.length > 3 && (
+            {service.copyrights.length > 3 && (
               <Badge variant="secondary" className="text-xs">
-                +{service.tags.length - 3}
+                +{service.copyrights.length - 3}
               </Badge>
             )}
           </div>

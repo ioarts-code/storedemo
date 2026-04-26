@@ -100,8 +100,8 @@ export default function Home() {
         (product) =>
           product.name.toLowerCase().includes(query) ||
           product.description.toLowerCase().includes(query) ||
-          product.tags?.some((tag) =>
-            tag.name.toLowerCase().includes(query)
+          product.copyrights?.some((copyright) =>
+            copyright.name.toLowerCase().includes(query)
           )
       );
     }

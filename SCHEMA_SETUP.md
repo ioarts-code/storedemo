@@ -7,7 +7,7 @@ This guide shows you exactly how to create the required schema in Hygraph for th
 You need to create **3 models** in Hygraph:
 1. **Product** - The main content model
 2. **Category** - For organizing products
-3. **Tag** - For labeling products
+3. **Copyright** - For copyright/attribution information
 
 ---
 
@@ -24,13 +24,13 @@ You need to create **3 models** in Hygraph:
 
 ---
 
-## Step 2: Create the Tag Model
+## Step 2: Create the Copyright Model
 
 1. Click **Create Model** again
-2. Name: `Tag`
+2. Name: `Copyright`
 3. Click **Create**
 
-### Add Fields to Tag:
+### Add Fields to Copyright:
 - **name** (Text, required, Single line text)
 - **slug** (Text, required, Single line text)
 
@@ -52,7 +52,7 @@ You need to create **3 models** in Hygraph:
 | **url** | Text | Optional, URL |
 | **icon** | Text | Optional, Single line |
 | **category** | Reference | Link to Category (optional) |
-| **tags** | Reference | Link to Tag (optional, allow multiple) |
+| **copyrights** | Reference | Link to Copyright (optional, allow multiple) |
 | **image** | Asset | Optional, single asset |
 | **createdAt** | DateTime | System field (auto) |
 

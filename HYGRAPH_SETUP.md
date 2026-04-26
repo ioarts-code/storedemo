@@ -7,7 +7,7 @@ This is a modern services showcase startpage powered by **Hygraph CMS** and buil
 ### 1. Set Up Your Hygraph Project
 
 1. Go to [Hygraph.com](https://hygraph.com) and create a new project
-2. In your project, create a **Service** content model with these fields:
+2. In your project, create a **Product** content model with these fields:
    - `name` (Text, required)
    - `description` (Rich Text or Long Text)
    - `shortDescription` (Text, optional)
@@ -15,13 +15,13 @@ This is a modern services showcase startpage powered by **Hygraph CMS** and buil
    - `icon` (Text, optional - store emoji or icon character)
    - `image` (Asset, optional)
    - `category` (Reference to Category model, optional)
-   - `tags` (Reference to Tag model, multiple, optional)
+   - `copyrights` (Reference to Copyright model, multiple, optional)
 
 3. Create a **Category** content model with:
    - `name` (Text, required)
    - `slug` (Slug, optional)
 
-4. Create a **Tag** content model with:
+4. Create a **Copyright** content model with:
    - `name` (Text, required)
    - `slug` (Slug, optional)
 
