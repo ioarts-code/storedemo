@@ -14,6 +14,7 @@ import { FeaturedProduct } from '@/components/featured-product';
 export default function Home() {
   const [config, setConfig] = useState<HygraphConfig | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
+  const [featuredProduct, setFeaturedProduct] = useState<Product | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [configOpen, setConfigOpen] = useState(false);
@@ -45,7 +46,14 @@ export default function Home() {
       const productsData = await client.request<{ products: Product[] }>(
         GET_PRODUCTS
       );
-      setProducts(productsData.products);
+      const allProducts = productsData.products;
+      
+      // Find featured product
+      const featured = allProducts.find((p) => p.slug === 'metroid-larva-pixel');
+      setFeaturedProduct(featured || null);
+      
+      // Set remaining products
+      setProducts(allProducts);
     } catch (err) {
       let message = err instanceof Error ? err.message : 'Failed to fetch data';
       
@@ -87,13 +95,19 @@ export default function Home() {
         <HeroLeftColumn />
         
         {/* Right Column - Featured Product */}
-        <FeaturedProduct
-          label="Top Pick"
-          name="Metroid Larva Pixel motif"
-          description="This is a **Fan-made** product Description: Introducing a vector image for flexibel use. They were individually created and vectorized. What You Get : .PNG, .EPS, .SVG format or any format you like. What You Can Do: Use it for your websites or create a custom painted gaming"
-          image="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Hygraph_start-P7IousmrjWQjcHVNIhzPstbxU28N0D.png"
-          slug="metroid-larva-pixel"
-        />
+        {featuredProduct ? (
+          <FeaturedProduct
+            label="Top Pick"
+            name={featuredProduct.name}
+            description={featuredProduct.description}
+            image={featuredProduct.images?.[0]?.url}
+            slug={featuredProduct.slug}
+          />
+        ) : (
+          <div className="flex-1 bg-black flex items-center justify-center">
+            <p className="text-white">Featured product loading...</p>
+          </div>
+        )}
       </div>
 
       {/* Products Section - White background */}
