@@ -139,8 +139,6 @@ export default function Home() {
           />
         </div>
       </div>
-
-      {/* Config Panel Modal */}
     </main>
   );
 }
