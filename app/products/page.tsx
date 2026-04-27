@@ -4,11 +4,9 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { HygraphConfig, Product, Category } from '@/lib/types';
 import { createHygraphClient } from '@/lib/hygraph-client';
 import { GET_PRODUCTS, GET_CATEGORIES, SEARCH_PRODUCTS } from '@/lib/graphql-queries';
-import { ConfigPanel } from '@/components/config-panel';
 import { SearchFilter } from '@/components/search-filter';
 import { ServiceGrid } from '@/components/service-grid';
-import { Button } from '@/components/ui/button';
-import { Settings, ArrowLeft } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 
 export default function ProductsPage() {
@@ -19,10 +17,21 @@ export default function ProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-  const [configOpen, setConfigOpen] = useState(false);
 
-  // Load config from localStorage on mount
+  // Load config from environment variables or localStorage on mount
   useEffect(() => {
+    // Check for environment variables first
+    const endpoint = process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT;
+    const authToken = process.env.NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN;
+    
+    if (endpoint && authToken) {
+      const config: HygraphConfig = { endpoint, authToken };
+      setConfig(config);
+      localStorage.setItem('hygraph-config', JSON.stringify(config));
+      return;
+    }
+    
+    // Fall back to localStorage
     const saved = localStorage.getItem('hygraph-config');
     if (saved) {
       try {
@@ -135,84 +144,39 @@ export default function ProductsPage() {
 
       {/* Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {!config ? (
-          <div className="text-center py-20">
-            <div className="rounded-lg bg-blue-50 border border-blue-200 p-8 max-w-md mx-auto">
-              <h2 className="text-xl font-semibold text-slate-900 mb-2">
-                Setup Required
-              </h2>
-              <p className="text-slate-600 mb-6">
-                Click the settings icon to configure your Hygraph API endpoint.
-              </p>
-              <Button onClick={() => setConfigOpen(true)} size="lg">
-                Configure Now
-              </Button>
-            </div>
+        {error && (
+          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+            <p className="text-red-900 font-semibold mb-2">Configuration Issue</p>
+            <p className="text-red-700 text-sm mb-4">{error}</p>
           </div>
-        ) : (
-          <>
-            {error && (
-              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
-                <p className="text-red-900 font-semibold mb-2">Configuration Issue</p>
-                <p className="text-red-700 text-sm mb-4">{error}</p>
-                <div className="flex gap-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setConfigOpen(true)}
-                    className="text-red-700 border-red-300"
-                  >
-                    Update Config
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => {
-                      setError('');
-                      fetchData();
-                    }}
-                    className="text-red-700"
-                  >
-                    Retry
-                  </Button>
-                </div>
-              </div>
-            )}
+        )}
 
-            {/* Search and Filter */}
-            <div className="mb-8">
-              <SearchFilter
-                categories={categories}
-                onSearchChange={setSearchQuery}
-                onCategoryChange={setSelectedCategory}
-                isLoading={isLoading}
-              />
-            </div>
+        {/* Search and Filter */}
+        <div className="mb-8">
+          <SearchFilter
+            categories={categories}
+            onSearchChange={setSearchQuery}
+            onCategoryChange={setSelectedCategory}
+            isLoading={isLoading}
+          />
+        </div>
 
-            {/* Product Grid */}
-            <ServiceGrid
-              services={filteredProducts}
-              isLoading={isLoading && products.length === 0}
-              isEmpty={!isLoading && filteredProducts.length === 0}
-            />
+        {/* Product Grid */}
+        <ServiceGrid
+          services={filteredProducts}
+          isLoading={isLoading && products.length === 0}
+          isEmpty={!isLoading && filteredProducts.length === 0}
+        />
 
-            {/* Results count */}
-            {!isLoading && (
-              <div className="mt-8 text-center text-sm text-slate-600">
-                Showing {filteredProducts.length} of {products.length} products
-              </div>
-            )}
-          </>
+        {/* Results count */}
+        {!isLoading && (
+          <div className="mt-8 text-center text-sm text-slate-600">
+            Showing {filteredProducts.length} of {products.length} products
+          </div>
         )}
       </div>
 
       {/* Config Panel Modal */}
-      <ConfigPanel
-        onConfigSaved={setConfig}
-        initialConfig={config || undefined}
-        isOpen={configOpen}
-        onOpenChange={setConfigOpen}
-      />
     </main>
   );
 }
