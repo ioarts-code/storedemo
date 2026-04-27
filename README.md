@@ -11,7 +11,7 @@ A modern, responsive services showcase built with **Next.js 16**, **React 19.2**
 
 ---
 
-## ✨ Features
+##  Features
 
 - 🚀 **Production-Ready** - Built with best practices, fully typed
 - 🎨 **Responsive Design** - Mobile-first, works on all devices
