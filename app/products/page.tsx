@@ -120,24 +120,14 @@ export default function ProductsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <Link href="/">
-                <Button variant="ghost" size="icon">
-                  <ArrowLeft className="w-5 h-5" />
-                </Button>
+              <Link href="/" className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                <ArrowLeft className="w-5 h-5" />
               </Link>
               <div>
                 <h1 className="text-3xl font-bold text-slate-900">All Products</h1>
                 <p className="text-slate-600 mt-1">Browse our complete catalog</p>
               </div>
             </div>
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={() => setConfigOpen(true)}
-              title="Configure Hygraph API"
-            >
-              <Settings className="w-5 h-5" />
-            </Button>
           </div>
         </div>
       </div>
