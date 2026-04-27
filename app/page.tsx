@@ -15,8 +15,20 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
-  // Load config from localStorage on mount
+  // Load config from environment variables or localStorage on mount
   useEffect(() => {
+    // Check for environment variables first
+    const endpoint = process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT;
+    const authToken = process.env.NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN;
+    
+    if (endpoint && authToken) {
+      const config: HygraphConfig = { endpoint, authToken };
+      setConfig(config);
+      localStorage.setItem('hygraph-config', JSON.stringify(config));
+      return;
+    }
+    
+    // Fall back to localStorage
     const saved = localStorage.getItem('hygraph-config');
     if (saved) {
       try {
