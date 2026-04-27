@@ -21,10 +21,13 @@ export default function Home() {
     const endpoint = process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT;
     const authToken = process.env.NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN;
     
+    console.log('[v0] Config load attempt - Endpoint:', endpoint ? '✓' : '✗', 'Token:', authToken ? '✓' : '✗');
+    
     if (endpoint && authToken) {
       const config: HygraphConfig = { endpoint, authToken };
       setConfig(config);
       localStorage.setItem('hygraph-config', JSON.stringify(config));
+      console.log('[v0] Config loaded from env vars');
       return;
     }
     
@@ -34,9 +37,12 @@ export default function Home() {
       try {
         const parsed = JSON.parse(saved);
         setConfig(parsed);
+        console.log('[v0] Config loaded from localStorage');
       } catch {
         console.log('[v0] Failed to parse saved config');
       }
+    } else {
+      console.log('[v0] No config found');
     }
   }, []);
 
@@ -47,8 +53,12 @@ export default function Home() {
 
   // Fetch products from Hygraph
   const fetchData = useCallback(async () => {
-    if (!config) return;
+    if (!config) {
+      console.log('[v0] No config, skipping fetch');
+      return;
+    }
 
+    console.log('[v0] Fetching products...');
     setIsLoading(true);
     setError('');
 
@@ -58,6 +68,7 @@ export default function Home() {
         GET_PRODUCTS
       );
       const allProducts = productsData.products;
+      console.log('[v0] Fetched products:', allProducts.length);
       
       // Find featured product
       const featured = allProducts.find((p) => p.slug === 'elden-vector');
@@ -67,6 +78,7 @@ export default function Home() {
       setProducts(allProducts);
     } catch (err) {
       let message = err instanceof Error ? err.message : 'Failed to fetch data';
+      console.log('[v0] Fetch error:', message);
       
       if (message.includes('field') && message.includes('not defined')) {
         const match = message.match(/field '([^']+)'/);
