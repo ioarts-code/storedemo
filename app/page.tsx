@@ -21,10 +21,15 @@ export default function Home() {
     const endpoint = process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT;
     const authToken = process.env.NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN;
     
+    console.log('[v0] Checking env vars:');
+    console.log('[v0] Endpoint:', endpoint ? '✓ Found' : '✗ Missing');
+    console.log('[v0] Auth Token:', authToken ? '✓ Found' : '✗ Missing');
+    
     if (endpoint && authToken) {
       const config: HygraphConfig = { endpoint, authToken };
       setConfig(config);
       localStorage.setItem('hygraph-config', JSON.stringify(config));
+      console.log('[v0] Config loaded from env vars');
       return;
     }
     
@@ -34,9 +39,12 @@ export default function Home() {
       try {
         const parsed = JSON.parse(saved);
         setConfig(parsed);
+        console.log('[v0] Config loaded from localStorage');
       } catch {
         console.log('[v0] Failed to parse saved config');
       }
+    } else {
+      console.log('[v0] No config found in env vars or localStorage');
     }
   }, []);
 
