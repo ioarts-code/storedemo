@@ -14,7 +14,6 @@ export default function Home() {
   const [featuredProduct, setFeaturedProduct] = useState<Product | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-  const [configOpen, setConfigOpen] = useState(false);
 
   // Load config from localStorage on mount
   useEffect(() => {
@@ -32,7 +31,6 @@ export default function Home() {
   const handleConfigSaved = (newConfig: HygraphConfig) => {
     setConfig(newConfig);
     localStorage.setItem('hygraph-config', JSON.stringify(newConfig));
-    setConfigOpen(false);
   };
 
   // Fetch products from Hygraph
