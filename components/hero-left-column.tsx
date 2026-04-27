@@ -10,7 +10,7 @@ export function HeroLeftColumn() {
         ENJOY!
       </h1>
 
-      <p className="font-['Inter:Regular',sans-serif] font-normal text-[14.8px] tracking-[-0.24px] leading-[19.2px] text-[#6f8298]">
+      <p className="font-['Inter:Regular',sans-serif] font-normal text-[14.8px] tracking-[-0.24px] leading-[19.2px] text-[#ffffff] mb-[24px]">
         ILLUSTRATIONS THAT MAKE SENSE.<br />
         WHAT ABOUT DIGITAL ART?<br />
         LET&apos;S MAKE EVERY PRODUCT YOURS FOR REAL.
