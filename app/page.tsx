@@ -53,11 +53,6 @@ export default function Home() {
     }
   }, []);
 
-  const handleConfigSaved = (newConfig: HygraphConfig) => {
-    setConfig(newConfig);
-    localStorage.setItem('hygraph-config', JSON.stringify(newConfig));
-  };
-
   // Fetch products from Hygraph
   const fetchData = useCallback(async () => {
     if (!config) {
