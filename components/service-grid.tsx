@@ -2,8 +2,6 @@
 
 import { Product } from '@/lib/types';
 import { ServiceCard } from './service-card';
-import { Empty } from '@/components/ui/empty';
-import { Spinner } from '@/components/ui/spinner';
 
 interface ServiceGridProps {
   services: Product[];
@@ -19,17 +17,17 @@ export function ServiceGrid({
   if (isLoading) {
     return (
       <div className="flex justify-center items-center py-20">
-        <Spinner />
+        <div className="text-gray-400">Loading products...</div>
       </div>
     );
   }
 
   if (isEmpty || services.length === 0) {
     return (
-      <Empty
-        heading="No products found"
-        description="Try adjusting your search or filter criteria"
-      />
+      <div className="text-center py-20">
+        <h3 className="text-lg font-semibold text-white mb-2">No products found</h3>
+        <p className="text-gray-400">Try adjusting your search or filter criteria</p>
+      </div>
     );
   }
 
