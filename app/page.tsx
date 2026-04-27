@@ -115,61 +115,19 @@ export default function Home() {
       {/* Products Section - Transparent */}
       <div className="bg-transparent w-full">
         <div className="w-full px-0 py-0">
-
-          {!config ? (
-            // Setup state
-            <div className="text-center py-20">
-              <div className="rounded-lg bg-[#1A1A1A] border border-gray-700 p-8 max-w-md mx-auto">
-                <h2 className="text-xl font-semibold text-white mb-2">
-                  Setup Required
-                </h2>
-                <p className="text-gray-400 mb-6">
-                  Click the settings icon to configure your Hygraph API endpoint
-                  and start displaying products.
-                </p>
-                <Button onClick={() => setConfigOpen(true)} size="lg">
-                  Configure Now
-                </Button>
-              </div>
+          {error && (
+            <div className="mb-6 p-4 bg-[#1A1A1A] border border-red-700 rounded-lg text-center">
+              <p className="text-red-400 font-semibold mb-2">Configuration Issue</p>
+              <p className="text-red-300 text-sm">{error}</p>
             </div>
-          ) : (
-            <>
-              {error && (
-                <div className="mb-6 p-4 bg-[#1A1A1A] border border-red-700 rounded-lg">
-                  <p className="text-red-400 font-semibold mb-2">Configuration Issue</p>
-                  <p className="text-red-300 text-sm mb-4">{error}</p>
-                  <div className="flex gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => setConfigOpen(true)}
-                      className="text-red-700 border-red-300"
-                    >
-                      Update Config
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => {
-                        setError('');
-                        fetchData();
-                      }}
-                      className="text-red-700"
-                    >
-                      Retry
-                    </Button>
-                  </div>
-                </div>
-              )}
-
-              {/* Product Grid */}
-              <ServiceGrid
-                services={filteredProducts}
-                isLoading={isLoading && products.length === 0}
-                isEmpty={!isLoading && filteredProducts.length === 0}
-              />
-            </>
           )}
+
+          {/* Product Grid */}
+          <ServiceGrid
+            services={filteredProducts}
+            isLoading={isLoading && products.length === 0}
+            isEmpty={!isLoading && filteredProducts.length === 0}
+          />
         </div>
       </div>
 
