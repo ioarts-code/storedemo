@@ -7,8 +7,7 @@ import { GET_PRODUCTS } from '@/lib/graphql-queries';
 import { ServiceGrid } from '@/components/service-grid';
 import { HeroLeftColumn } from '@/components/hero-left-column';
 import { FeaturedProduct } from '@/components/featured-product';
-import { ConfigModal } from '@/components/config-modal';
-import { Settings } from 'lucide-react';
+
 
 export default function Home() {
   const [config, setConfig] = useState<HygraphConfig | null>(null);
@@ -16,13 +15,7 @@ export default function Home() {
   const [featuredProduct, setFeaturedProduct] = useState<Product | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-  const [configOpen, setConfigOpen] = useState(false);
 
-  const handleConfigSaved = (newConfig: HygraphConfig) => {
-    setConfig(newConfig);
-    localStorage.setItem('hygraph-config', JSON.stringify(newConfig));
-    setConfigOpen(false);
-  };
   useEffect(() => {
     // Check for environment variables first
     const endpoint = process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT;
@@ -127,18 +120,7 @@ export default function Home() {
 
       {/* Products Section - Transparent */}
       <div className="bg-transparent w-full">
-        <div className="w-full px-0 py-0 relative">
-          {/* Settings Button */}
-          {!config && (
-            <button
-              onClick={() => setConfigOpen(true)}
-              className="absolute top-4 right-4 z-10 flex items-center gap-2 px-4 py-2 bg-white hover:bg-gray-100 text-black rounded transition-colors font-medium text-sm"
-              title="Configure Hygraph API"
-            >
-              <Settings className="w-4 h-4" />
-              Configure
-            </button>
-          )}
+        <div className="w-full px-0 py-0">
           {error && (
             <div className="mb-6 p-4 bg-[#1A1A1A] border border-red-700 rounded-lg text-center">
               <p className="text-red-400 font-semibold mb-2">Configuration Issue</p>
@@ -154,14 +136,6 @@ export default function Home() {
           />
         </div>
       </div>
-
-      {/* Config Modal */}
-      <ConfigModal
-        isOpen={configOpen}
-        onClose={() => setConfigOpen(false)}
-        onSave={handleConfigSaved}
-        initialConfig={config || undefined}
-      />
     </main>
   );
 }
