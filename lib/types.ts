@@ -47,7 +47,7 @@ export interface Category {
 
 export interface HygraphConfig {
   endpoint: string;
-  authToken?: string;
+  token: string;
 }
 
 export interface ProductsResponse {
