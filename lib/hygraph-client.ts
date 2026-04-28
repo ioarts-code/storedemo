@@ -1,36 +1,33 @@
-import { GraphQLClient } from 'graphql-request';
-
 /**
- * Create a Hygraph GraphQL client using environment variables
- * Reads NEXT_PUBLIC_HYGRAPH_ENDPOINT and NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN from Vercel env
+ * Client-side Hygraph GraphQL client
+ * Communicates with /api/hygraph route which handles authentication server-side
  */
-export function getHygraphClient() {
-  const endpoint = process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT;
-  const authToken = process.env.NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN;
+export function createHygraphClient() {
+  return {
+    request: async <T,>(query: string, variables?: Record<string, any>): Promise<T> => {
+      const response = await fetch('/api/hygraph', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query,
+          variables,
+        }),
+      });
 
-  if (!endpoint) {
-    throw new Error(
-      'NEXT_PUBLIC_HYGRAPH_ENDPOINT environment variable is not set'
-    );
-  }
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || `API request failed with status ${response.status}`);
+      }
 
-  if (!authToken) {
-    throw new Error(
-      'NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN environment variable is not set'
-    );
-  }
+      const data = await response.json();
 
-  const headers: Record<string, string> = {
-    'Content-Type': 'application/json',
-    Authorization: `Bearer ${authToken}`,
+      if (data.errors) {
+        throw new Error(data.errors[0]?.message || 'GraphQL error');
+      }
+
+      return data.data;
+    },
   };
-
-  return new GraphQLClient(endpoint, { headers });
 }
-
-/**
- * Legacy function for backwards compatibility - uses Vercel env vars directly
- */
-export const createHygraphClient = () => {
-  return getHygraphClient();
-};
