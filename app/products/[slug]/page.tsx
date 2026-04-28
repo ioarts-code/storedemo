@@ -6,9 +6,7 @@ import { Product, HygraphConfig } from '@/lib/types';
 import { createHygraphClient } from '@/lib/hygraph-client';
 import { GET_PRODUCT_BY_SLUG } from '@/lib/graphql-queries';
 import { ProductDetail } from '@/components/product-detail';
-import { Spinner } from '@/components/ui/spinner';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 
 export default function ProductPage() {
@@ -48,45 +46,58 @@ export default function ProductPage() {
       } catch (err) {
         const message = err instanceof Error ? err.message : 'Failed to fetch product';
         setError(message);
-        console.error('[v0] Product fetch error:', err);
       } finally {
         setIsLoading(false);
       }
     };
 
-    if (slug) {
-      fetchProduct();
-    }
+    fetchProduct();
   }, [slug]);
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center min-h-screen">
-        <Spinner />
+      <div className="min-h-screen flex items-center justify-center bg-[#0F0F0F]">
+        <div className="text-gray-400">Loading product...</div>
       </div>
     );
   }
 
-  if (error || !product) {
+  if (error) {
     return (
-      <div className="min-h-screen bg-white flex flex-col items-center justify-center">
-        <div className="text-center max-w-md">
-          <h1 className="text-2xl font-bold text-slate-900 mb-4">
-            {error ? 'Error Loading Product' : 'Product Not Found'}
-          </h1>
-          <p className="text-slate-600 mb-8">
-            {error || 'The product you are looking for does not exist.'}
-          </p>
-          <Link href="/products">
-            <Button className="gap-2">
-              <ArrowLeft className="w-4 h-4" />
-              Back to Products
-            </Button>
+      <div className="min-h-screen bg-[#0F0F0F] flex items-center justify-center">
+        <div className="max-w-md mx-auto text-center">
+          <h1 className="text-2xl font-bold text-white mb-4">Error</h1>
+          <p className="text-gray-400 mb-6">{error}</p>
+          <Link href="/products" className="text-blue-400 hover:text-blue-300">
+            Back to Products
           </Link>
         </div>
       </div>
     );
   }
 
-  return <ProductDetail product={product} />;
+  if (!product) {
+    return (
+      <div className="min-h-screen bg-[#0F0F0F] flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-white mb-4">Product not found</h1>
+          <Link href="/products" className="text-blue-400 hover:text-blue-300">
+            Back to Products
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <main className="min-h-screen bg-[#0F0F0F]">
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        <Link href="/products" className="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-8">
+          <ArrowLeft className="w-5 h-5" />
+          Back to Products
+        </Link>
+        <ProductDetail product={product} />
+      </div>
+    </main>
+  );
 }
