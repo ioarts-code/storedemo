@@ -1,92 +1,60 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { HygraphConfig, Product } from '@/lib/types';
+import { Product } from '@/lib/types';
 import { createHygraphClient } from '@/lib/hygraph-client';
 import { GET_PRODUCTS } from '@/lib/graphql-queries';
 import { ServiceGrid } from '@/components/service-grid';
 import { HeroLeftColumn } from '@/components/hero-left-column';
 import { FeaturedProduct } from '@/components/featured-product';
 
-
 export default function Home() {
-  const [config, setConfig] = useState<HygraphConfig | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
   const [featuredProduct, setFeaturedProduct] = useState<Product | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
 
+  // Fetch products from Hygraph on mount
   useEffect(() => {
-    // Check for environment variables first
-    const endpoint = process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT;
-    const authToken = process.env.NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN;
-    
-    if (endpoint && authToken) {
-      const config: HygraphConfig = { endpoint, authToken };
-      setConfig(config);
-      localStorage.setItem('hygraph-config', JSON.stringify(config));
-      return;
-    }
-    
-    // Fall back to localStorage
-    const saved = localStorage.getItem('hygraph-config');
-    if (saved) {
+    const fetchData = async () => {
+      setIsLoading(true);
+      setError('');
+
       try {
-        const parsed = JSON.parse(saved);
-        setConfig(parsed);
-      } catch {
-        console.log('[v0] Failed to parse saved config');
+        const client = createHygraphClient();
+        const productsData = await client.request<{ products: Product[] }>(
+          GET_PRODUCTS
+        );
+        const allProducts = productsData.products;
+
+        // Find featured product
+        const featured = allProducts.find((p) => p.slug === 'elden-vector');
+        setFeaturedProduct(featured || null);
+
+        // Set all products
+        setProducts(allProducts);
+      } catch (err) {
+        let message = err instanceof Error ? err.message : 'Failed to fetch data';
+
+        if (message.includes('field') && message.includes('not defined')) {
+          const match = message.match(/field '([^']+)'/);
+          const fieldName = match ? match[1] : 'unknown field';
+          message = `Hygraph schema missing: "${fieldName}"`;
+        } else if (message.includes('401') || message.includes('Unauthorized')) {
+          message = 'Invalid API token. Check your Vercel environment variables.';
+        } else if (message.includes('404') || message.includes('Not Found')) {
+          message = 'API endpoint not found. Verify NEXT_PUBLIC_HYGRAPH_ENDPOINT.';
+        }
+
+        setError(message);
+        console.error('[v0] Hygraph fetch error:', message);
+      } finally {
+        setIsLoading(false);
       }
-    }
+    };
+
+    fetchData();
   }, []);
-
-  // Fetch products from Hygraph
-  const fetchData = useCallback(async () => {
-    if (!config) {
-      return;
-    }
-
-    setIsLoading(true);
-    setError('');
-
-    try {
-      const client = createHygraphClient(config);
-      const productsData = await client.request<{ products: Product[] }>(
-        GET_PRODUCTS
-      );
-      const allProducts = productsData.products;
-      
-      // Find featured product
-      const featured = allProducts.find((p) => p.slug === 'elden-vector');
-      setFeaturedProduct(featured || null);
-      
-      // Set all products
-      setProducts(allProducts);
-    } catch (err) {
-      let message = err instanceof Error ? err.message : 'Failed to fetch data';
-      
-      if (message.includes('field') && message.includes('not defined')) {
-        const match = message.match(/field '([^']+)'/);
-        const fieldName = match ? match[1] : 'unknown field';
-        message = `Hygraph schema missing required model: "${fieldName}". Please create this model in your Hygraph dashboard.`;
-      } else if (message.includes('401') || message.includes('Unauthorized')) {
-        message = 'Invalid API token or endpoint. Check your configuration.';
-      } else if (message.includes('404') || message.includes('Not Found')) {
-        message = 'API endpoint not found. Verify your Hygraph endpoint URL.';
-      }
-      
-      setError(message);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [config]);
-
-  // Fetch data when config changes
-  useEffect(() => {
-    if (config) {
-      fetchData();
-    }
-  }, [config, fetchData]);
 
   // Filter products, excluding featured product
   const filteredProducts = useMemo(() => {
@@ -99,7 +67,7 @@ export default function Home() {
       <div className="flex w-full h-[1282px] overflow-clip">
         {/* Left Column */}
         <HeroLeftColumn />
-        
+
         {/* Right Column - Featured Product */}
         {featuredProduct ? (
           <div className="flex-1">
@@ -113,7 +81,9 @@ export default function Home() {
           </div>
         ) : (
           <div className="flex-1 bg-transparent flex items-center justify-center">
-            <p className="text-white">Featured product loading...</p>
+            <p className="text-white">
+              {isLoading ? 'Featured product loading...' : 'Featured product not found'}
+            </p>
           </div>
         )}
       </div>
@@ -123,7 +93,7 @@ export default function Home() {
         <div className="w-full px-0 py-0">
           {error && (
             <div className="mb-6 p-4 bg-[#1A1A1A] border border-red-700 rounded-lg text-center">
-              <p className="text-red-400 font-semibold mb-2">Configuration Issue</p>
+              <p className="text-red-400 font-semibold mb-2">API Error</p>
               <p className="text-red-300 text-sm">{error}</p>
             </div>
           )}
