@@ -1,80 +1,69 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { HygraphConfig, Product } from '@/lib/types';
+import { Product } from '@/lib/types';
 import { createHygraphClient } from '@/lib/hygraph-client';
 import { GET_PRODUCTS } from '@/lib/graphql-queries';
 import { ServiceGrid } from '@/components/service-grid';
 import { HeroLeftColumn } from '@/components/hero-left-column';
 import { FeaturedProduct } from '@/components/featured-product';
-
+import { ConfigDialog } from '@/components/config-dialog';
+import { Settings } from 'lucide-react';
 
 export default function Home() {
-  const [config, setConfig] = useState<HygraphConfig | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
   const [featuredProduct, setFeaturedProduct] = useState<Product | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
+  const [configOpen, setConfigOpen] = useState(false);
+  const [config, setConfig] = useState<{ endpoint: string; token: string } | null>(null);
 
+  // Load saved configuration from localStorage
   useEffect(() => {
-    // Check for environment variables first
-    const endpoint = process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT;
-    const authToken = process.env.NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN;
-    
-    if (endpoint && authToken) {
-      const config: HygraphConfig = { endpoint, authToken };
-      setConfig(config);
-      localStorage.setItem('hygraph-config', JSON.stringify(config));
-      return;
-    }
-    
-    // Fall back to localStorage
     const saved = localStorage.getItem('hygraph-config');
     if (saved) {
       try {
-        const parsed = JSON.parse(saved);
-        setConfig(parsed);
+        setConfig(JSON.parse(saved));
       } catch {
-        console.log('[v0] Failed to parse saved config');
+        // Ignore parse errors
       }
     }
   }, []);
 
   // Fetch products from Hygraph
   const fetchData = useCallback(async () => {
-    if (!config) {
-      return;
-    }
-
     setIsLoading(true);
     setError('');
 
     try {
-      const client = createHygraphClient(config);
+      const client = createHygraphClient(config || undefined);
       const productsData = await client.request<{ products: Product[] }>(
         GET_PRODUCTS
       );
       const allProducts = productsData.products;
-      
+
       // Find featured product
       const featured = allProducts.find((p) => p.slug === 'elden-vector');
       setFeaturedProduct(featured || null);
-      
+
       // Set all products
       setProducts(allProducts);
     } catch (err) {
       let message = err instanceof Error ? err.message : 'Failed to fetch data';
-      
-      if (message.includes('field') && message.includes('not defined')) {
+
+      if (message.includes('endpoint and token must be configured')) {
+        message = 'API not configured. Click the settings icon to configure.';
+        setConfigOpen(true);
+      } else if (message.includes('field') && message.includes('not defined')) {
         const match = message.match(/field '([^']+)'/);
         const fieldName = match ? match[1] : 'unknown field';
-        message = `Hygraph schema missing required model: "${fieldName}". Please create this model in your Hygraph dashboard.`;
+        message = `Hygraph schema missing: "${fieldName}"`;
       } else if (message.includes('401') || message.includes('Unauthorized')) {
-        message = 'Invalid API token or endpoint. Check your configuration.';
+        message = 'Invalid API token. Check your configuration.';
       } else if (message.includes('404') || message.includes('Not Found')) {
-        message = 'API endpoint not found. Verify your Hygraph endpoint URL.';
+        message = 'API endpoint not found. Verify your configuration.';
       }
-      
+
       setError(message);
     } finally {
       setIsLoading(false);
@@ -83,10 +72,15 @@ export default function Home() {
 
   // Fetch data when config changes
   useEffect(() => {
-    if (config) {
-      fetchData();
-    }
+    fetchData();
   }, [config, fetchData]);
+
+  const handleConfigSave = (endpoint: string, token: string) => {
+    const newConfig = { endpoint, token };
+    setConfig(newConfig);
+    localStorage.setItem('hygraph-config', JSON.stringify(newConfig));
+    setConfigOpen(false);
+  };
 
   // Filter products, excluding featured product
   const filteredProducts = useMemo(() => {
@@ -99,7 +93,7 @@ export default function Home() {
       <div className="flex w-full h-[1282px] overflow-clip">
         {/* Left Column */}
         <HeroLeftColumn />
-        
+
         {/* Right Column - Featured Product */}
         {featuredProduct ? (
           <div className="flex-1">
@@ -113,17 +107,30 @@ export default function Home() {
           </div>
         ) : (
           <div className="flex-1 bg-transparent flex items-center justify-center">
-            <p className="text-white">Featured product loading...</p>
+            <p className="text-white">
+              {isLoading ? 'Featured product loading...' : 'Featured product not found'}
+            </p>
           </div>
         )}
       </div>
 
       {/* Products Section - Transparent */}
       <div className="bg-transparent w-full">
-        <div className="w-full px-0 py-0">
+        <div className="w-full px-0 py-0 relative">
+          {/* Settings Button */}
+          {!config && (
+            <button
+              onClick={() => setConfigOpen(true)}
+              className="absolute top-4 right-4 z-10 flex items-center gap-2 px-4 py-2 bg-white hover:bg-gray-100 text-black rounded transition-colors font-medium text-sm"
+            >
+              <Settings className="w-4 h-4" />
+              Configure API
+            </button>
+          )}
+
           {error && (
             <div className="mb-6 p-4 bg-[#1A1A1A] border border-red-700 rounded-lg text-center">
-              <p className="text-red-400 font-semibold mb-2">Configuration Issue</p>
+              <p className="text-red-400 font-semibold mb-2">API Error</p>
               <p className="text-red-300 text-sm">{error}</p>
             </div>
           )}
@@ -136,6 +143,13 @@ export default function Home() {
           />
         </div>
       </div>
+
+      {/* Config Dialog */}
+      <ConfigDialog
+        isOpen={configOpen}
+        onClose={() => setConfigOpen(false)}
+        onSave={handleConfigSave}
+      />
     </main>
   );
 }
