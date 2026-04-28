@@ -45,11 +45,6 @@ export interface Category {
   slug?: string;
 }
 
-export interface HygraphConfig {
-  endpoint: string;
-  token: string;
-}
-
 export interface ProductsResponse {
   products: Product[];
 }

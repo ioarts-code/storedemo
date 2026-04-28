@@ -36,7 +36,6 @@ The Product model now includes:
 - `lib/graphql-queries.ts` - Updated all queries to use `copyrights` instead of `tags`
 - `components/service-card.tsx` - Updated to display copyrights instead of tags
 - `app/page.tsx` - Updated imports and filter logic
-- `components/config-panel.tsx` - Updated required models list
 
 ### Documentation Files
 - `SCHEMA_SETUP.md` - Updated step-by-step guide

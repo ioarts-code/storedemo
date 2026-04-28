@@ -107,7 +107,7 @@ query SearchProducts($search: String!) {
 
 1. Go to **Project Settings** → **API Access**
 2. Copy your **Content API** endpoint
-3. Paste it into the app's configuration panel (⚙️ Settings icon)
-4. Click Save
+3. Add it to `.env.local` in the project root
+4. Restart the app
 
 That's it! The app will start fetching and displaying your products.

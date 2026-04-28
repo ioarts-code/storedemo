@@ -184,11 +184,11 @@ If something isn't working, check:
 ### Configuration Won't Save
 - [ ] Endpoint URL is complete (starts with https://)
 - [ ] No trailing slashes in endpoint
-- [ ] Browser allows localStorage (check DevTools)
+- [ ] Environment variables are set in `.env.local`
 - [ ] Auth token is valid (if provided)
 
 ### Services Won't Load
-- [ ] Configuration is saved (check browser Dev Tools → Application → localStorage)
+- [ ] Environment variables are configured correctly
 - [ ] Hygraph API endpoint is correct
 - [ ] Services exist in Hygraph (check dashboard)
 - [ ] Services are **Published** (not Draft)
@@ -244,7 +244,7 @@ You're done when:
 | Start production server | `pnpm start` |
 | Open in browser | `http://localhost:3000` |
 | Browser DevTools | Press `F12` |
-| Clear localStorage | DevTools → Application → localStorage → Clear All |
+| Update `.env.local` | Edit `.env.local` and restart the app |
 
 ---
 

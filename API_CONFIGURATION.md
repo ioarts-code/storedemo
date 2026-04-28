@@ -22,16 +22,19 @@ If your content is private or you want to restrict access:
 3. Copy the token value
 
 ### Step 4: Configure in the App
-1. Click the **Settings** icon (⚙️) in the top-right corner
-2. Paste your **API Endpoint** in the first field
-3. Optionally paste your **Auth Token** in the second field
-4. Click **Save Config**
+1. Create a `.env.local` file in the project root
+2. Add your Hygraph endpoint and optional token:
+```bash
+NEXT_PUBLIC_HYGRAPH_ENDPOINT=https://api-eu-central-1.hygraph.com/content/...
+NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN=your_token_here  # Optional
+```
+3. Restart the app after saving `.env.local`
 
-The app will validate the connection and load your services automatically.
+The app will load your services automatically from these variables.
 
 ---
 
-## Environment Variables (Optional)
+## Environment Variables (Required)
 
 If you prefer to avoid entering credentials in the UI, you can set environment variables:
 
@@ -165,7 +168,7 @@ If this works, your endpoint is correctly configured!
 
 ## Security Notes
 
-- The configuration is stored in your browser's localStorage
+- The configuration is loaded from environment variables in production
 - Never share your auth token publicly
-- For production, use environment variables instead of UI configuration
+- Use environment variables instead of UI configuration
 - Consider using a read-only token with limited permissions

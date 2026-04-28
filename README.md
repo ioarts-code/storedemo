@@ -17,7 +17,7 @@ A modern, responsive services showcase built with **Next.js 16**, **React 19.2**
 - 🎨 **Responsive Design** - Mobile-first, works on all devices
 - 🔍 **Full-Text Search** - Instant search across services
 - 🏷️ **Smart Filtering** - Filter by category or tags
-- ⚙️ **Zero-Config Setup** - Configure API endpoint in the UI
+- ⚙️ **Environment Configuration** - Set Hygraph endpoint and token with `.env` variables
 - 🔐 **Secure** - No hardcoded credentials, supports auth tokens
 - 📱 **Modern UI** - Clean cards with images, tags, and CTAs
 - ⚡ **Fast** - GraphQL queries, client-side filtering
@@ -102,7 +102,6 @@ app/
 └─ globals.css              Global styles
 
 components/
-├─ config-panel.tsx         API configuration modal
 ├─ search-filter.tsx        Search & category filter
 ├─ service-card.tsx         Individual service card
 └─ service-grid.tsx         Responsive grid layout
@@ -183,12 +182,7 @@ Edit `app/layout.tsx` to import different fonts from `next/font/google`
 
 ## 🔧 Configuration Options
 
-### UI Configuration (For Testing)
-1. Click ⚙️ in the app
-2. Enter API endpoint and optional token
-3. Configuration saved to browser localStorage
-
-### Environment Variables (For Production)
+### Environment Variables
 Create `.env.local`:
 ```env
 NEXT_PUBLIC_HYGRAPH_ENDPOINT=https://api-eu-central-1.hygraph.com/content/...
@@ -264,7 +258,7 @@ The app works on any Node.js 18+ host:
 - **Desktop** (> 1024px): 3 columns
 
 ### UI Components
-- Sticky header with settings button
+- Sticky header
 - Service cards with images
 - Category filter buttons
 - Search input with clear button
@@ -273,10 +267,9 @@ The app works on any Node.js 18+ host:
 - Error messages with retry option
 
 ### Configuration
-- Modal-based API setup
-- Endpoint validation on save
+- Environment variable-based API setup
 - Optional auth token support
-- localStorage persistence
+- No localStorage required
 - No code changes required
 
 ---
@@ -284,8 +277,8 @@ The app works on any Node.js 18+ host:
 ## 🔒 Security
 
 - ✅ No hardcoded API credentials
-- ✅ API endpoint configurable in UI
-- ✅ Auth tokens stored securely in localStorage
+- ✅ API endpoint configured via environment variables
+- ✅ Optional auth tokens supported via env
 - ✅ Support for read-only tokens
 - ✅ HTTPS enforced
 - ✅ CORS-safe requests
@@ -311,7 +304,7 @@ The app works on any Node.js 18+ host:
 - Verify tags are assigned to services
 
 ### Configuration Won't Save
-- Check localStorage is enabled in browser
+- Ensure `.env.local` is configured correctly
 - Verify endpoint starts with https://
 - Test endpoint in Hygraph GraphQL Playground first
 

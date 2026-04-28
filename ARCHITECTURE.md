@@ -14,8 +14,8 @@
 │  │  │  (State: config, services, search, filters)     │   │  │
 │  │  └──────────────────────────────────────────────────┘   │  │
 │  │    │                                                      │  │
-│  │    ├─→ config-panel.tsx                                  │  │
-│  │    │   (Get API endpoint)                                │  │
+│  │    ├─→ Environment variables                            │  │
+│  │    │   (NEXT_PUBLIC_HYGRAPH_ENDPOINT, optional token)    │  │
 │  │    │                                                      │  │
 │  │    ├─→ search-filter.tsx                                 │  │
 │  │    │   (Search & category filter)                        │  │
@@ -29,8 +29,9 @@
 │    │                                                            │
 │    ↓                                                            │
 │  ┌─────────────────────────────────────────────────────────┐  │
-│  │           localStorage (Persistence)                    │  │
-│  │  - hygraph-config (API endpoint & token)               │  │
+│  │           Runtime Env Vars (config)                    │  │
+│  │  - NEXT_PUBLIC_HYGRAPH_ENDPOINT                        │  │
+│  │  - NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN (optional)           │  │
 │  └─────────────────────────────────────────────────────────┘  │
 │    │                                                            │
 │    ↓                                                            │
@@ -79,25 +80,23 @@
 ```
 User opens app
     ↓
-Load localStorage
+Read environment variables
     ↓
-Check for saved config
-    ├─ YES → Load config and fetch data
-    └─ NO  → Show setup modal
+Validate endpoint config
+    ├─ VALID → Fetch data from Hygraph
+    └─ INVALID → Show setup / error message
 ```
 
 ### Step 2: Configuration
 ```
-User clicks Settings icon (⚙️)
+Developer sets env vars in `.env.local`
     ↓
-Config Panel Opens
+Restart app
     ↓
-User enters API endpoint + optional token
+App loads Hygraph endpoint and optional token from runtime config
     ↓
-Click "Save Config"
-    ↓
-Validate endpoint (test query)
-    ├─ SUCCESS → Save to localStorage, fetch services
+Fetch data from Hygraph
+    ├─ SUCCESS → Render services
     └─ ERROR   → Show error message
 ```
 
@@ -145,14 +144,7 @@ Update displayed results (no API call)
 app/page.tsx (Root Component)
 ├── Header Section
 │   ├── Title & Description
-│   └── Settings Button (⚙️)
-│
-├── config-panel.tsx (Modal)
-│   ├── Input for API Endpoint
-│   ├── Input for Auth Token
-│   ├── Error Message Display
-│   ├── Success Message Display
-│   └── Save/Cancel Buttons
+│   └── Optional navigation controls
 │
 ├── search-filter.tsx (Controls)
 │   ├── Search Input with clear button
@@ -362,7 +354,7 @@ User sees error with option to:
 ```
 No Config
 ├─ Show: "Setup Required" message
-└─ Action: Click Settings button
+└─ Action: Check environment variables
 
 Invalid Endpoint
 ├─ Show: "Invalid endpoint" error
@@ -411,20 +403,19 @@ No Runtime Errors
 
 ---
 
-## localStorage Structure
+## Environment Variable Configuration
 
 ```
-Browser Storage
-└─ localStorage
-   └─ hygraph-config (JSON string)
-      ├─ endpoint: "https://api-eu-central-1.hygraph.com/..."
-      └─ authToken: "token_string" (optional)
+Runtime config
+└─ NEXT_PUBLIC_HYGRAPH_ENDPOINT
+└─ NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN (optional)
+```
 
 Example:
-{
-  "endpoint": "https://api-eu-central-1.hygraph.com/content/c1a2b3d4/published",
-  "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-}
+```env
+NEXT_PUBLIC_HYGRAPH_ENDPOINT=https://api-eu-central-1.hygraph.com/content/c1a2b3d4/published
+NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+```
 ```
 
 ---
@@ -435,7 +426,7 @@ Example:
 - ✅ All data fetched on config save
 - ✅ Client-side filtering (instant)
 - ✅ No re-fetching on search/filter
-- ✅ localStorage for config persistence
+- ✅ Environment variables for config persistence
 
 ### Potential Future Enhancements
 - Add SWR for automatic revalidation
@@ -449,7 +440,7 @@ Example:
 
 ### API Endpoint
 - ✅ HTTPS only
-- ✅ User provides in UI (not in code)
+- ✅ User provides endpoint via env vars
 - ✅ Validated before use
 
 ### Auth Token (Optional)
@@ -457,10 +448,10 @@ Example:
 - ✅ Supports Bearer token format
 - ✅ Optional (public endpoints work)
 
-### localStorage
-- ✅ Browser-only storage
-- ✅ No server transmission
-- ✅ User controls deletion
+### Runtime Config
+- ✅ Browser-safe `NEXT_PUBLIC_` variables
+- ✅ No server-side secrets exposed in client bundle
+- ✅ User config controlled via `.env.local`
 
 ### Sensitive Data
 - ✅ No passwords
@@ -472,10 +463,6 @@ Example:
 ## Browser APIs Used
 
 ```
-localStorage
-├─ Save: localStorage.setItem()
-└─ Load: localStorage.getItem()
-
 fetch() / graphql-request
 ├─ POST requests to GraphQL
 └─ JSON parsing

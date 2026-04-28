@@ -10,11 +10,11 @@ A production-ready **Services Showcase Startpage** powered by **Hygraph CMS** wi
 - 🏷️ **Category Filtering** for browsing by type
 - 🔖 **Tag Display** showing service attributes
 - 📱 **Fully Responsive Design** (mobile-first approach)
-- ⚙️ **UI Configuration Panel** for API credentials (no code changes needed)
+- ⚙️ **Environment-based configuration** for API credentials
 - 🎨 **Modern Card-Based UI** with Tailwind CSS + shadcn/ui
 - ⚡ **Optimized GraphQL Queries** using graphql-request library
 - 🛡️ **Error Handling** with helpful validation messages
-- 💾 **localStorage Persistence** for configuration
+- ✅ **Environment variables** for configuration
 
 ---
 
@@ -25,13 +25,12 @@ A production-ready **Services Showcase Startpage** powered by **Hygraph CMS** wi
 - `/app/layout.tsx` - Updated root layout with SEO metadata
 
 ### Components (in `/components/`)
-- `config-panel.tsx` - Modal for API endpoint configuration with validation
 - `search-filter.tsx` - Search input + category filter buttons
 - `service-card.tsx` - Individual service card with image, tags, and CTA
 - `service-grid.tsx` - Responsive grid layout (1→2→3 columns)
 
 ### Utilities (in `/lib/`)
-- `types.ts` - TypeScript interfaces for Service, Category, Tag, Config
+- `types.ts` - TypeScript interfaces for Service, Category, Tag, and API response
 - `graphql-queries.ts` - Four optimized GraphQL queries
 - `hygraph-client.ts` - GraphQL client factory with auth support
 
@@ -76,9 +75,8 @@ The app validates the connection and loads all services automatically!
 └────────────┬────────────────────┘
              │
       ┌──────▼──────┐
-      │ Config Panel│  (UI Input)
+      │ Env Variables│  (NEXT_PUBLIC_* config)
       └──────┬──────┘
-             │ (stores in localStorage)
              │
       ┌──────▼──────────────────┐
       │  GraphQL Client         │
@@ -129,9 +127,9 @@ All queries use **graphql-request** for clean, type-safe execution.
 - ✅ Loading spinners during initial fetch
 - ✅ Empty state messaging
 - ✅ Error display with retry option
-- ✅ Toast-like success messages in config panel
+- ✅ Clear configuration status messaging
 - ✅ Hover effects on cards
-- ✅ Sticky header with settings button
+- ✅ Sticky header
 
 ### Responsive Design
 - ✅ Mobile: 1 column
@@ -141,10 +139,9 @@ All queries use **graphql-request** for clean, type-safe execution.
 
 ### Configuration
 - ✅ No hardcoded API credentials
-- ✅ Browser validation of endpoint
+- ✅ Environment variable-based configuration
 - ✅ Optional auth token support
-- ✅ localStorage persistence
-- ✅ Easy reset/reconfiguration
+- ✅ Easy restart/reconfiguration
 
 ---
 
@@ -160,7 +157,7 @@ Three comprehensive guides are included:
 
 ## 🔒 Security Considerations
 
-- ✅ Auth token stored securely in localStorage (not in code)
+- ✅ Optional auth token via environment variables
 - ✅ API endpoint configurable without code changes
 - ✅ Support for read-only tokens
 - ✅ CORS-safe GraphQL requests

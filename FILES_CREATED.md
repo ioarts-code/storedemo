@@ -17,7 +17,6 @@ This document lists all files created for the Hygraph Startpage project.
 
 | File | Purpose | Lines |
 |------|---------|-------|
-| `/components/config-panel.tsx` | API configuration modal with validation | 164 |
 | `/components/search-filter.tsx` | Search input + category filter buttons | 106 |
 | `/components/service-card.tsx` | Individual service card component | 78 |
 | `/components/service-grid.tsx` | Responsive grid layout for services | 44 |
@@ -88,8 +87,8 @@ These enable GraphQL queries to Hygraph with zero additional configuration.
 │   └── favicon.ico                 [existing]
 │
 ├── components/
-│   ├── config-panel.tsx            [NEW] Configuration modal
 │   ├── search-filter.tsx           [NEW] Search & filter
+│   ├── service-card.tsx            [NEW] Service card
 │   ├── service-card.tsx            [NEW] Service card
 │   ├── service-grid.tsx            [NEW] Grid layout
 │   └── ui/                         [existing] shadcn/ui components
@@ -137,12 +136,10 @@ These enable GraphQL queries to Hygraph with zero additional configuration.
 - Fetching logic with error handling
 - Search & filter memoization
 
-**components/config-panel.tsx** (164 lines)
-- Modal component for API configuration
-- Input validation and error messages
-- localStorage persistence
-- API endpoint testing on save
-- Success/error feedback
+**components/search-filter.tsx** (106 lines)
+- Search input with clear button
+- Category filter buttons
+- Debounced search (300ms)
 
 **components/search-filter.tsx** (106 lines)
 - Search input with clear button
@@ -320,7 +317,7 @@ These enable GraphQL queries to Hygraph with zero additional configuration.
 
 To test the application locally before connecting Hygraph:
 
-1. The validation in `config-panel.tsx` tests the endpoint
+1. Environment variable configuration is validated on app startup
 2. `service-grid.tsx` shows empty state if no services
 3. Error messages display in `app/page.tsx` for debugging
 4. Browser console logs for debugging (marked with `[v0]`)

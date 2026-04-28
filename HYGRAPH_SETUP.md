@@ -33,12 +33,13 @@ This is a modern services showcase startpage powered by **Hygraph CMS** and buil
 
 ### 3. Configure the Startpage
 
-1. Launch the app
-2. Click the **Settings** icon (⚙️) in the top right
-3. Enter your **Hygraph API Endpoint** and optional **Auth Token**
-4. Click **Save Config** - the app will validate and connect
-
-The configuration is saved to your browser's localStorage, so you won't need to re-enter it.
+1. Set the following variables in `.env.local`
+```env
+NEXT_PUBLIC_HYGRAPH_ENDPOINT=https://api-eu-central-1.hygraph.com/content/...
+NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN=your_token_here
+```
+2. Restart the app after updating `.env.local`
+3. The app will load Hygraph data from the environment configuration
 
 ## 📊 GraphQL Queries
 
@@ -96,7 +97,6 @@ If these are set, the app will automatically load them as defaults.
 │   ├── layout.tsx            # Root layout
 │   └── globals.css           # Global styles
 ├── components/
-│   ├── config-panel.tsx      # API configuration modal
 │   ├── search-filter.tsx     # Search and category filter
 │   ├── service-card.tsx      # Individual service card
 │   └── service-grid.tsx      # Grid layout for services

@@ -59,7 +59,6 @@ The code now detects this error and shows a **helpful, actionable message** inst
 
 ### Updated Files:
 - **app/page.tsx** - Added smart error detection and better error UI
-- **components/config-panel.tsx** - Added schema info to config dialog
 
 ### New Files:
 - **SCHEMA_SETUP.md** - Complete schema setup guide (142 lines)
