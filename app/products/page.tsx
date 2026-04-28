@@ -1,27 +1,22 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Product, Category } from '@/lib/types';
 import { createHygraphClient } from '@/lib/hygraph-client';
 import {
   GET_PRODUCTS,
   GET_CATEGORIES,
-  SEARCH_PRODUCTS,
 } from '@/lib/graphql-queries';
-import { SearchFilter } from '@/components/search-filter';
 import { ServiceGrid } from '@/components/service-grid';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 
 export default function ProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
 
-  // Fetch products and categories on mount
+  // Fetch products on mount
   useEffect(() => {
     const fetchAllData = async () => {
       setIsLoading(true);
@@ -30,14 +25,12 @@ export default function ProductsPage() {
       try {
         const client = createHygraphClient();
 
-        // Fetch products and categories in parallel
-        const [productsData, categoriesData] = await Promise.all([
-          client.request<{ products: Product[] }>(GET_PRODUCTS),
-          client.request<{ categories: Category[] }>(GET_CATEGORIES),
-        ]);
+        // Fetch products
+        const productsData = await client.request<{ products: Product[] }>(
+          GET_PRODUCTS
+        );
 
         setProducts(productsData.products);
-        setCategories(categoriesData.categories);
       } catch (err) {
         let message = err instanceof Error ? err.message : 'Failed to fetch data';
 
@@ -60,30 +53,6 @@ export default function ProductsPage() {
 
     fetchAllData();
   }, []);
-
-  // Search and filter products
-  const filteredProducts = useMemo(() => {
-    let result = products;
-
-    // Filter by category
-    if (selectedCategory) {
-      result = result.filter((p) =>
-        p.categories?.some((c) => c.id === selectedCategory)
-      );
-    }
-
-    // Filter by search query
-    if (searchQuery) {
-      const query = searchQuery.toLowerCase();
-      result = result.filter(
-        (p) =>
-          p.name.toLowerCase().includes(query) ||
-          p.description.toLowerCase().includes(query)
-      );
-    }
-
-    return result;
-  }, [products, selectedCategory, searchQuery]);
 
   return (
     <div className="min-h-screen bg-[#0F0F0F]">
@@ -113,27 +82,17 @@ export default function ProductsPage() {
           </div>
         )}
 
-        {/* Search and Filter */}
-        <div className="mb-8">
-          <SearchFilter
-            categories={categories}
-            onSearchChange={setSearchQuery}
-            onCategoryChange={setSelectedCategory}
-            isLoading={isLoading}
-          />
-        </div>
-
         {/* Product Grid */}
         <ServiceGrid
-          services={filteredProducts}
+          services={products}
           isLoading={isLoading && products.length === 0}
-          isEmpty={!isLoading && filteredProducts.length === 0}
+          isEmpty={!isLoading && products.length === 0}
         />
 
         {/* Results count */}
         {!isLoading && (
           <div className="mt-8 text-center text-sm text-gray-400">
-            Showing {filteredProducts.length} of {products.length} products
+            Showing {products.length} products
           </div>
         )}
       </div>
