@@ -23,11 +23,16 @@ export default function Home() {
     const saved = localStorage.getItem('hygraph-config');
     if (saved) {
       try {
-        setConfig(JSON.parse(saved));
+        const parsed = JSON.parse(saved);
+        setConfig(parsed);
       } catch {
         // Ignore parse errors
       }
+    } else {
+      // No config saved, show setup dialog
+      setConfigOpen(true);
     }
+    setIsLoading(false);
   }, []);
 
   // Fetch products from Hygraph
