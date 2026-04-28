@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
-import { Product, HygraphConfig } from '@/lib/types';
+import { Product } from '@/lib/types';
 import { createHygraphClient } from '@/lib/hygraph-client';
 import { GET_PRODUCT_BY_SLUG } from '@/lib/graphql-queries';
 import { ProductDetail } from '@/components/product-detail';
@@ -23,19 +23,7 @@ export default function ProductPage() {
       setError('');
 
       try {
-        const saved = localStorage.getItem('hygraph-config');
-        if (!saved) {
-          setError('No Hygraph configuration found. Please configure the API endpoint.');
-          setIsLoading(false);
-          return;
-        }
-
-        const config: HygraphConfig = JSON.parse(saved);
-        const client = createHygraphClient({
-          endpoint: config.endpoint,
-          token: config.token,
-        });
-
+        const client = createHygraphClient();
         const data = await client.request<{ products: Product[] }>(
           GET_PRODUCT_BY_SLUG,
           { slug }

@@ -1,18 +1,19 @@
 /**
- * Direct Hygraph GraphQL client
- * Can work either with environment variables or direct configuration
+ * Hygraph GraphQL client using Vercel environment variables only
+ * Requires NEXT_PUBLIC_HYGRAPH_ENDPOINT and NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN
  */
-export function createHygraphClient(config?: { endpoint: string; token: string }) {
+export function createHygraphClient() {
+  const endpoint = process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT;
+  const token = process.env.NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN;
+
+  if (!endpoint || !token) {
+    throw new Error(
+      'Missing Hygraph configuration. Set NEXT_PUBLIC_HYGRAPH_ENDPOINT and NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN in Vercel environment variables.'
+    );
+  }
+
   return {
     request: async <T,>(query: string, variables?: Record<string, any>): Promise<T> => {
-      // If config is provided, use it directly. Otherwise try environment variables.
-      const endpoint = config?.endpoint || process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT;
-      const token = config?.token || process.env.NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN;
-
-      if (!endpoint || !token) {
-        throw new Error('Hygraph endpoint and token must be configured');
-      }
-
       const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
