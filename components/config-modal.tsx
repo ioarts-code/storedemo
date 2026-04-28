@@ -18,7 +18,7 @@ export function ConfigModal({
   initialConfig,
 }: ConfigModalProps) {
   const [endpoint, setEndpoint] = useState(initialConfig?.endpoint || '');
-  const [authToken, setAuthToken] = useState(initialConfig?.authToken || '');
+  const [token, setToken] = useState(initialConfig?.token || '');
   const [error, setError] = useState('');
 
   const handleSave = () => {
@@ -26,7 +26,7 @@ export function ConfigModal({
       setError('Please enter your Hygraph endpoint');
       return;
     }
-    if (!authToken.trim()) {
+    if (!token.trim()) {
       setError('Please enter your auth token');
       return;
     }
@@ -36,7 +36,7 @@ export function ConfigModal({
       return;
     }
 
-    onSave({ endpoint: endpoint.trim(), authToken: authToken.trim() });
+    onSave({ endpoint: endpoint.trim(), token: token.trim() });
     setError('');
   };
 
@@ -79,9 +79,9 @@ export function ConfigModal({
             <input
               type="password"
               placeholder="Your permanent auth token"
-              value={authToken}
+              value={token}
               onChange={(e) => {
-                setAuthToken(e.target.value);
+                setToken(e.target.value);
                 setError('');
               }}
               className="w-full px-3 py-2 bg-[#0F0F0F] border border-gray-600 rounded text-white text-sm focus:outline-none focus:border-white"
