@@ -31,7 +31,10 @@ export default function ProductPage() {
         }
 
         const config: HygraphConfig = JSON.parse(saved);
-        const client = createHygraphClient(config);
+        const client = createHygraphClient({
+          endpoint: config.endpoint,
+          token: config.token,
+        });
 
         const data = await client.request<{ products: Product[] }>(
           GET_PRODUCT_BY_SLUG,
