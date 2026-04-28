@@ -64,12 +64,13 @@ In your Hygraph project, create these content models:
 
 ### 3. Configure the App (1 minute)
 
-1. Install dependencies: `pnpm install`
-2. Start the dev server: `pnpm dev`
-3. Click the **⚙️** icon in the top-right
-4. Paste your API endpoint (and optional token)
-5. Click **Save Config**
-6. Done! Your services appear instantly
+1. Remove any stale npm files if present: delete `package-lock.json` and `node_modules`
+2. Install dependencies: `pnpm install`
+3. Start the dev server: `pnpm dev`
+4. Click the **⚙️** icon in the top-right
+5. Paste your API endpoint (and optional token)
+6. Click **Save Config**
+7. Done! Your services appear instantly
 
 ---
 

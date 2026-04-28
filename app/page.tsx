@@ -7,7 +7,7 @@ import { GET_PRODUCTS } from '@/lib/graphql-queries';
 import { ServiceGrid } from '@/components/service-grid';
 import { HeroLeftColumn } from '@/components/hero-left-column';
 import { FeaturedProduct } from '@/components/featured-product';
-import { ConfigDialog } from '@/components/config-dialog';
+import { ConfigPanel } from '@/components/config-panel';
 import { Settings } from 'lucide-react';
 
 export default function Home() {
@@ -16,7 +16,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
   const [configOpen, setConfigOpen] = useState(false);
-  const [config, setConfig] = useState<{ endpoint: string; token: string } | null>(null);
+  const [config, setConfig] = useState<{ endpoint: string; authToken?: string } | null>(null);
 
   // Load saved configuration from localStorage
   useEffect(() => {
@@ -56,7 +56,7 @@ export default function Home() {
     } catch (err) {
       let message = err instanceof Error ? err.message : 'Failed to fetch data';
 
-      if (message.includes('endpoint and token must be configured')) {
+      if (message.includes('endpoint must be configured')) {
         message = 'API not configured. Click the settings icon to configure.';
         setConfigOpen(true);
       } else if (message.includes('field') && message.includes('not defined')) {
@@ -80,10 +80,8 @@ export default function Home() {
     fetchData();
   }, [config, fetchData]);
 
-  const handleConfigSave = (endpoint: string, token: string) => {
-    const newConfig = { endpoint, token };
-    setConfig(newConfig);
-    localStorage.setItem('hygraph-config', JSON.stringify(newConfig));
+  const handleConfigSave = (config: { endpoint: string; authToken?: string }) => {
+    setConfig(config);
     setConfigOpen(false);
   };
 
@@ -123,15 +121,13 @@ export default function Home() {
       <div className="bg-transparent w-full">
         <div className="w-full px-0 py-0 relative">
           {/* Settings Button */}
-          {!config && (
-            <button
-              onClick={() => setConfigOpen(true)}
-              className="absolute top-4 right-4 z-10 flex items-center gap-2 px-4 py-2 bg-white hover:bg-gray-100 text-black rounded transition-colors font-medium text-sm"
-            >
-              <Settings className="w-4 h-4" />
-              Configure API
-            </button>
-          )}
+          <button
+            onClick={() => setConfigOpen(true)}
+            className="absolute top-4 right-4 z-10 flex items-center gap-2 px-4 py-2 bg-white hover:bg-gray-100 text-black rounded transition-colors font-medium text-sm"
+          >
+            <Settings className="w-4 h-4" />
+            Configure API
+          </button>
 
           {error && (
             <div className="mb-6 p-4 bg-[#1A1A1A] border border-red-700 rounded-lg text-center">
@@ -149,11 +145,12 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Config Dialog */}
-      <ConfigDialog
+      {/* Config Panel */}
+      <ConfigPanel
         isOpen={configOpen}
-        onClose={() => setConfigOpen(false)}
-        onSave={handleConfigSave}
+        initialConfig={config ?? undefined}
+        onOpenChange={setConfigOpen}
+        onConfigSaved={handleConfigSave}
       />
     </main>
   );
