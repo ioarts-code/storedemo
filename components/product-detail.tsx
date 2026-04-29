@@ -3,162 +3,98 @@
 import { Product, ProductImage } from '@/lib/types';
 import { useState } from 'react';
 import Image from 'next/image';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
 
 interface ProductDetailProps {
   product: Product;
 }
 
 export function ProductDetail({ product }: ProductDetailProps) {
-  const [selectedImage, setSelectedImage] = useState<ProductImage | null>(
-    product.images?.[0] || null
-  );
+  const imageUrl = product.images?.[0]?.url || '';
+  const category = product.categories?.[0]?.name || 'Product';
+  const copyright = 'Unofficial: Rightsholder permits fanart on merch in small scale';
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Back Button */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <Link href="/products">
-          <Button variant="ghost" className="gap-2">
-            <ArrowLeft className="w-4 h-4" />
-            Back to Products
-          </Button>
-        </Link>
-      </div>
+    <div
+      className="flex min-h-screen w-full"
+      style={{
+        backgroundImage:
+          'linear-gradient(90deg, rgb(15, 15, 15) 0%, rgb(15, 15, 15) 100%), linear-gradient(90deg, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 100%)',
+      }}
+    >
+      {/* Left Column */}
+      <div className="flex flex-col justify-between w-[40%] p-12">
+        {/* Product Content */}
+        <div className="flex flex-col gap-4">
+          {/* Title and Price */}
+          <div className="flex flex-col gap-0">
+            <h1 className="font-['Inter:Bold',sans-serif] font-bold text-[128px] text-white tracking-[4.1px] uppercase leading-none">
+              {product.name}
+            </h1>
 
-      {/* Product Detail Container */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {/* Images Section */}
-          <div>
-            {selectedImage?.url && (
-              <div className="relative w-full aspect-square mb-6 overflow-hidden rounded-lg bg-gray-100">
-                <Image
-                  src={selectedImage.url}
-                  alt={selectedImage.fileName || product.name}
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
-            )}
-
-            {/* Image Thumbnails */}
-            {product.images && product.images.length > 1 && (
-              <div className="grid grid-cols-4 gap-3">
-                {product.images.map((img) => (
-                  <button
-                    key={img.id}
-                    onClick={() => setSelectedImage(img)}
-                    className={`relative aspect-square overflow-hidden rounded-lg border-2 transition-colors ${
-                      selectedImage?.id === img.id
-                        ? 'border-primary'
-                        : 'border-gray-200 hover:border-gray-300'
-                    }`}
-                  >
-                    <Image
-                      src={img.url}
-                      alt={img.fileName || 'Product thumbnail'}
-                      fill
-                      className="object-cover"
-                    />
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {/* Product Info Section */}
-          <div className="flex flex-col justify-start">
-            {/* Title and Price */}
-            <div className="mb-6">
-              <h1 className="text-4xl font-bold text-slate-900 mb-4">
-                {product.name}
-              </h1>
-              <div className="flex items-baseline gap-4">
-                <span className="text-3xl font-bold text-primary">
-                  ${product.price}
-                </span>
-              </div>
-            </div>
-
-            {/* Categories */}
-            {product.categories && product.categories.length > 0 && (
-              <div className="mb-6">
-                <p className="text-sm font-medium text-slate-600 mb-2">
-                  Categories
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {product.categories.map((cat) => (
-                    <Badge key={cat.id} variant="secondary">
-                      {cat.name}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Description */}
-            <div className="mb-8">
-              <p className="text-sm font-medium text-slate-600 mb-3">
-                Description
-              </p>
-              <div className="prose prose-sm max-w-none text-slate-700">
-                <p className="whitespace-pre-wrap">{product.description}</p>
-              </div>
-            </div>
-
-            {/* Product Meta */}
-            <div className="border-t pt-6">
-              <div className="grid grid-cols-2 gap-6 text-sm">
-                <div>
-                  <p className="text-slate-600 font-medium mb-1">Product ID</p>
-                  <p className="text-slate-900 font-mono text-xs">{product.id}</p>
-                </div>
-                <div>
-                  <p className="text-slate-600 font-medium mb-1">Slug</p>
-                  <p className="text-slate-900 font-mono text-xs">{product.slug}</p>
-                </div>
-              </div>
-            </div>
-
-            {/* CTA Buttons */}
-            <div className="flex gap-3 mt-8 pt-6 border-t">
-              <Button size="lg" className="flex-1">
-                Add to Cart
-              </Button>
-              <Button size="lg" variant="outline" className="flex-1">
-                Add to Wishlist
-              </Button>
+            {/* Price */}
+            <div
+              className="font-['Roboto:SemiBold',sans-serif] font-semibold text-[96px] text-white"
+              style={{ fontVariationSettings: "'wdth' 100" }}
+            >
+              {product.price ? `$${product.price}` : 'Contact for price'}
             </div>
           </div>
+
+          {/* Description */}
+          <p className="font-['Inter:Regular',sans-serif] font-normal text-[16px] text-white leading-[1.5] max-w-[640px]">
+            {product.description}
+          </p>
+
+          {/* Etsy Button */}
+          <a
+            href="#"
+            className="bg-transparent h-[45px] rounded-[6px] w-[176px] hover:bg-white/10 transition-colors relative flex items-center justify-center"
+          >
+            <div
+              aria-hidden="true"
+              className="absolute border-2 border-white border-solid inset-0 pointer-events-none rounded-[6px]"
+            />
+            <div className="font-['Inter:Extra_Bold',sans-serif] font-extrabold text-white text-[16px] uppercase">
+              Etsy
+            </div>
+          </a>
+
+          {/* Category */}
+          <p className="font-['Inter:Regular',sans-serif] font-normal text-[14.9px] text-[#6f8298] tracking-[-0.24px] px-[0px] pt-[11px] pb-[0px]">
+            Category: {category}
+          </p>
+
+          {/* Copyright */}
+          <p className="font-['Inter:Regular',sans-serif] font-normal text-[14.8px] text-[#6f8298] tracking-[-0.24px]">
+            Copyright: {copyright}
+          </p>
         </div>
 
-        {/* Additional Images Gallery */}
-        {product.images && product.images.length > 0 && (
-          <div className="mt-16 pt-12 border-t">
-            <h2 className="text-2xl font-bold text-slate-900 mb-6">
-              Image Gallery
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {product.images.map((img) => (
-                <div
-                  key={img.id}
-                  className="relative aspect-square overflow-hidden rounded-lg bg-gray-100"
-                >
-                  <Image
-                    src={img.url}
-                    alt={img.fileName || 'Product image'}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              ))}
-            </div>
+        {/* Shop Section - Bottom Left */}
+        <div className="flex flex-col gap-5 text-white mt-12">
+          <h2 className="font-['Inter:Bold',sans-serif] font-bold text-[19.7px] tracking-[-0.3px]">
+            Shop
+          </h2>
+          <div className="font-['Inter:Regular',sans-serif] font-normal flex flex-col gap-2">
+            <p className="text-[14.9px] leading-[20px]">Deviant Vectors</p>
+            <p className="text-[15px] leading-[20px]">Etsy Products</p>
           </div>
+        </div>
+      </div>
+
+      {/* Right Column - Product Image */}
+      <div className="w-[60%] flex items-center justify-center p-4">
+        {imageUrl ? (
+          <Image
+            alt={product.name}
+            className="w-full h-auto object-contain max-h-[1200px] mx-[0px] mt-[-201px] mb-[0px]"
+            src={imageUrl}
+            width={800}
+            height={1200}
+            priority
+          />
+        ) : (
+          <div className="text-gray-500 text-center">No image available</div>
         )}
       </div>
     </div>
