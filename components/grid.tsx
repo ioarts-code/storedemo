@@ -31,7 +31,7 @@ function GridItem({ product }: GridItemProps) {
           )}
         </div>
 
-        <div className="content-stretch flex flex-col items-start max-w-[506px] relative shrink-0 w-[506px]">
+        <div className="content-stretch flex flex-col items-start max-w-[400px] relative shrink-1 w-[400px]">
           <div className="bg-[rgba(255,255,255,0.2)] h-[75px] min-h-[75px] relative rounded-[6px] shrink-0 w-full">
             <div aria-hidden="true" className="absolute border-3 border-solid border-white inset-0 pointer-events-none rounded-[6px]" />
 
