@@ -7,7 +7,7 @@ export function GridInfoCard({ name, slug }: GridInfoCardProps) {
   return (
     <div className="absolute bottom-4 left-3 right-3 sm:left-4 sm:right-4">
       <div className="bg-[#d9d9d9] py-3 px-3 sm:px-4 relative rounded-[6px] flex items-center justify-between gap-2 border-2 border-transparent">
-        <p className="font-bold text-[12px] sm:text-[13px] text-blue tracking-[0.5px] leading-[18px] flex-1 min-w-0 line-clamp-2">
+        <p className="font-bold text-[12px] sm:text-[13px] text-black tracking-[0.5px] leading-[18px] flex-1 min-w-0 line-clamp-2">
           {name}
         </p>
 
