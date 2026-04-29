@@ -86,7 +86,7 @@ export default function Home() {
             </div>
           )}
 
-          {/* Product Grid */}
+          {/* Product Grid  */}
           <Grid
             products={filteredProducts}
             isLoading={isLoading && products.length === 0}
