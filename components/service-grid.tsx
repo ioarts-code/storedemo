@@ -4,7 +4,7 @@ import { Product } from '@/lib/types';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
-import { GridInfoCard } from './GridInfoCard';
+
 
 interface ServiceGridProps {
   services: Product[];
@@ -34,7 +34,15 @@ function ServiceCard({ service }: { service: Product }) {
             <p className="text-gray-500 text-sm">[Image]</p>
           </div>
         )}
-        <GridInfoCard name={service.name} slug={service.slug} />
+        {/* Info Card */}
+        <div className="absolute bottom-4 left-4 right-4 w-[300px] bg-[rgba(255,255,255,0.15)] rounded-lg px-4 py-3 flex items-center justify-between gap-3 border border-[rgba(255,255,255,0.2)]">
+          <p className="text-white font-bold text-sm truncate flex-1">
+            {service.name}
+          </p>
+          <Link href={`/products/${service.slug}`} className="bg-transparent border-2 border-white text-white px-4 py-1.5 rounded text-xs font-bold hover:bg-white hover:text-black transition-colors shrink-0">
+            SHOP
+          </Link>
+        </div>
       </div>
     </Link>
   );
