@@ -41,9 +41,11 @@ export function HeroFeatured({
         )}
       </div>
 
-      {/* Left column — StoreInfo */}
-      <div className="relative z-10 w-[280px] shrink-0">
-        <StoreInfo />
+      {/* Left column — StoreInfo with top/bottom breathing room */}
+      <div className="relative z-10 w-[280px] shrink-0 flex items-center py-16">
+        <div className="w-full h-[420px]">
+          <StoreInfo />
+        </div>
       </div>
 
       {/* Spacer */}
