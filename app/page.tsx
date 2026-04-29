@@ -5,8 +5,7 @@ import { Product } from '@/lib/types';
 import { createHygraphClient } from '@/lib/hygraph-client';
 import { GET_PRODUCTS } from '@/lib/graphql-queries';
 import { ServiceGrid } from '@/components/service-grid';
-import { HeroLeftColumn } from '@/components/hero-left-column';
-import { FeaturedProduct } from '@/components/featured-product';
+import { Hero } from '@/components/Hero';
 
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -65,30 +64,14 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-transparent flex flex-col">
-      {/* Hero Section with two columns - Fixed height 1282px */}
-      <div className="flex w-full h-[1282px] overflow-clip">
-        {/* Left Column */}
-        <HeroLeftColumn />
-
-        {/* Right Column - Featured Product */}
-        {featuredProduct ? (
-          <div className="flex-1">
-            <FeaturedProduct
-              label="Top Pick"
-              name={featuredProduct.name}
-              description={featuredProduct.description}
-              image={featuredProduct.images?.[0]?.url}
-              slug={featuredProduct.slug}
-            />
-          </div>
-        ) : (
-          <div className="flex-1 bg-transparent flex items-center justify-center">
-            <p className="text-white">
-              {isLoading ? 'Featured product loading...' : 'Featured product not found'}
-            </p>
-          </div>
-        )}
-      </div>
+      {/* Hero Section */}
+      <Hero
+        name={featuredProduct?.name}
+        description={featuredProduct?.description}
+        image={featuredProduct?.images?.[0]?.url}
+        slug={featuredProduct?.slug}
+        isLoading={isLoading}
+      />
 
       {/* Products Section - Transparent */}
       <div className="bg-transparent w-full">
