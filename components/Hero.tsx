@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
-import { StoreInfo } from './StoreInfo';
 
 interface HeroProps {
   name?: string;
@@ -23,35 +22,33 @@ export function Hero({
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
-      {/* Two-column layout */}
-      <div className="flex w-full h-full">
-        {/* Left Column - Store Info */}
-        <div className="w-1/2 flex flex-col">
-          <StoreInfo />
-        </div>
+      {/* Background image from CMS */}
+      {image && !imageError ? (
+        <Image
+          src={image}
+          alt={name}
+          fill
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+          priority
+          onError={() => setImageError(true)}
+          unoptimized
+        />
+      ) : (
+        <div className="absolute inset-0 w-full h-full bg-[#0f0f0f]" />
+      )}
 
-        {/* Right Column - Featured Product Image */}
-        <div className="w-1/2 relative overflow-hidden bg-[#0f0f0f]">
-          {image && !imageError ? (
-            <Image
-              src={image}
-              alt={name}
-              fill
-              className="w-full h-full object-cover"
-              priority
-              onError={() => setImageError(true)}
-              unoptimized
-            />
-          ) : (
-            <div className="w-full h-full bg-[#1a1a1a] flex items-center justify-center">
-              <p className="text-gray-400">{isLoading ? 'Loading...' : 'No image'}</p>
-            </div>
-          )}
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/40" />
+
+      {/* Content */}
+      <div className="relative z-10 flex items-center justify-center h-full">
+        <div className="text-center px-4">
+          {/* Hero content removed */}
         </div>
       </div>
 
       {/* Black bar at bottom */}
-      <div className="absolute bottom-0 h-5 w-full bg-[#0F0F0F]" />
+      <div className="absolute bottom-0 h-[20px] w-full bg-[#0F0F0F]" />
     </div>
   );
 }
