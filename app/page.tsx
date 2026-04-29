@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Product } from '@/lib/types';
 import { createHygraphClient } from '@/lib/hygraph-client';
 import { GET_PRODUCTS } from '@/lib/graphql-queries';
-import { ServiceGrid } from '@/components/service-grid';
+import { Grid } from '@/components/grid';
 import { HeroFeatured } from '@/components/HeroFeatured';
 
 export default function Home() {
@@ -26,7 +26,11 @@ export default function Home() {
       const allProducts = productsData.products;
 
       // Find featured product
-      const featured = allProducts.find((p) => p.slug === 'elden-vector');
+      const featured =
+        allProducts.find((p) => p.slug === 'hoodie-elden') ||
+        allProducts.find((p) => p.images && p.images.length > 0) ||
+        allProducts[0] ||
+        null;
       setFeaturedProduct(featured || null);
 
       // Set all products
@@ -59,11 +63,11 @@ export default function Home() {
 
   // Filter products, excluding featured product
   const filteredProducts = useMemo(() => {
-    return products.filter((product) => product.slug !== 'elden-vector');
-  }, [products]);
+    return products.filter((product) => product.slug !== featuredProduct?.slug);
+  }, [products, featuredProduct]);
 
   return (
-    <main className="min-h-screen bg-transparent flex flex-col">
+    <main className="min-h-screen bg-[#050505] text-white flex flex-col">
       {/* Hero Section */}
       <HeroFeatured
         name={featuredProduct?.name}
@@ -73,19 +77,18 @@ export default function Home() {
         isLoading={isLoading}
       />
 
-      {/* Products Section - Transparent */}
-      <div className="bg-transparent w-full">
-        <div className="w-full px-0 py-0 relative">
+      <div className="bg-transparent w-full mt-16">
+        <div className="w-full max-w-[2400px] mx-auto px-0 relative">
           {error && (
-            <div className="mb-6 p-4 bg-[#1A1A1A] border border-red-700 rounded-lg text-center">
+            <div className="mb-6 p-4 bg-[#1A1A1A] border border-red-700 rounded-lg text-center mx-6">
               <p className="text-red-400 font-semibold mb-2">API Error</p>
               <p className="text-red-300 text-sm">{error}</p>
             </div>
           )}
 
           {/* Product Grid */}
-          <ServiceGrid
-            services={filteredProducts}
+          <Grid
+            products={filteredProducts}
             isLoading={isLoading && products.length === 0}
             isEmpty={!isLoading && filteredProducts.length === 0}
           />
