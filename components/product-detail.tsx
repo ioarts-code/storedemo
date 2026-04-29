@@ -92,6 +92,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
             width={800}
             height={1200}
             priority
+            sizes="(max-width: 768px) 100vw, 60vw"
           />
         ) : (
           <div className="text-gray-500 text-center">No image available</div>
