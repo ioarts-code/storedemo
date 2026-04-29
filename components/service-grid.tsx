@@ -35,7 +35,7 @@ function ServiceCard({ service }: { service: Product }) {
           </div>
         )}
         {/* Info Card */}
-        <div className="absolute bottom-4 left-4 right-4 w-[300px] bg-[rgba(255,255,255,0.15)] rounded-lg px-4 py-3 flex items-center justify-between gap-3 border border-[rgba(255,255,255,0.2)]">
+        <div className="absolute bottom-4 left-4 right-4 w-[200px] bg-[rgba(255,255,255,0.15)] rounded-lg px-4 py-3 flex items-center justify-between gap-3 border border-[rgba(255,255,255,0.2)]">
           <p className="text-white font-bold text-sm truncate flex-1">
             {service.name}
           </p>
