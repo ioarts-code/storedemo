@@ -5,7 +5,7 @@ import { Product } from '@/lib/types';
 import { createHygraphClient } from '@/lib/hygraph-client';
 import { GET_PRODUCTS } from '@/lib/graphql-queries';
 import { ServiceGrid } from '@/components/service-grid';
-import { Hero } from '@/components/Hero';
+import { HeroFeatured } from '@/components/HeroFeatured';
 
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -65,7 +65,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-transparent flex flex-col">
       {/* Hero Section */}
-      <Hero
+      <HeroFeatured
         name={featuredProduct?.name}
         description={featuredProduct?.description}
         image={featuredProduct?.images?.[0]?.url}
