@@ -23,7 +23,7 @@ export function HeroFeatured({
   const [imageError, setImageError] = useState(false);
 
   return (
-    <div className="relative w-full h-[600px] overflow-hidden flex items-stretch">
+    <div className="relative w-full h-[1014px] overflow-hidden flex items-stretch">
       {/* Background product image */}
       <div className="absolute inset-0 z-0">
         {image && !imageError ? (
@@ -31,7 +31,7 @@ export function HeroFeatured({
             src={image}
             alt={name}
             fill
-            className="object-contain object-center"
+            className="object-cover object-center"
             priority
             onError={() => setImageError(true)}
             unoptimized
