@@ -1,5 +1,8 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 import { StoreInfo } from '@/components/StoreInfo';
 
 interface HeroFeaturedProps {
@@ -17,17 +20,20 @@ export function HeroFeatured({
   slug,
   isLoading = false,
 }: HeroFeaturedProps) {
+  const [imageError, setImageError] = useState(false);
+
   return (
     <div className="relative w-full h-[1014px] overflow-hidden flex items-stretch">
       {/* Background product image */}
       <div className="absolute inset-0 z-0">
-        {image ? (
+        {image && !imageError ? (
           <Image
             src={image}
             alt={name}
             fill
             className="object-cover object-center"
             priority
+            onError={() => setImageError(true)}
             unoptimized
           />
         ) : (
