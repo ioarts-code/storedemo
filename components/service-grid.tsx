@@ -34,7 +34,7 @@ function ServiceCard({ service }: { service: Product }) {
             <p className="text-gray-500 text-sm">[Image]</p>
           </div>
         )}
-        <GridInfoCard name={service.name} />
+        <GridInfoCard name={service.name} slug={service.slug} />
       </div>
     </Link>
   );
