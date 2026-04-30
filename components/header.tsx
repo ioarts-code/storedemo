@@ -27,12 +27,6 @@ export default function Header() {
           >
             Shop All
           </Link>
-          <a
-            href="#"
-            className="text-[15.6px] leading-[19.2px] hover:opacity-80 transition-opacity text-white"
-          >
-            Dev
-          </a>
         </nav>
       </div>
     </header>

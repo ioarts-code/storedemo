@@ -22,7 +22,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
       }}
     >
       {/* Left Column */}
-      <div className="flex flex-col justify-between w-[40%] p-12">
+      <div className="flex flex-col justify-between w-[70%] p-12">
         {/* Product Content */}
         <div className="flex flex-col gap-4">
           {/* Title and Price */}
@@ -87,7 +87,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
         {imageUrl ? (
           <Image
             alt={product.name}
-            className="w-full h-auto object-contain max-h-[1200px] mx-[0px] mt-[-201px] mb-[0px]"
+            className="object-contain object-center scale-[1.8]"
             src={imageUrl}
             width={800}
             height={1200}

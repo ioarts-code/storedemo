@@ -30,7 +30,7 @@ export function Filter({
           <h2 className="text-3xl font-black text-white uppercase tracking-tight">
             All Products
           </h2>
-          <p className="text-gray-400 mt-2">Products inventory - please choose</p>
+          <p className="text-white mt-2">Products inventory - please choose</p>
         </div>
 
         {/* Category Filter */}
@@ -41,7 +41,7 @@ export function Filter({
             className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${
               selectedCategory === null
                 ? 'bg-white text-black border-3 border-white'
-                : 'bg-transparent text-white border-3 border-white hover:bg-white hover:text-black'
+                : 'bg-transparent text-white border-3 border-white hover:bg-white'
             }`}
           >
             All
@@ -56,7 +56,7 @@ export function Filter({
               className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${
                 selectedCategory === category.id
                   ? 'bg-white text-black border-3 border-white'
-                  : 'bg-[#303030] text-white border-3 border-[#303030] hover:border-white'
+                  : 'text-white border-3 border-white hover:bg-gray-700'
               } disabled:opacity-50 disabled:cursor-not-allowed`}
             >
               {category.name}

@@ -23,15 +23,16 @@ export function HeroFeatured({
   const [imageError, setImageError] = useState(false);
 
   return (
-    <div className="relative w-full min-h-[900px] 2xl:min-h-[1024px] overflow-hidden flex items-center justify-center bg-[#050505] rounded-[10px] border border-white/10">
+    <div className="relative w-full min-h-[900px] 2xl:min-h-[400px] overflow-hidden flex items-center justify-center bg-[#05050500] border-white/10">
       {/* Background product image */}
-      <div className="absolute inset-0 z-0 bg-[#050505]">
+      <div className="absolute inset-0 z-0 overflow-hidden bg-[#05050500]">
         {image && !imageError ? (
+          // show full image without cropping to remove top cutoff
           <Image
             src={image}
             alt={name}
             fill
-            className="object-cover object-center"
+            className="object-contain object-center scale-[2.0]"
             priority
             onError={() => setImageError(true)}
             unoptimized
@@ -52,12 +53,12 @@ export function HeroFeatured({
         <div className="flex-1" />
 
         {/* Featured product card — right center */}
-        <div className="absolute z-10 top-[15%] right-4 md:right-10 lg:right-14 xl:right-20 w-[300px] sm:w-[360px] md:w-[420px] lg:w-[520px] xl:w-[600px] bg-[rgba(255,255,255,0.16)] border border-white/10 backdrop-blur-sm rounded-[10px] px-6 py-6 flex flex-col items-start gap-4">
+        <div className="absolute z-10 top-[15%] right-4 md:right-10 lg:right-14 xl:right-20 w-[300px] sm:w-[360px] md:w-[420px] lg:w-[520px] xl:w-[600px] bg-[rgba(255,255,255,0.16)] border border-white/10 backdrop-blur-sm px-6 py-6 flex flex-col items-start gap-4">
           {/* Left white accent border */}
-          <div aria-hidden="true" className="absolute border-l-[3px] border-solid border-white/20 inset-0 pointer-events-none rounded-[10px]" />
+          <div aria-hidden="true" className="absolute border-l-[3px] border-solid border-white inset-0 pointer-events-none" />
 
           {/* Top Pick badge */}
-          <div className="relative z-10 flex items-center py-1 px-3 rounded-full border-[2px] border-white shrink-0">
+          <div className="relative z-10 flex items-center py-1 px-3 bg-black rounded-full border-[2px] border-white shrink-0">
             <span className="font-bold text-[#e0e0e0] text-[10px] md:text-[11px] tracking-[-0.18px] capitalize leading-[14px]">
               Top Pick
             </span>
@@ -77,7 +78,7 @@ export function HeroFeatured({
           {slug && (
             <Link
               href={`/products/${slug}`}
-              className="relative z-10 flex items-center justify-center px-16 py-2 rounded-[4px] border-[2px] border border-white hover:bg-white/10 transition-colors"
+              className="relative z-10 flex items-center justify-center px-16 py-2 rounded-[4px] border-[2px] bg-black border-white hover:bg-white/10 transition-colors"
             >
               <span className="font-bold text-white text-[13px] md:text-[14px] tracking-[-0.2px] uppercase leading-5">
                 Shop
