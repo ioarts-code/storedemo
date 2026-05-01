@@ -116,8 +116,8 @@ function DivAbsolute1() {
 
 function DivAbsolute2() {
   return (
-    <div className="absolute content-stretch flex flex-col items-start right-[43.19px] mobile:right-[20px] mobile:top-[445px] tablet:top-[472px] mobile:w-[calc(100%-80px)]" data-name="div.absolute">
-      <div className="flex flex-col font-['Inter:Regular',sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[14.8px] text-white tracking-[-0.24px] mobile:text-wrap mobile:break-words">
+    <div className="absolute content-stretch flex flex-col items-end right-[44px] mobile:right-[20px] mobile:top-[445px] tablet:top-[472px] mobile:w-[calc(100%-80px)]" data-name="div.absolute">
+      <div className="flex flex-col font-['Inter:Regular',sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[14.8px] text-white tracking-[-0.24px] mobile:text-wrap mobile:break-words text-right">
         <p className="leading-[19.2px]">2026© — All rights reserved</p>
       </div>
     </div>
