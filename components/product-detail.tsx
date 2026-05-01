@@ -78,7 +78,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
         {imageUrl ? (
           <Image
             alt={product.name}
-            className="w-auto h-full object-contain"
+            className="object-contain object-center scale-[1.8]"
             src={imageUrl}
             width={600}
             height={900}
