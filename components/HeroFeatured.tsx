@@ -53,24 +53,24 @@ export function HeroFeatured({
         <div className="flex-1" />
 
         {/* Featured product card — right center */}
-        <div className="absolute z-10 top-[15%] right-4 md:right-10 lg:right-14 xl:right-20 w-[300px] sm:w-[360px] md:w-[420px] lg:w-[520px] xl:w-[600px] bg-[rgba(255,255,255,0.16)] border border-white/10 backdrop-blur-sm px-6 py-6 flex flex-col items-start gap-4">
+        <div className="absolute z-10 top-[15%] right-4 md:right-10 lg:right-14 xl:right-20 w-[300px] sm:w-[360px] md:w-[420px] lg:w-[520px] xl:w-[600px] bg-[rgba(255,255,255,0.16)] border border-white/10 px-6 py-6 flex flex-col items-start gap-6">
           {/* Left white accent border */}
           <div aria-hidden="true" className="absolute border-l-[3px] border-solid border-white inset-0 pointer-events-none" />
 
           {/* Top Pick badge */}
-          <div className="relative z-10 flex items-center py-1 px-3 bg-black rounded-full border-[2px] border-white shrink-0">
+          <div className="relative z-10 flex items-center py-1 px-3 bg-transparent rounded-full border-[2px] border-white shrink-0">
             <span className="font-bold text-[#e0e0e0] text-[10px] md:text-[11px] tracking-[-0.18px] capitalize leading-[14px]">
               Top Pick
             </span>
           </div>
 
           {/* Product name */}
-          <h3 className="relative z-10 font-bold text-[22px] md:text-[26px] xl:text-[30px] text-white tracking-[-0.24px] leading-[28px] md:leading-[34px] w-full">
+          <h3 className="relative z-10 font-bold text-[22px] md:text-[10px] xl:text-[30px] text-white tracking-[-0.24px] leading-[28px] md:leading-[34px] w-full">
             {isLoading ? 'Loading...' : name}
           </h3>
 
           {/* Description */}
-          <p className="relative z-10 text-[12px] md:text-[13px] xl:text-[14px] text-white/90 tracking-[-0.08px] leading-[18px] md:leading-[22px] font-normal w-full line-clamp-4">
+          <p className="relative z-10 mt-[-12px] text-[12px] md:text-[13px] xl:text-[14px] text-white/90 tracking-[-0.08px] leading-[18px] md:leading-[22px] font-normal w-full line-clamp-4">
             {description ? (description.length > 125 ? description.slice(0, 125) + '...' : description) : 'No description available.'}
           </p>
 
@@ -78,7 +78,7 @@ export function HeroFeatured({
           {slug && (
             <Link
               href={`/products/${slug}`}
-              className="relative z-10 flex items-center justify-center px-16 py-2 rounded-[4px] border-[2px] bg-black border-white hover:bg-white/10 transition-colors"
+              className="relative z-10 flex items-center justify-center px-16 py-2 rounded-[4px] border-[2px] bg-transparent border-white hover:bg-white/10 transition-colors"
             >
               <span className="font-bold text-white text-[13px] md:text-[14px] tracking-[-0.2px] uppercase leading-5">
                 Shop

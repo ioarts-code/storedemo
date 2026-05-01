@@ -14,7 +14,7 @@ export default function Header() {
         </Link>
 
         {/* Navigation */}
-        <nav className="absolute backdrop-blur-[6px] font-bold h-[32px] leading-[0] right-[28px] rounded-[4px] top-[8px] tracking-[-0.24px] uppercase px-[12px] flex items-center gap-[16px]">
+        <nav className="absolute font-bold h-[32px] leading-[0] right-[28px] rounded-[4px] top-[8px] tracking-[-0.24px] uppercase px-[12px] flex items-center gap-[16px]">
           <Link
             href="/"
             className="text-[15.6px] leading-[19.2px] hover:opacity-80 transition-opacity text-white"

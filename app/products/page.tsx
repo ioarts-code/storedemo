@@ -79,17 +79,17 @@ export default function ProductsPage() {
         </div>
 
         <div className="w-full px-4 sm:px-6 lg:px-8">
+          {!isLoading && (
+            <div className="mb-4 text-center text-sm text-white">
+              Showing {filteredProducts.length} of {products.length} products
+            </div>
+          )}
+
           <Grid
             products={filteredProducts}
             isLoading={isLoading && products.length === 0}
             isEmpty={!isLoading && filteredProducts.length === 0}
           />
-
-          {!isLoading && (
-            <div className="mt-8 text-center text-sm text-gray-400">
-              Showing {filteredProducts.length} of {products.length} products
-            </div>
-          )}
         </div>
       </div>
     </div>

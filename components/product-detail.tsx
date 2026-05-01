@@ -48,7 +48,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
           {/* Etsy Button */}
           <a
             href="#"
-            className="bg-transparent h-[45px] rounded-[6px] w-[176px] hover:bg-white/10 transition-colors relative flex items-center justify-center"
+            className="bg-transparent mt-[10px] h-[45px] rounded-[6px] w-[176px] hover:bg-white/30 transition-colors relative flex items-center justify-center"
           >
             <div
               aria-hidden="true"
@@ -60,7 +60,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
           </a>
 
           {/* Category */}
-          <p className="font-['Inter:Regular',sans-serif] font-normal text-[14.9px] text-[#6f8298] tracking-[-0.24px] px-[0px] pt-[11px] pb-[0px]">
+          <p className="font-['Inter:Regular',sans-serif] font-normal text-[14.9px] text-[#6f8298] tracking-[-0.24px] mt-[20px] pt-[11px] pb-[0px]">
             Category: {category}
           </p>
 
@@ -68,17 +68,6 @@ export function ProductDetail({ product }: ProductDetailProps) {
           <p className="font-['Inter:Regular',sans-serif] font-normal text-[14.8px] text-[#6f8298] tracking-[-0.24px]">
             Copyright: {copyright}
           </p>
-        </div>
-
-        {/* Shop Section - Bottom Left */}
-        <div className="flex flex-col gap-5 text-white mt-12">
-          <h2 className="font-['Inter:Bold',sans-serif] font-bold text-[19.7px] tracking-[-0.3px]">
-            Shop
-          </h2>
-          <div className="font-['Inter:Regular',sans-serif] font-normal flex flex-col gap-2">
-            <p className="text-[14.9px] leading-[20px]">Deviant Vectors</p>
-            <p className="text-[15px] leading-[20px]">Etsy Products</p>
-          </div>
         </div>
       </div>
 

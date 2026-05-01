@@ -1,56 +1,22 @@
 export function StoreInfo() {
   return (
-    <div className="relative w-full max-w-[420px] min-h-[900px] border-solid border-white/10 bg-[rgba(255,255,255,0.2)] backdrop-blur-sm px-[24px] py-[100px] flex flex-col gap-[30px] items-center justify-center overflow-hidden">
+    <div className="relative w-full max-w-[420px] min-h-[900px] border-solid border-white/10 bg-[rgba(255,255,255,0.2)] px-[24px] py-[100px] flex flex-col gap-[30px] items-center justify-center overflow-hidden">
       {/* moved StoreInfo card up slightly by reducing vertical padding from 200px to 160px */}
-      <div aria-hidden="true" className="absolute inset-0 border-r-[3px] border-solid border-white pointer-events-none" />
+      <div aria-hidden="true" className="absolute border-r-3 border-solid border-white inset-0 pointer-events-none" />
 
-      <div className="relative z-10 flex flex-col items-center justify-center text-center w-full max-w-[332px]">
-        <p className="mb-0 text-[20px] md:text-[24px] font-bold uppercase tracking-[-0.24px] leading-[28px] text-white">
-          Hola,
-        </p>
-        <p className="mb-0 text-[20px] md:text-[24px] font-bold uppercase tracking-[-0.24px] leading-[28px] text-white">
-          Here comes our new merch.
-        </p>
-        <p className="mb-0 text-[20px] md:text-[24px] font-bold uppercase tracking-[-0.24px] leading-[28px] text-white">
-          Enjoy!
-        </p>
+      <div className="-translate-x-1/2 -translate-y-1/2 absolute flex h-[871px] items-center justify-center left-1/2 top-[472.5px] w-[349px]" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "19" } as React.CSSProperties}>
+        <div className="flex-none rotate-90">
+          <div className="bg-clip-text bg-gradient-to-r flex flex-col font-['Inter:Bold',sans-serif] font-bold from-black h-[349px] justify-center leading-[0] not-italic relative text-[170px] text-[transparent] to-[#848484] uppercase w-[871px]">
+            <p className="leading-[normal]">Merch</p>
+          </div>
+        </div>
       </div>
-
-      <div className="relative z-10 flex w-full justify-center gap-[10px]">
-        <a
-          className="relative flex items-center justify-center w-[50px] h-[50px] rounded-[6px] p-[2px]"
-          href="https://www.deviantart.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Visit DeviantArt"
-        >
-          <div aria-hidden="true" className="absolute inset-0 rounded-[6px] border-2 border-white bg-black hover:bg-white/10" />
-          <svg className="relative w-[18px] h-[18px]" fill="none" viewBox="0 0 15 24">
-            <path
-              d="M15 0H9.68L8.92 0.98L5.59 6H0V12H3.15L0 18.75V24H5.32L6.08 23.02L9.41 18H15V12H11.85L15 5.25V0Z"
-              fill="white"
-            />
-          </svg>
-        </a>
-
-        <a
-          className="relative flex items-center justify-center w-[50px] h-[50px] rounded-[6px] p-[2px]"
-          href="https://www.etsy.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Shop on Etsy"
-        >
-          <div aria-hidden="true" className="absolute inset-0 rounded-[6px] border-2 border-white bg-black hover:bg-white/10" />
-          <span className="relative text-[20px] font-bold text-white leading-none">E</span>
-        </a>
-      </div>
-
-      <div className="relative z-10 w-full max-w-[450px] text-center text-[14px] md:text-[16px] leading-[18px] lowercase tracking-[-0.24px] text-white">
-        <p>
+      <div className="-translate-x-1/2 -translate-y-1/2 absolute flex flex-col font-['Inter:Medium',sans-serif] font-medium h-[165px] justify-center leading-[0] left-1/2 lowercase not-italic text-[14px] text-right text-[#b7b7b7] top-[734.5px] tracking-[-0.24px] w-[320px]">
+        <p className="leading-[25px]">
           ILLUSTRATIONS THAT MAKE SENSE.
-          <br />
-          WHAT ABOUT DIGITAL ART?
-          <br />
+          <br aria-hidden="true" />
+          FIND NEW DIGITAL ART
+          <br aria-hidden="true" />
           {`LET'S MAKE EVERY PRODUCT YOURS FOR REAL.`}
         </p>
       </div>
