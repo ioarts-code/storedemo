@@ -115,7 +115,7 @@ export function Grid({ products, isLoading = false, isEmpty = false }: GridProps
           </h2>
 
           {/* Category Grid - 1 per row on desktop, responsive on smaller screens */}
-          <div className="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 gap-6 w-full">
+          <div className="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 desktop-lg:grid-cols-2 gap-6 w-full">
             {categoryProducts.map((product) => (
               <GridItem key={product.id} product={product} />
             ))}
