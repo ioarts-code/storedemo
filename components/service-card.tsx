@@ -15,14 +15,14 @@ export function ServiceCard({ service }: ServiceCardProps) {
 
   return (
     <Link href={`/products/${service.slug}`}>
-      <div className="relative w-full h-[615px] overflow-clip cursor-pointer bg-transparent">
+      <div className="relative w-full h-[615px] overflow-clip cursor-pointer bg-transparent aspect-auto">
         {/* Product Image */}
         {firstImage && !imageError ? (
           <Image
             src={firstImage}
             alt={service.name}
             fill
-            className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+            className="w-full h-full object-cover pointer-events-none"
             onError={() => setImageError(true)}
             unoptimized
           />
