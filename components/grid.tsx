@@ -28,7 +28,7 @@ function GridItem({ product }: GridItemProps) {
               unoptimized
             />
           ) : (
-            <div className="absolute inset-0 w-full h-full bg-[#0f0f0f]" />
+            <div className="absolute inset-0 w-full h-full bg-transparent" />
           )}
         </div>
 
