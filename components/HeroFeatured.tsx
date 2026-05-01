@@ -65,7 +65,7 @@ export function HeroFeatured({
           </div>
 
           {/* Product name */}
-          <h3 className="relative z-10 font-bold text-[22px] md:text-[10px] xl:text-[30px] text-white tracking-[-0.24px] leading-[28px] md:leading-[34px] w-full">
+          <h3 className="relative z-10 font-bold text-[22px] md:text-[10px] xl:text-[30px] bg-clip-text bg-gradient-to-r from-black to-[#c0c0c0] text-transparent uppercase tracking-[-0.24px] leading-[28px] md:leading-[34px] w-full">
             {isLoading ? 'Loading...' : name}
           </h3>
 
