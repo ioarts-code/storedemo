@@ -32,7 +32,7 @@ export function HeroFeatured({
             src={image}
             alt={name}
             fill
-            className="w-full h-full object-cover object-center"
+            className="object-contain object-center scale-[2.0]"
             priority
             onError={() => setImageError(true)}
             unoptimized
