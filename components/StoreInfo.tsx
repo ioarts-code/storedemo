@@ -1,6 +1,7 @@
 export function StoreInfo() {
   return (
-    <div className="relative w-full mobile:max-w-full tablet:max-w-[420px] desktop-lg:max-w-[420px] min-h-[900px] border-solid border-white/10 bg-[rgba(255,255,255,0.2)] px-[24px] py-[100px] flex flex-col gap-[30px] items-center justify-center overflow-hidden mobile:mx-auto tablet:mx-0 desktop-lg:mx-0">
+    <div className="w-full flex items-center justify-center">
+      <div className="relative w-full mobile:max-w-full tablet:max-w-[420px] desktop-lg:max-w-[420px] min-h-[900px] border-solid border-white/10 bg-[rgba(255,255,255,0.2)] px-[24px] py-[100px] flex flex-col gap-[30px] items-center justify-center overflow-hidden">
       {/* moved StoreInfo card up slightly by reducing vertical padding from 200px to 160px */}
       <div aria-hidden="true" className="absolute border-r-3 border-solid border-white inset-0 pointer-events-none" />
 
@@ -20,6 +21,7 @@ export function StoreInfo() {
           {`LET'S MAKE EVERY PRODUCT YOURS FOR REAL.`}
         </p>
       </div>
+    </div>
     </div>
   );
 }
