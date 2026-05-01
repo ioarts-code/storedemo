@@ -45,7 +45,6 @@ export default function ProductsPage() {
         }
 
         setError(message);
-        console.error('[v0] Hygraph fetch error:', message);
       } finally {
         setIsLoading(false);
       }

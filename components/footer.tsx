@@ -66,31 +66,43 @@ function DivAbsolute() {
 
 function A() {
   return (
-    <div className="relative self-stretch shrink-0 w-[53.17px]" data-name="a">
+    <a
+      href="mailto:contact@ioarts.com"
+      className="relative self-stretch shrink-0 hover:opacity-75 transition-opacity"
+      data-name="a"
+    >
       <div className="-translate-y-1/2 absolute flex flex-col font-['Inter:Regular',sans-serif] font-normal h-[20px] justify-center leading-[0] left-0 not-italic text-[14.6px] text-white top-[9px] tracking-[-0.24px] w-[53.533px]">
         <p className="leading-[19.2px]">Contact</p>
       </div>
-    </div>
+    </a>
   );
 }
 
 function A1() {
   return (
-    <div className="content-stretch flex flex-col items-start relative self-stretch shrink-0" data-name="a">
+    <a
+      href="/terms"
+      className="content-stretch flex flex-col items-start relative self-stretch shrink-0 hover:opacity-75 transition-opacity"
+      data-name="a"
+    >
       <div className="flex flex-col font-['Inter:Regular',sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[15.1px] text-white tracking-[-0.24px] whitespace-nowrap">
         <p className="leading-[19.2px]">Terms of Sale</p>
       </div>
-    </div>
+    </a>
   );
 }
 
 function A2() {
   return (
-    <div className="content-stretch flex flex-col items-start relative self-stretch shrink-0" data-name="a">
+    <a
+      href="/privacy"
+      className="content-stretch flex flex-col items-start relative self-stretch shrink-0 hover:opacity-75 transition-opacity"
+      data-name="a"
+    >
       <div className="flex flex-col font-['Inter:Regular',sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[15px] text-white tracking-[-0.24px] whitespace-nowrap">
         <p className="leading-[19.2px]">Privacy Policy</p>
       </div>
-    </div>
+    </a>
   );
 }
 
