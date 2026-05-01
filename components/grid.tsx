@@ -85,13 +85,38 @@ export function Grid({ products, isLoading = false, isEmpty = false }: GridProps
     );
   }
 
+  // Group products by category
+  const groupedByCategory = products.reduce(
+    (acc, product) => {
+      const categoryName = product.categories?.[0]?.name || 'Uncategorized';
+      if (!acc[categoryName]) {
+        acc[categoryName] = [];
+      }
+      acc[categoryName].push(product);
+      return acc;
+    },
+    {} as Record<string, Product[]>
+  );
+
+  const categoryEntries = Object.entries(groupedByCategory);
+
   return (
-    <div className="content-stretch flex flex-col items-start px-[24px] relative size-full py-16">
-      <div className="grid grid-cols-[repeat(3,minmax(0,1fr))] gap-6 w-full">
-        {products.map((product) => (
-          <GridItem key={product.id} product={product} />
-        ))}
-      </div>
+    <div className="content-stretch flex flex-col items-start px-[24px] relative size-full py-16 gap-16">
+      {categoryEntries.map(([categoryName, categoryProducts]) => (
+        <div key={categoryName} className="w-full">
+          {/* Category Title */}
+          <h2 className="font-['Inter:Bold',sans-serif] font-bold text-[32px] text-white tracking-[-0.64px] mb-8 block desktop:block tablet:hidden mobile:hidden">
+            {categoryName}
+          </h2>
+
+          {/* Category Grid - 1 per row on desktop, responsive on smaller screens */}
+          <div className="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 gap-6 w-full">
+            {categoryProducts.map((product) => (
+              <GridItem key={product.id} product={product} />
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
