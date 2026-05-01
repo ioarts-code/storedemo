@@ -73,16 +73,49 @@ export default function Home() {
     return [featuredProduct, ...withoutFeatured];
   }, [products, featuredProduct]);
 
+  // On tablet+below desktop-lg, include featured product in the grid
+  const tabletProducts = useMemo(() => {
+    if (!featuredProduct) return products;
+    const withoutFeatured = products.filter((p) => p.slug !== featuredProduct.slug);
+    return [featuredProduct, ...withoutFeatured];
+  }, [products, featuredProduct]);
+
   return (
     <main className="min-h-screen bg-[#050505] text-white flex flex-col">
-      {/* Hero Section - hidden on mobile */}
-      <div className="hidden tablet:block">
+      {/* desktop-lg+: Full featured product hero */}
+      <div className="hidden desktop-lg:block">
         <HeroFeatured
           name={featuredProduct?.name}
           description={featuredProduct?.description}
           image={featuredProduct?.images?.[0]?.url}
           slug={featuredProduct?.slug}
           isLoading={isLoading}
+        />
+      </div>
+
+      {/* tablet → below desktop-lg: StoreInfo only, featured pushed into grid */}
+      <div className="hidden tablet:block desktop-lg:hidden">
+        <HeroFeatured
+          name={featuredProduct?.name}
+          description={featuredProduct?.description}
+          image={featuredProduct?.images?.[0]?.url}
+          slug={featuredProduct?.slug}
+          isLoading={isLoading}
+          hideProductCard
+          hideImage
+        />
+      </div>
+
+      {/* mobile: StoreInfo only, featured in grid */}
+      <div className="block tablet:hidden">
+        <HeroFeatured
+          name={featuredProduct?.name}
+          description={featuredProduct?.description}
+          image={featuredProduct?.images?.[0]?.url}
+          slug={featuredProduct?.slug}
+          isLoading={isLoading}
+          hideProductCard
+          hideImage
         />
       </div>
 
@@ -103,7 +136,18 @@ export default function Home() {
               isEmpty={!isLoading && mobileProducts.length === 0}
             />
           </div>
-          <div className="hidden tablet:block">
+
+          {/* tablet → below desktop-lg: featured in grid + StoreInfo hero */}
+          <div className="hidden tablet:block desktop-lg:hidden">
+            <Grid
+              products={tabletProducts}
+              isLoading={isLoading && products.length === 0}
+              isEmpty={!isLoading && tabletProducts.length === 0}
+            />
+          </div>
+
+          {/* desktop-lg+: featured card shown, excluded from grid */}
+          <div className="hidden desktop-lg:block">
             <Grid
               products={filteredProducts}
               isLoading={isLoading && products.length === 0}
