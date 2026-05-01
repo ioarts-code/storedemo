@@ -11,6 +11,7 @@ interface HeroFeaturedProps {
   image?: string;
   slug?: string;
   isLoading?: boolean;
+  hideProductCard?: boolean;
 }
 
 export function HeroFeatured({
@@ -19,6 +20,7 @@ export function HeroFeatured({
   image,
   slug,
   isLoading = false,
+  hideProductCard = false,
 }: HeroFeaturedProps) {
   const [imageError, setImageError] = useState(false);
 
@@ -53,7 +55,7 @@ export function HeroFeatured({
         <div className="flex-1" />
 
         {/* Featured product card — right center */}
-        <div className="absolute z-10 top-[15%] right-4 md:right-10 lg:right-14 xl:right-20 w-[300px] sm:w-[360px] md:w-[420px] lg:w-[520px] xl:w-[600px] bg-[rgba(255,255,255,0.16)] border border-white/10 px-6 py-6 flex flex-col items-start gap-6">
+        <div className={`absolute z-10 top-[15%] right-4 md:right-10 lg:right-14 xl:right-20 w-[300px] sm:w-[360px] md:w-[420px] lg:w-[520px] xl:w-[600px] bg-[rgba(255,255,255,0.16)] border border-white/10 px-6 py-6 flex flex-col items-start gap-6${hideProductCard ? ' hidden' : ''}`}>
           {/* Left white accent border */}
           <div aria-hidden="true" className="absolute border-l-[3px] border-solid border-white inset-0 pointer-events-none" />
 
