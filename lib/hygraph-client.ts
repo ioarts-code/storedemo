@@ -1,13 +1,53 @@
 /**
- * Direct Hygraph GraphQL client
- * Can work either with environment variables or direct configuration
+ * Hygraph GraphQL client — routes all requests through the server-side API
+ * proxy (/api/hygraph) so that the auth token is never exposed to the browser.
+ *
+ * For server components / Route Handlers use createServerHygraphClient()
+ * which calls Hygraph directly with the server-only token.
  */
-export function createHygraphClient(config?: { endpoint: string; token?: string }) {
+
+// ---------------------------------------------------------------------------
+// Browser-safe client — talks to our own Next.js API route
+// ---------------------------------------------------------------------------
+export function createHygraphClient() {
   return {
     request: async <T,>(query: string, variables?: Record<string, any>): Promise<T> => {
-      // If config is provided, use it directly. Otherwise try environment variables.
-      const endpoint = config?.endpoint || process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT;
-      const token = config?.token || process.env.NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN;
+      const response = await fetch('/api/hygraph', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query, variables }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`API request failed with status ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      if (data.errors) {
+        throw new Error(data.errors[0]?.message || 'GraphQL error');
+      }
+      if (data.error) {
+        throw new Error(data.error);
+      }
+
+      return data.data;
+    },
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Server-only client — used in Route Handlers & Server Components
+// Uses HYGRAPH_AUTH_TOKEN (no NEXT_PUBLIC_ prefix) so it never reaches the browser.
+// ---------------------------------------------------------------------------
+export function createServerHygraphClient() {
+  return {
+    request: async <T,>(query: string, variables?: Record<string, any>): Promise<T> => {
+      // Prefer the private server-side token; fall back to the public endpoint env var.
+      const endpoint =
+        process.env.HYGRAPH_ENDPOINT || process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT;
+      const token =
+        process.env.HYGRAPH_AUTH_TOKEN || process.env.NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN;
 
       if (!endpoint) {
         throw new Error('Hygraph endpoint must be configured');
@@ -24,10 +64,7 @@ export function createHygraphClient(config?: { endpoint: string; token?: string 
       const response = await fetch(endpoint, {
         method: 'POST',
         headers,
-        body: JSON.stringify({
-          query,
-          variables,
-        }),
+        body: JSON.stringify({ query, variables }),
       });
 
       if (!response.ok) {

@@ -37,11 +37,14 @@ export function Filter({
         <div className="flex flex-wrap gap-3">
           {/* Show All button */}
           <button
-            onClick={() => handleCategoryClick('')}
+            onClick={() => {
+              setSelectedCategory(null);
+              onCategoryChange(null);
+            }}
             className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${
               selectedCategory === null
                 ? 'bg-white text-black border-3 border-white'
-                : 'bg-transparent text-white border-3 border-white hover:bg-white'
+                : 'bg-transparent text-white border-3 border-white hover:bg-white/20'
             }`}
           >
             All
