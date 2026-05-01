@@ -12,6 +12,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
   const imageUrl = product.images?.[0]?.url || '';
   const category = product.categories?.[0]?.name || 'Product';
   const copyright = 'Unofficial: Rightsholder permits fanart on merch in small scale';
+  const [imageRatio, setImageRatio] = useState<'small' | 'medium' | 'large'>('medium');
 
   return (
     <div
@@ -74,20 +75,65 @@ export function ProductDetail({ product }: ProductDetailProps) {
       </div>
 
       {/* Right Column - Product Image */}
-      <div className="w-[45%] flex items-center justify-center p-4 pr-8">
-        {imageUrl ? (
-          <Image
-            alt={product.name}
-            className="w-auto h-full object-contain"
-            src={imageUrl}
-            width={600}
-            height={900}
-            priority
-            sizes="(max-width: 768px) 100vw, 45vw"
-          />
-        ) : (
-          <div className="text-gray-500 text-center">No image available</div>
-        )}
+      <div className="w-[45%] flex flex-col items-center justify-center p-4 pr-8">
+        {/* Image Ratio Toggle */}
+        <div className="flex gap-2 mb-4">
+          <button
+            onClick={() => setImageRatio('small')}
+            className={`px-3 py-1 text-sm rounded ${
+              imageRatio === 'small'
+                ? 'bg-white text-black'
+                : 'bg-white/20 text-white hover:bg-white/30'
+            } transition-colors`}
+          >
+            Small
+          </button>
+          <button
+            onClick={() => setImageRatio('medium')}
+            className={`px-3 py-1 text-sm rounded ${
+              imageRatio === 'medium'
+                ? 'bg-white text-black'
+                : 'bg-white/20 text-white hover:bg-white/30'
+            } transition-colors`}
+          >
+            Medium
+          </button>
+          <button
+            onClick={() => setImageRatio('large')}
+            className={`px-3 py-1 text-sm rounded ${
+              imageRatio === 'large'
+                ? 'bg-white text-black'
+                : 'bg-white/20 text-white hover:bg-white/30'
+            } transition-colors`}
+          >
+            Large
+          </button>
+        </div>
+
+        {/* Image Container */}
+        <div
+          className={`flex items-center justify-center overflow-hidden ${
+            imageRatio === 'small'
+              ? 'w-48 h-72'
+              : imageRatio === 'medium'
+              ? 'w-80 h-96'
+              : 'w-full h-full'
+          }`}
+        >
+          {imageUrl ? (
+            <Image
+              alt={product.name}
+              className="w-auto h-full object-contain"
+              src={imageUrl}
+              width={600}
+              height={900}
+              priority
+              sizes="(max-width: 768px) 100vw, 45vw"
+            />
+          ) : (
+            <div className="text-gray-500 text-center">No image available</div>
+          )}
+        </div>
       </div>
     </div>
   );
