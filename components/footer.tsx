@@ -106,7 +106,7 @@ function A2() {
 
 function DivAbsolute1() {
   return (
-    <div className="absolute content-stretch flex gap-[16px] h-[20px] items-start left-[44px] top-[464px]" data-name="div.absolute">
+    <div className="absolute content-stretch flex mobile:flex-wrap mobile:gap-y-2 tablet:gap-[16px] h-auto mobile:h-auto tablet:h-[20px] items-start left-[44px] top-[464px] mobile:w-[calc(100%-88px)] mobile:flex-col tablet:flex-row" data-name="div.absolute">
       <A />
       <A1 />
       <A2 />
@@ -128,7 +128,7 @@ function FooterWFull() {
   return (
     <div className="bg-[rgba(255,255,255,0.2)] h-[532px] min-h-[532px] relative rounded-[12px] shrink-0 w-full" data-name="footer.w-full">
       <div aria-hidden="true" className="absolute border-3 border-solid border-white inset-0 pointer-events-none rounded-[12px]" />
-      <div className="-translate-y-1/2 absolute bg-clip-text bg-gradient-to-r flex flex-col font-['Inter:Bold',sans-serif] font-bold from-black h-[349px] justify-center leading-[0] left-[44px] not-italic text-[288px] text-[transparent] to-[#5c5c5c] top-[218.5px] w-[1079.975px]">
+      <div className="-translate-y-1/2 absolute bg-clip-text bg-gradient-to-r flex flex-col font-['Inter:Bold',sans-serif] font-bold from-black h-[349px] justify-center leading-[0] left-[44px] not-italic mobile:text-[100px] tablet:text-[180px] desktop:text-[288px] text-[transparent] to-[#5c5c5c] top-[218.5px] mobile:w-auto tablet:w-[500px] desktop:w-[1079.975px]">
         <p className="leading-[normal]">IOARTS</p>
       </div>
       <DivAbsolute />
