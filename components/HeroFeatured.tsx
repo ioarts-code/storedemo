@@ -12,6 +12,7 @@ interface HeroFeaturedProps {
   slug?: string;
   isLoading?: boolean;
   hideProductCard?: boolean;
+  hideImage?: boolean;
 }
 
 export function HeroFeatured({
@@ -21,13 +22,14 @@ export function HeroFeatured({
   slug,
   isLoading = false,
   hideProductCard = false,
+  hideImage = false,
 }: HeroFeaturedProps) {
   const [imageError, setImageError] = useState(false);
 
   return (
     <div className="relative w-full min-h-[900px] 2xl:min-h-[400px] overflow-hidden flex items-center justify-center bg-[#05050500] border-white/10">
       {/* Background product image */}
-      <div className="absolute inset-0 z-0 overflow-hidden bg-[#05050500]">
+      <div className={`absolute inset-0 z-0 overflow-hidden bg-[#05050500]${hideImage ? ' hidden' : ''}`}>
         {image && !imageError ? (
           // show full image without cropping to remove top cutoff
           <Image

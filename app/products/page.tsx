@@ -107,6 +107,7 @@ export default function ProductsPage() {
           slug={featuredProduct?.slug}
           isLoading={isLoading}
           hideProductCard
+          hideImage
         />
         <Grid
           products={tabletProducts}
