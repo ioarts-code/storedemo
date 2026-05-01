@@ -22,7 +22,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
       }}
     >
       {/* Left Column */}
-      <div className="flex flex-col justify-between w-[55%] p-12">
+      <div className="flex flex-col justify-between w-[55%] p-12 bg-transparent">
         {/* Product Content */}
         <div className="flex flex-col gap-4">
           {/* Title and Price */}
@@ -74,16 +74,16 @@ export function ProductDetail({ product }: ProductDetailProps) {
       </div>
 
       {/* Right Column - Product Image */}
-      <div className="w-[45%] flex items-center justify-center p-4">
+      <div className="w-[45%] flex items-center justify-center p-4 pr-8">
         {imageUrl ? (
           <Image
             alt={product.name}
-            className="w-full h-full object-cover"
+            className="w-auto h-full object-contain"
             src={imageUrl}
-            width={800}
-            height={1200}
+            width={600}
+            height={900}
             priority
-            sizes="(max-width: 768px) 100vw, 60vw"
+            sizes="(max-width: 768px) 100vw, 45vw"
           />
         ) : (
           <div className="text-gray-500 text-center">No image available</div>
