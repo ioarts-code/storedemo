@@ -43,7 +43,7 @@ function GridItem({ product }: GridItemProps) {
             </div>
 
             <div className="absolute bottom-[18%] content-stretch flex flex-col items-start right-[16px] top-[18%]">
-              <div className="content-stretch flex h-[48px] items-center justify-center p-[3px] relative rounded-[6px] shrink-0 w-[106px]">
+              <div className="content-stretch flex h-[48px] items-center justify-center p-[3px] relative rounded-[6px] shrink-0 w-[106px] bg-transparent hover:bg-black transition-colors duration-200 cursor-pointer">
                 <div aria-hidden="true" className="absolute border-3 border-solid border-white inset-0 pointer-events-none rounded-[6px]" />
                 <div className="relative shrink-0">
                   <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex flex-col items-center relative size-full">
