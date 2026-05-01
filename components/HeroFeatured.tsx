@@ -46,15 +46,15 @@ export function HeroFeatured({
         )}
       </div>
 
-      <div className="relative z-10 flex w-full max-w-[2400px] items-stretch gap-6 px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24 pb-8 pt-8">
+      <div className="relative z-10 flex w-full mobile:px-6 tablet:px-6 desktop-lg:px-0 mobile:justify-center tablet:justify-center desktop-lg:max-w-[2400px] desktop-lg:mx-auto items-stretch gap-6 mobile:py-0 tablet:py-0 desktop-lg:pb-8 desktop-lg:pt-8 desktop-lg:px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24">
         {/* Left column — StoreInfo with top/bottom breathing room */}
-        <div className="relative z-10 flex-shrink-0 basis-[320px] md:basis-[360px] lg:basis-[400px] xl:basis-[460px] 2xl:basis-[520px] flex items-start">
-          <div className="w-full max-w-[460px]">
+        <div className="relative z-10 flex-shrink-0 mobile:basis-auto tablet:basis-auto desktop-lg:basis-[320px] md:basis-[360px] lg:basis-[400px] xl:basis-[460px] 2xl:basis-[520px] flex items-start">
+          <div className="w-full mobile:max-w-[calc(100vw-48px)] tablet:max-w-[calc(100vw-48px)] desktop-lg:max-w-[460px]">
             <StoreInfo />
           </div>
         </div>
 
-        <div className="flex-1" />
+        <div className="hidden desktop-lg:flex flex-1" />
 
         {/* Featured product card — right center */}
         <div className={`absolute z-10 top-[15%] right-4 md:right-10 lg:right-14 xl:right-20 w-[300px] sm:w-[360px] md:w-[420px] lg:w-[520px] xl:w-[600px] bg-[rgba(255,255,255,0.16)] border border-white/10 px-6 py-6 flex flex-col items-start gap-6${hideProductCard ? ' hidden' : ''}`}>
