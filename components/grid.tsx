@@ -20,8 +20,7 @@ function GridItem({ product }: GridItemProps) {
           {imageSrc && !imageError ? (
             <Image
               alt={product.name}
-              className="absolute left-0 w-full object-cover"
-              style={{ height: '152.2%', top: '-26.1%' }}
+              className="absolute inset-0 w-full h-full object-cover"
               src={imageSrc}
               width={800}
               height={1200}
