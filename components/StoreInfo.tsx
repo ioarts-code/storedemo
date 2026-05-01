@@ -1,6 +1,6 @@
 export function StoreInfo() {
   return (
-    <div className="relative mobile:w-[calc(100%-48px)] tablet:w-[calc(100%-48px)] desktop-lg:w-auto mobile:mx-auto tablet:mx-auto desktop-lg:mx-0 mobile:max-w-full tablet:max-w-[420px] desktop-lg:max-w-[420px] min-h-[900px] border-solid border-white/10 bg-[rgba(255,255,255,0.2)] px-[24px] py-[100px] flex flex-col gap-[30px] items-center justify-center overflow-hidden">
+    <div className="relative mobile:w-[400px] tablet:w-[400px] desktop-lg:w-auto mobile:mx-auto tablet:mx-auto desktop-lg:mx-0 desktop-lg:max-w-[420px] min-h-[900px] border-solid border-white/10 bg-[rgba(255,255,255,0.2)] px-[24px] py-[100px] flex flex-col gap-[30px] items-center justify-center overflow-hidden">
       {/* moved StoreInfo card up slightly by reducing vertical padding from 200px to 160px */}
       <div aria-hidden="true" className="absolute border-r-3 border-solid border-white inset-0 pointer-events-none" />
 
