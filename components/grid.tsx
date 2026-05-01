@@ -20,7 +20,7 @@ function GridItem({ product }: GridItemProps) {
 
   return (
     <Link href={`/products/${product.slug}`}>
-      <div className="content-stretch flex flex-col mobile:h-[280px] tablet:h-[450px] desktop:h-[615px] items-center justify-end justify-self-stretch overflow-clip mobile:pb-12 tablet:pb-[60px] desktop:pb-[87px] mobile:pt-[120px] tablet:pt-[300px] desktop:pt-[453px] relative shrink-0 cursor-pointer">
+      <div className="content-stretch flex flex-col mobile:h-[280px] tablet:h-[450px] desktop:h-[615px] desktop-wide:h-[820px] items-center justify-end justify-self-stretch overflow-clip mobile:pb-12 tablet:pb-[60px] desktop:pb-[87px] desktop-wide:pb-[110px] mobile:pt-[120px] tablet:pt-[300px] desktop:pt-[453px] desktop-wide:pt-[600px] relative shrink-0 cursor-pointer">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {imageSrc && !imageError ? (
             <Image
@@ -38,14 +38,14 @@ function GridItem({ product }: GridItemProps) {
         </div>
 
         <div className="content-stretch flex flex-col items-start w-[90%] relative shrink-1">
-          <div className="bg-[rgba(255,255,255,0.2)] mobile:h-[55px] tablet:h-[65px] desktop:h-[75px] mobile:min-h-[55px] tablet:min-h-[65px] desktop:min-h-[75px] relative rounded-[6px] shrink-0 w-full flex items-center justify-between px-4 desktop:px-6">
+          <div className="bg-[rgba(255,255,255,0.2)] mobile:h-[55px] tablet:h-[65px] desktop:h-[75px] desktop-wide:h-[90px] mobile:min-h-[55px] tablet:min-h-[65px] desktop:min-h-[75px] desktop-wide:min-h-[90px] relative rounded-[6px] shrink-0 w-full flex items-center justify-between px-4 desktop:px-6 desktop-wide:px-8">
             <div aria-hidden="true" className="absolute border-3 border-solid border-white inset-0 pointer-events-none rounded-[6px]" />
 
-            <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center not-italic relative shrink-1 min-w-0 mobile:text-[14px] tablet:text-[16px] desktop:text-[20px] text-white mobile:tracking-[0.2px] tablet:tracking-[0.3px] desktop:tracking-[0.5px] whitespace-nowrap overflow-hidden">
+            <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center not-italic relative shrink-1 min-w-0 mobile:text-[14px] tablet:text-[16px] desktop:text-[20px] desktop-wide:text-[24px] text-white mobile:tracking-[0.2px] tablet:tracking-[0.3px] desktop:tracking-[0.5px] desktop-wide:tracking-[0.6px] whitespace-nowrap overflow-hidden">
               <p className="truncate">{truncatedName}</p>
             </div>
 
-            <div className="content-stretch flex mobile:h-[36px] tablet:h-[42px] desktop:h-[48px] items-center justify-center mobile:p-[2px] desktop:p-[3px] relative rounded-[6px] shrink-0 mobile:w-[70px] tablet:w-[85px] desktop:w-[106px] ml-3 bg-transparent hover:bg-black transition-colors duration-200 cursor-pointer">
+            <div className="content-stretch flex mobile:h-[36px] tablet:h-[42px] desktop:h-[48px] desktop-wide:h-[58px] items-center justify-center mobile:p-[2px] desktop:p-[3px] relative rounded-[6px] shrink-0 mobile:w-[70px] tablet:w-[85px] desktop:w-[106px] desktop-wide:w-[126px] ml-3 bg-transparent hover:bg-black transition-colors duration-200 cursor-pointer">
               <div aria-hidden="true" className="absolute border-3 border-solid border-white inset-0 pointer-events-none rounded-[6px]" />
               <div className="relative shrink-0">
                 <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex flex-col items-center relative size-full">
