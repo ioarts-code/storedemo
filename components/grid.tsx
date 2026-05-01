@@ -13,9 +13,14 @@ function GridItem({ product }: GridItemProps) {
   const imageSrc = product.images?.[0]?.url;
   const [imageError, setImageError] = useState(false);
 
+  // Truncate product name if too long (max 40 chars, with ellipsis)
+  const truncatedName = product.name.length > 40 
+    ? product.name.substring(0, 37) + '...' 
+    : product.name;
+
   return (
     <Link href={`/products/${product.slug}`}>
-      <div className="content-stretch flex flex-col h-[615px] items-center justify-end justify-self-stretch overflow-clip pb-[87px] pt-[453px] relative shrink-0 cursor-pointer">
+      <div className="content-stretch flex flex-col mobile:h-[280px] tablet:h-[450px] desktop:h-[615px] items-center justify-end justify-self-stretch overflow-clip mobile:pb-12 tablet:pb-[60px] desktop:pb-[87px] mobile:pt-[120px] tablet:pt-[300px] desktop:pt-[453px] relative shrink-0 cursor-pointer">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {imageSrc && !imageError ? (
             <Image
@@ -32,23 +37,23 @@ function GridItem({ product }: GridItemProps) {
           )}
         </div>
 
-        <div className="content-stretch flex flex-col items-start max-w-[400px] relative shrink-1 w-[400px]">
-          <div className="bg-[rgba(255,255,255,0.2)] h-[75px] min-h-[75px] relative rounded-[6px] shrink-0 w-full">
+        <div className="content-stretch flex flex-col items-start mobile:max-w-[90%] tablet:max-w-[350px] desktop:max-w-[400px] mobile:w-[90%] tablet:w-[350px] desktop:w-[400px] relative shrink-1">
+          <div className="bg-[rgba(255,255,255,0.2)] mobile:h-[55px] tablet:h-[65px] desktop:h-[75px] mobile:min-h-[55px] tablet:min-h-[65px] desktop:min-h-[75px] relative rounded-[6px] shrink-0 w-full">
             <div aria-hidden="true" className="absolute border-3 border-solid border-white inset-0 pointer-events-none rounded-[6px]" />
 
-            <div className="absolute bottom-[38%] content-stretch flex flex-col items-start left-[24px] max-w-[1056px] top-[38%]">
-              <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] not-italic relative shrink-0 text-[20px] text-white tracking-[0.5px] whitespace-nowrap">
-                <p className="leading-[18px]">{product.name}</p>
+            <div className="absolute bottom-[38%] content-stretch flex flex-col items-start mobile:left-[12px] tablet:left-[16px] desktop:left-[24px] mobile:max-w-[calc(100%-60px)] tablet:max-w-[200px] desktop:max-w-[1056px] top-[38%]">
+              <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] not-italic relative shrink-0 mobile:text-[14px] tablet:text-[16px] desktop:text-[20px] text-white mobile:tracking-[0.2px] tablet:tracking-[0.3px] desktop:tracking-[0.5px] whitespace-nowrap">
+                <p className="mobile:leading-[14px] tablet:leading-[16px] desktop:leading-[18px] truncate">{truncatedName}</p>
               </div>
             </div>
 
-            <div className="absolute bottom-[18%] content-stretch flex flex-col items-start right-[16px] top-[18%]">
-              <div className="content-stretch flex h-[48px] items-center justify-center p-[3px] relative rounded-[6px] shrink-0 w-[106px]">
+            <div className="absolute bottom-[18%] content-stretch flex flex-col items-start mobile:right-[8px] tablet:right-[12px] desktop:right-[16px] top-[18%]">
+              <div className="content-stretch flex mobile:h-[36px] tablet:h-[42px] desktop:h-[48px] items-center justify-center mobile:p-[2px] tablet:p-[2px] desktop:p-[3px] relative rounded-[6px] shrink-0 mobile:w-[70px] tablet:w-[85px] desktop:w-[106px] bg-transparent hover:bg-black transition-colors duration-200 cursor-pointer">
                 <div aria-hidden="true" className="absolute border-3 border-solid border-white inset-0 pointer-events-none rounded-[6px]" />
                 <div className="relative shrink-0">
                   <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex flex-col items-center relative size-full">
-                    <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] not-italic relative shrink-0 text-[20px] text-center text-white tracking-[-0.36px] uppercase whitespace-nowrap">
-                      <p className="leading-[28.8px]">Shop</p>
+                    <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] not-italic relative shrink-0 mobile:text-[12px] tablet:text-[14px] desktop:text-[20px] text-center text-white mobile:tracking-[-0.24px] tablet:tracking-[-0.28px] desktop:tracking-[-0.36px] uppercase whitespace-nowrap">
+                      <p className="mobile:leading-[17px] tablet:leading-[20px] desktop:leading-[28.8px]">Shop</p>
                     </div>
                   </div>
                 </div>
@@ -85,13 +90,38 @@ export function Grid({ products, isLoading = false, isEmpty = false }: GridProps
     );
   }
 
+  // Group products by category
+  const groupedByCategory = products.reduce(
+    (acc, product) => {
+      const categoryName = product.categories?.[0]?.name || 'Uncategorized';
+      if (!acc[categoryName]) {
+        acc[categoryName] = [];
+      }
+      acc[categoryName].push(product);
+      return acc;
+    },
+    {} as Record<string, Product[]>
+  );
+
+  const categoryEntries = Object.entries(groupedByCategory);
+
   return (
-    <div className="content-stretch flex flex-col items-start px-[24px] relative size-full py-16">
-      <div className="grid grid-cols-[repeat(3,minmax(0,1fr))] gap-6 w-full">
-        {products.map((product) => (
-          <GridItem key={product.id} product={product} />
-        ))}
-      </div>
+    <div className="content-stretch flex flex-col items-start px-[24px] relative size-full py-16 gap-16">
+      {categoryEntries.map(([categoryName, categoryProducts]) => (
+        <div key={categoryName} className="w-full">
+          {/* Category Title */}
+          <h2 className="font-['Inter:Bold',sans-serif] font-bold text-[32px] text-white tracking-[-0.64px] mb-8 block desktop:block tablet:hidden mobile:hidden">
+            {categoryName}
+          </h2>
+
+          {/* Category Grid - 1 per row on desktop, responsive on smaller screens */}
+          <div className="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 gap-6 w-full">
+            {categoryProducts.map((product) => (
+              <GridItem key={product.id} product={product} />
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
   );
 }

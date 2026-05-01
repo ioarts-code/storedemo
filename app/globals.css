@@ -92,6 +92,7 @@
    *   desktop-wide:max-w-screen-desktop-wide
    * -----------------------------------------------------------
    */
+  --breakpoint-mobile: 0;
   --breakpoint-tablet: 40rem;        /* 640px  */
   --breakpoint-desktop: 64rem;       /* 1024px */
   --breakpoint-desktop-wide: 90rem;  /* 1440px */

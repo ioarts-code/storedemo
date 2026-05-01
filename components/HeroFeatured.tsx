@@ -32,7 +32,7 @@ export function HeroFeatured({
             src={image}
             alt={name}
             fill
-            className="w-full h-full object-cover object-center"
+            className="object-contain object-center scale-[2.0]"
             priority
             onError={() => setImageError(true)}
             unoptimized
@@ -78,7 +78,7 @@ export function HeroFeatured({
           {slug && (
             <Link
               href={`/products/${slug}`}
-              className="relative z-10 flex items-center justify-center px-16 py-2 rounded-[4px] border-[2px] bg-transparent border-white hover:bg-white/10 transition-colors"
+              className="relative z-10 flex items-center justify-center px-16 py-2 rounded-[4px] border-[2px] bg-transparent border-white hover:bg-black transition-colors duration-200"
             >
               <span className="font-bold text-white text-[13px] md:text-[14px] tracking-[-0.2px] uppercase leading-5">
                 Shop
