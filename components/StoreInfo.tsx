@@ -1,6 +1,6 @@
 export function StoreInfo() {
   return (
-    <div className="relative w-full max-w-[420px] min-h-[900px] border-solid border-white/10 bg-[rgba(255,255,255,0.2)] px-[24px] py-[100px] flex flex-col gap-[30px] items-center justify-center overflow-hidden">
+    <div className="relative w-full mobile:max-w-full tablet:max-w-[420px] desktop-lg:max-w-[420px] min-h-[900px] border-solid border-white/10 bg-[rgba(255,255,255,0.2)] px-[24px] py-[100px] flex flex-col gap-[30px] items-center justify-center overflow-hidden mobile:mx-auto tablet:mx-0 desktop-lg:mx-0">
       {/* moved StoreInfo card up slightly by reducing vertical padding from 200px to 160px */}
       <div aria-hidden="true" className="absolute border-r-3 border-solid border-white inset-0 pointer-events-none" />
 
@@ -11,7 +11,7 @@ export function StoreInfo() {
           </div>
         </div>
       </div>
-      <div className="-translate-x-1/2 -translate-y-1/2 absolute flex flex-col font-['Inter:Medium',sans-serif] font-medium h-[165px] justify-center leading-[0] left-1/2 lowercase not-italic text-[14px] text-right text- white top-[734.5px] tracking-[-0.24px] w-[320px]">
+      <div className="-translate-x-1/2 -translate-y-1/2 absolute flex flex-col font-['Inter:Medium',sans-serif] font-medium h-[165px] justify-center leading-[0] left-1/3 lowercase not-italic text-[14px] text-right text- white top-[734.5px] tracking-[-0.24px] w-[320px]">
         <p className="leading-[25px]">
           ILLUSTRATIONS THAT MAKE SENSE.
           <br aria-hidden="true" />
