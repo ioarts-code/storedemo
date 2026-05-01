@@ -106,6 +106,19 @@ export default function Home() {
         />
       </div>
 
+      {/* mobile: StoreInfo only, featured in grid */}
+      <div className="block tablet:hidden">
+        <HeroFeatured
+          name={featuredProduct?.name}
+          description={featuredProduct?.description}
+          image={featuredProduct?.images?.[0]?.url}
+          slug={featuredProduct?.slug}
+          isLoading={isLoading}
+          hideProductCard
+          hideImage
+        />
+      </div>
+
       <div className="bg-transparent w-full tablet:mt-16">
         <div className="w-full max-w-[2400px] mx-auto px-0 relative">
           {error && (
