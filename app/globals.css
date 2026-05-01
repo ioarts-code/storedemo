@@ -84,17 +84,19 @@
    * mobile       base (no prefix) — 0px and up
    * tablet       640px  — small tablets, large phones landscape
    * desktop      1024px — laptops and standard desktops
+   * desktop-lg   1280px — large desktops
    * desktop-wide 1440px — wide monitors and large desktops
    *
    * Usage in JSX:
    *   tablet:flex-row
-   *   desktop:grid-cols-3
+   *   desktop-lg:grid-cols-2
    *   desktop-wide:max-w-screen-desktop-wide
    * -----------------------------------------------------------
    */
   --breakpoint-mobile: 0;
   --breakpoint-tablet: 40rem;        /* 640px  */
   --breakpoint-desktop: 64rem;       /* 1024px */
+  --breakpoint-desktop-lg: 80rem;    /* 1280px */
   --breakpoint-desktop-wide: 90rem;  /* 1440px */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
