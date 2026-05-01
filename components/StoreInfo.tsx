@@ -6,7 +6,7 @@ export function StoreInfo() {
 
       <div className="-translate-x-1/2 -translate-y-1/2 absolute flex h-[871px] items-center justify-center left-1/2 top-[472.5px] w-[349px]" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "19" } as React.CSSProperties}>
         <div className="flex-none rotate-90">
-          <div className="bg-clip-text bg-gradient-to-r flex flex-col font-['Inter:Bold',sans-serif] font-bold from-black h-[349px] justify-center leading-[0] not-italic relative text-[170px] text-[transparent] to-[#848484] uppercase w-[871px]">
+          <div className="bg-clip-text bg-gradient-to-r flex flex-col font-['Inter:Bold',sans-serif] font-bold from-black h-[349px] justify-center leading-[0] not-italic relative text-[170px] text-[transparent] to-[#adadad] uppercase w-[871px]">
             <p className="leading-[normal]">Merch</p>
           </div>
         </div>
