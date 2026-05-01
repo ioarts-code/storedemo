@@ -66,18 +66,27 @@ export default function Home() {
     return products.filter((product) => product.slug !== featuredProduct?.slug);
   }, [products, featuredProduct]);
 
+  // On mobile, include featured product in the grid
+  const mobileProducts = useMemo(() => {
+    if (!featuredProduct) return products;
+    const withoutFeatured = products.filter((p) => p.slug !== featuredProduct.slug);
+    return [featuredProduct, ...withoutFeatured];
+  }, [products, featuredProduct]);
+
   return (
     <main className="min-h-screen bg-[#050505] text-white flex flex-col">
-      {/* Hero Section */}
-      <HeroFeatured
-        name={featuredProduct?.name}
-        description={featuredProduct?.description}
-        image={featuredProduct?.images?.[0]?.url}
-        slug={featuredProduct?.slug}
-        isLoading={isLoading}
-      />
+      {/* Hero Section - hidden on mobile */}
+      <div className="hidden tablet:block">
+        <HeroFeatured
+          name={featuredProduct?.name}
+          description={featuredProduct?.description}
+          image={featuredProduct?.images?.[0]?.url}
+          slug={featuredProduct?.slug}
+          isLoading={isLoading}
+        />
+      </div>
 
-      <div className="bg-transparent w-full mt-16">
+      <div className="bg-transparent w-full tablet:mt-16">
         <div className="w-full max-w-[2400px] mx-auto px-0 relative">
           {error && (
             <div className="mb-6 p-4 bg-[#1A1A1A] border border-red-700 rounded-lg text-center mx-6">
@@ -86,12 +95,21 @@ export default function Home() {
             </div>
           )}
 
-          {/* Product Grid  */}
-          <Grid
-            products={filteredProducts}
-            isLoading={isLoading && products.length === 0}
-            isEmpty={!isLoading && filteredProducts.length === 0}
-          />
+          {/* Product Grid - on mobile shows all products including featured */}
+          <div className="block tablet:hidden">
+            <Grid
+              products={mobileProducts}
+              isLoading={isLoading && products.length === 0}
+              isEmpty={!isLoading && mobileProducts.length === 0}
+            />
+          </div>
+          <div className="hidden tablet:block">
+            <Grid
+              products={filteredProducts}
+              isLoading={isLoading && products.length === 0}
+              isEmpty={!isLoading && filteredProducts.length === 0}
+            />
+          </div>
         </div>
       </div>
 
