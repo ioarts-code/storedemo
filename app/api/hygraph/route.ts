@@ -1,17 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-// Prefer the private server-only token. Fall back to the NEXT_PUBLIC_ variant
-// so existing deployments keep working during migration.
-const ENDPOINT =
-  process.env.HYGRAPH_ENDPOINT || process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT;
-const AUTH_TOKEN =
-  process.env.HYGRAPH_AUTH_TOKEN || process.env.NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN;
-
 export async function POST(request: NextRequest) {
+  // Read env vars inside the handler so they are always fresh after a reload.
+  // Prefer the private server-only names; fall back to NEXT_PUBLIC_ variants
+  // so existing deployments keep working during migration.
+  const ENDPOINT =
+    process.env.HYGRAPH_ENDPOINT || process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT;
+  const AUTH_TOKEN =
+    process.env.HYGRAPH_AUTH_TOKEN || process.env.NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN;
+
   try {
     if (!ENDPOINT) {
       return NextResponse.json(
-        { error: 'Hygraph configuration missing. Check environment variables.' },
+        { error: 'Hygraph configuration missing. Check HYGRAPH_ENDPOINT env var.' },
         { status: 500 }
       );
     }

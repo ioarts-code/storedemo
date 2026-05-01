@@ -68,12 +68,10 @@ function A() {
   return (
     <a
       href="mailto:contact@ioarts.com"
-      className="relative self-stretch shrink-0 hover:opacity-75 transition-opacity"
+      className="flex items-center shrink-0 hover:opacity-75 transition-opacity font-['Inter:Regular',sans-serif] font-normal text-[14.6px] text-white tracking-[-0.24px] leading-[19.2px]"
       data-name="a"
     >
-      <div className="-translate-y-1/2 absolute flex flex-col font-['Inter:Regular',sans-serif] font-normal h-[20px] justify-center leading-[0] left-0 not-italic text-[14.6px] text-white top-[9px] tracking-[-0.24px] w-[53.533px]">
-        <p className="leading-[19.2px]">Contact</p>
-      </div>
+      Contact
     </a>
   );
 }

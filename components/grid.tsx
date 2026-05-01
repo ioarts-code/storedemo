@@ -20,9 +20,11 @@ function GridItem({ product }: GridItemProps) {
           {imageSrc && !imageError ? (
             <Image
               alt={product.name}
-              className="absolute h-[152.2%] left-0 max-w-none top-[-26.1%] w-full object-cover"
+              className="absolute left-0 w-full object-cover"
+              style={{ height: '152.2%', top: '-26.1%' }}
               src={imageSrc}
-              fill
+              width={800}
+              height={1200}
               onError={() => setImageError(true)}
               unoptimized
             />
