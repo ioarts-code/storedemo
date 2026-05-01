@@ -37,24 +37,20 @@ function GridItem({ product }: GridItemProps) {
           )}
         </div>
 
-        <div className="content-stretch flex flex-col items-start mobile:max-w-[90%] tablet:max-w-[350px] desktop:max-w-[400px] mobile:w-[90%] tablet:w-[350px] desktop:w-[400px] relative shrink-1">
-          <div className="bg-[rgba(255,255,255,0.2)] mobile:h-[55px] tablet:h-[65px] desktop:h-[75px] mobile:min-h-[55px] tablet:min-h-[65px] desktop:min-h-[75px] relative rounded-[6px] shrink-0 w-full">
+        <div className="content-stretch flex flex-col items-start w-[90%] relative shrink-1">
+          <div className="bg-[rgba(255,255,255,0.2)] mobile:h-[55px] tablet:h-[65px] desktop:h-[75px] mobile:min-h-[55px] tablet:min-h-[65px] desktop:min-h-[75px] relative rounded-[6px] shrink-0 w-full flex items-center justify-between px-4 desktop:px-6">
             <div aria-hidden="true" className="absolute border-3 border-solid border-white inset-0 pointer-events-none rounded-[6px]" />
 
-            <div className="absolute bottom-[38%] content-stretch flex flex-col items-start mobile:left-[12px] tablet:left-[16px] desktop:left-[24px] mobile:max-w-[calc(100%-60px)] tablet:max-w-[200px] desktop:max-w-[1056px] top-[38%]">
-              <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] not-italic relative shrink-0 mobile:text-[14px] tablet:text-[16px] desktop:text-[20px] text-white mobile:tracking-[0.2px] tablet:tracking-[0.3px] desktop:tracking-[0.5px] whitespace-nowrap">
-                <p className="mobile:leading-[14px] tablet:leading-[16px] desktop:leading-[18px] truncate">{truncatedName}</p>
-              </div>
+            <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center not-italic relative shrink-1 min-w-0 mobile:text-[14px] tablet:text-[16px] desktop:text-[20px] text-white mobile:tracking-[0.2px] tablet:tracking-[0.3px] desktop:tracking-[0.5px] whitespace-nowrap overflow-hidden">
+              <p className="truncate">{truncatedName}</p>
             </div>
 
-            <div className="absolute bottom-[18%] content-stretch flex flex-col items-start mobile:right-[8px] tablet:right-[12px] desktop:right-[16px] top-[18%]">
-              <div className="content-stretch flex mobile:h-[36px] tablet:h-[42px] desktop:h-[48px] items-center justify-center mobile:p-[2px] tablet:p-[2px] desktop:p-[3px] relative rounded-[6px] shrink-0 mobile:w-[70px] tablet:w-[85px] desktop:w-[106px] bg-transparent hover:bg-black transition-colors duration-200 cursor-pointer">
-                <div aria-hidden="true" className="absolute border-3 border-solid border-white inset-0 pointer-events-none rounded-[6px]" />
-                <div className="relative shrink-0">
-                  <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex flex-col items-center relative size-full">
-                    <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] not-italic relative shrink-0 mobile:text-[12px] tablet:text-[14px] desktop:text-[20px] text-center text-white mobile:tracking-[-0.24px] tablet:tracking-[-0.28px] desktop:tracking-[-0.36px] uppercase whitespace-nowrap">
-                      <p className="mobile:leading-[17px] tablet:leading-[20px] desktop:leading-[28.8px]">Shop</p>
-                    </div>
+            <div className="content-stretch flex mobile:h-[36px] tablet:h-[42px] desktop:h-[48px] items-center justify-center mobile:p-[2px] desktop:p-[3px] relative rounded-[6px] shrink-0 mobile:w-[70px] tablet:w-[85px] desktop:w-[106px] ml-3 bg-transparent hover:bg-black transition-colors duration-200 cursor-pointer">
+              <div aria-hidden="true" className="absolute border-3 border-solid border-white inset-0 pointer-events-none rounded-[6px]" />
+              <div className="relative shrink-0">
+                <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex flex-col items-center relative size-full">
+                  <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] not-italic relative shrink-0 mobile:text-[12px] tablet:text-[14px] desktop:text-[20px] text-center text-white mobile:tracking-[-0.24px] tablet:tracking-[-0.28px] desktop:tracking-[-0.36px] uppercase whitespace-nowrap">
+                    <p className="mobile:leading-[17px] tablet:leading-[20px] desktop:leading-[28.8px]">Shop</p>
                   </div>
                 </div>
               </div>
