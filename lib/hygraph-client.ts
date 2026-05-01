@@ -12,7 +12,16 @@
 export function createHygraphClient() {
   return {
     request: async <T,>(query: string, variables?: Record<string, any>): Promise<T> => {
-      const response = await fetch('/api/hygraph', {
+      // Relative URLs don't work during SSR — build an absolute URL.
+      // In the browser, window.location.origin gives the correct origin.
+      // On the server (SSR), fall back to the NEXT_PUBLIC_APP_URL env var,
+      // then localhost:3000 for local dev.
+      const origin =
+        typeof window !== 'undefined'
+          ? window.location.origin
+          : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+
+      const response = await fetch(`${origin}/api/hygraph`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query, variables }),
