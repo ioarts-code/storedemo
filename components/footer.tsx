@@ -1,9 +1,9 @@
 function Frame() {
   return (
     <div className="relative shrink-0 size-[24px]" data-name="Frame">
-      <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
+      <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
         <g id="Frame">
-          <path d="M4 4h16v16H4z" fill="var(--fill-0, white)" id="Vector" />
+          <path d="M4 2C2.89543 2 2 2.89543 2 4V20C2 21.1046 2.89543 22 4 22H20C21.1046 22 22 21.1046 22 20V4C22 2.89543 21.1046 2 20 2H4ZM7.5 7C8.32843 7 9 7.67157 9 8.5C9 9.32843 8.32843 10 7.5 10C6.67157 10 6 9.32843 6 8.5C6 7.67157 6.67157 7 7.5 7ZM16.5 7C17.3284 7 18 7.67157 18 8.5C18 9.32843 17.3284 10 16.5 10C15.6716 10 15 9.32843 15 8.5C15 7.67157 15.6716 7 16.5 7ZM8 13C8 12.4477 8.44772 12 9 12H15C15.5523 12 16 12.4477 16 13V17C16 17.5523 15.5523 18 15 18H9C8.44772 18 8 17.5523 8 17V13Z" fill="var(--fill-0, white)" id="Vector" />
         </g>
       </svg>
     </div>
