@@ -11,7 +11,7 @@ export function StoreInfo() {
           </div>
         </div>
       </div>
-      <div className="-translate-x-1/2 -translate-y-1/2 absolute flex flex-col font-['Inter:Medium',sans-serif] font-medium h-[165px] justify-center leading-[0] left-1/2 lowercase not-italic text-[14px] text-right text-[#b7b7b7] top-[734.5px] tracking-[-0.24px] w-[320px]">
+      <div className="-translate-x-1/2 -translate-y-1/2 absolute flex flex-col font-['Inter:Medium',sans-serif] font-medium h-[165px] justify-center leading-[0] left-1/2 lowercase not-italic text-[14px] text-right text- white top-[734.5px] tracking-[-0.24px] w-[320px]">
         <p className="leading-[25px]">
           ILLUSTRATIONS THAT MAKE SENSE.
           <br aria-hidden="true" />
