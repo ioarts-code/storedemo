@@ -12,7 +12,7 @@ export default function Hero() {
       <div className="flex-1 min-w-0 self-stretch" />
 
       {/* Right panel */}
-      <div className="absolute h-[700px] left-[520px] top-0 w-[400px]">
+      <div className="absolute h-[700px] left-[520px] top-0 w-[300px]">
         {/* White panel with taglines */}
         <div className="absolute inset-0 bg-[rgba(255,255,255,0.9)] overflow-hidden">
           <div className="absolute inset-0 border-r-[3px] border-white" />
