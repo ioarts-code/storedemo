@@ -29,7 +29,8 @@ export function HeroFeatured({
   return (
     <div className="relative w-full min-h-[900px] 2xl:min-h-[400px] overflow-hidden flex items-center justify-center bg-[#05050500] border-white/10">
       {/* Background — product image or Dead Cells sketch on mobile/tablet */}
-
+      <div className={`absolute inset-0 z-0 overflow-hidden bg-[#05050500]${hideImage && hideProductCard ? '' : hideImage ? ' hidden' : ''}`}>
+        {hideImage && hideProductCard ? (
           // Show Dead Cells background on mobile/tablet
           <div
             className="absolute inset-0 w-full h-full bg-cover bg-center opacity-30"
