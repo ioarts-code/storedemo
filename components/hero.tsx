@@ -1,4 +1,8 @@
-export default function Hero() {
+interface HeroProps {
+  bgPositionX?: number; // Background horizontal position in percentage (0-100)
+}
+
+export default function Hero({ bgPositionX = 50 }: HeroProps) {
   return (
     <div className="relative w-full h-[900px] flex items-start justify-center overflow-hidden">
       {/* Background image */}
@@ -6,6 +10,9 @@ export default function Hero() {
         alt=""
         src="/images/hero-background.jpg"
         className="absolute inset-0 w-full h-full object-contain scale-250 opacity-80 pointer-events-none"
+        style={{
+          objectPosition: `${bgPositionX}% center`,
+        }}
       />
 
       {/* Spacer */}
