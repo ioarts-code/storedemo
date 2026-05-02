@@ -62,12 +62,12 @@ export function ProductDetail({ product }: ProductDetailProps) {
           </a>
 
           {/* Category */}
-          <p className="font-['Inter:Regular',sans-serif] font-normal text-[14.9px] text-[#6f8298] tracking-[-0.24px] mt-[20px] pt-[11px] pb-[0px]">
+          <p className="font-['Inter:Regular',sans-serif] font-normal text-[14.9px] text-gray-400 tracking-[-0.24px] mt-[20px] pt-[11px] pb-[0px]">
             Category: {category}
           </p>
 
           {/* Copyright */}
-          <p className="font-['Inter:Regular',sans-serif] font-normal text-[14.8px] text-[#6f8298] tracking-[-0.24px]">
+          <p className="font-['Inter:Regular',sans-serif] font-normal text-[14.8px] text-gray-400 tracking-[-0.24px]">
             Copyright: {copyright}
           </p>
         </div>
