@@ -33,21 +33,21 @@ export default function Hero() {
 
           {/* Taglines */}
           <div className="absolute flex flex-col justify-center h-[165px] left-0 right-0 top-[652px]">
-            <div className="flex flex-col items-center text-right">
+            <div className="flex flex-col items-center">
               <p
-                className="text-[12px] text-black text-center tracking-[-0.24px] leading-[25px]"
+                className="text-[12px] text-black text-right text-center tracking-[-0.24px] leading-[25px]"
                 style={{ fontFamily: 'Inter, sans-serif', fontWeight: 500 }}
               >
                 ILLUSTRATIONS THAT MAKE SENSE.
               </p>
               <p
-                className="text-[12px] text-black text-center tracking-[-0.24px] leading-[25px]"
+                className="text-[12px] text-black text-right text-center tracking-[-0.24px] leading-[25px]"
                 style={{ fontFamily: 'Inter, sans-serif', fontWeight: 500 }}
               >
                 FIND NEW DIGITAL ART
               </p>
               <p
-                className="text-[12px] text-black text-center tracking-[-0.24px] leading-[25px]"
+                className="text-[12px] text-black text-right text-center tracking-[-0.24px] leading-[25px]"
                 style={{ fontFamily: 'Inter, sans-serif', fontWeight: 500 }}
               >
                 LET&apos;S MAKE EVERY PRODUCT YOURS FOR REAL.
