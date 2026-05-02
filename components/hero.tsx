@@ -46,23 +46,34 @@ export default function Hero() {
 
         {/* Rotated gradient "Merch" text overlay */}
         <div
-          className="absolute left-1/2 -translate-x-1/2 top-[200px] -translate-y-1/2 flex items-center justify-center w-[349px] h-[871px]"
+          className="absolute w-[871px] h-[349px]"
+          style={{
+            left: '42.43px',
+            top: '56.02px',
+          }}
         >
-          <div className="rotate-90 flex-none">
-            <div
-              className="w-[871px] h-[349px] flex flex-col justify-center items-center bg-clip-text text-transparent"
-              style={{
-                backgroundImage: 'linear-gradient(to right, #4f4f4f, #cbcbcb)',
-              }}
-            >
-              <p
-                className="text-[120px] font-bold uppercase leading-none"
-                style={{ fontFamily: 'Inter, sans-serif' }}
-              >
-                Merch
-              </p>
-            </div>
-          </div>
+          <p
+            className="uppercase font-bold"
+            style={{
+              fontFamily: 'Inter',
+              fontWeight: 700,
+              fontSize: '170px',
+              lineHeight: '206px',
+              display: 'flex',
+              alignItems: 'center',
+              background: 'linear-gradient(90deg, #4F4F4F 0%, #CBCBCB 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              textFillColor: 'transparent',
+              transform: 'rotate(90deg)',
+              margin: 0,
+              width: '871px',
+              height: '349px',
+            }}
+          >
+            Merch
+          </p>
         </div>
       </div>
     </div>
