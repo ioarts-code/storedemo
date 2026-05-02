@@ -18,9 +18,9 @@ export default function Hero() {
           <div className="absolute inset-0 border-r-[3px] border-white" />
 
           {/* Rotated "Merch" text — transparent (shows through) */}
-          <div className="absolute -translate-x-1/2 left-1/2 top-[37px] w-[349px] h-[871px] flex items-center justify-center">
+          <div className="absolute left-1/2 -translate-x-1/2 top-[37px] w-[349px] h-[871px] flex items-center justify-center">
             <div className="rotate-90 flex-none">
-              <div className="w-[871px] h-[349px] flex flex-col justify-center">
+              <div className="w-[871px] h-[349px] flex flex-col justify-center items-center">
                 <p
                   className="text-[120px] font-bold uppercase leading-none text-transparent"
                   style={{ fontFamily: 'Inter, sans-serif' }}
@@ -46,12 +46,12 @@ export default function Hero() {
 
         {/* Rotated gradient "Merch" text overlay */}
         <div
-          className="absolute flex items-center justify-center w-[349px] h-[871px]"
-          style={{ left: '42.43px', top: '491.52px', transform: 'translateY(-50%)' }}
+          className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center w-[349px] h-[871px]"
+          style={{ top: '491.52px', transform: 'translate(-50%, -50%)' }}
         >
           <div className="rotate-90 flex-none">
             <div
-              className="w-[871px] h-[349px] flex flex-col justify-center bg-clip-text text-transparent"
+              className="w-[871px] h-[349px] flex flex-col justify-center items-center bg-clip-text text-transparent"
               style={{
                 backgroundImage: 'linear-gradient(to right, #4f4f4f, #cbcbcb)',
               }}
