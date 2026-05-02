@@ -1,8 +1,9 @@
 interface HeroProps {
   bgPositionX?: number; // Background horizontal position in percentage (0-100)
+  containerPositionX?: number; // Merch container horizontal position in percentage (0-100)
 }
 
-export default function Hero({ bgPositionX = 40 }: HeroProps) {
+export default function Hero({ bgPositionX = 40, containerPositionX = 75 }: HeroProps) {
   return (
     <div className="relative w-full h-[900px] flex items-start justify-center overflow-hidden">
       {/* Background image */}
@@ -19,7 +20,13 @@ export default function Hero({ bgPositionX = 40 }: HeroProps) {
       <div className="flex-1 min-w-0 self-stretch" />
 
       {/* Right panel */}
-      <div className="absolute h-[700px] left-1/2 translate-x-1/4 top-0 w-[300px]">
+      <div 
+        className="absolute h-[700px] top-0 w-[300px]"
+        style={{
+          left: `${containerPositionX}%`,
+          transform: 'translateX(-50%)',
+        }}
+      >
         {/* White panel with taglines */}
         <div className="absolute inset-0 bg-[rgba(255,255,255,0.9)] overflow-hidden">
           <div className="absolute inset-0 border-r-[3px] border-white" />
