@@ -29,7 +29,7 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
       >
         {/* White panel with taglines */}
         <div className="absolute inset-0 bg-[rgba(255,255,255,0.9)] overflow-hidden">
-          <div className="absolute inset-0 border-r-[3px] border-white" />
+          <div className="absolute inset-0 border-r-[3px] border-l-[3px] border-white" />
 
           {/* Rotated "Merch" text — transparent (shows through) */}
           <div className="absolute left-1/2 -translate-x-1/2 w-[349px] h-[871px] flex items-center justify-center">
