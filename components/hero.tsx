@@ -25,7 +25,7 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
   const responsivePosition = typeof window !== 'undefined' ? getResponsivePosition() : containerPositionX;
 
   return (
-    <div className="relative h-[900px] flex items-start justify-center overflow-hidden w-screen md:w-[90vw] lg:w-[85vw] xl:w-[80vw] 2xl:w-[1280px] mx-auto">
+    <div className="relative h-[900px] flex items-start justify-center overflow-hidden w-screen">
       {/* Background image */}
       <img
         alt=""
@@ -96,7 +96,6 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
-              textFillColor: 'transparent',
               transform: 'rotate(90deg)',
               margin: 0,
             }}
