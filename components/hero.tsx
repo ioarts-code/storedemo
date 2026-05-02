@@ -18,7 +18,7 @@ export default function Hero() {
           <div className="absolute inset-0 border-r-[3px] border-white" />
 
           {/* Rotated "Merch" text — transparent (shows through) */}
-          <div className="absolute left-1/2 -translate-x-1/2 top-[37px] w-[349px] h-[871px] flex items-center justify-center">
+          <div className="absolute left-1/2 -translate-x-1/2 w-[349px] h-[871px] flex items-center justify-center">
             <div className="rotate-90 flex-none">
               <div className="w-[871px] h-[349px] flex flex-col justify-center items-center">
                 <p
@@ -46,7 +46,7 @@ export default function Hero() {
 
         {/* Rotated gradient "Merch" text overlay */}
         <div
-          className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex items-center justify-center w-[349px] h-[871px]"
+          className="absolute left-1/2 -translate-x-1/2 top-[200px] -translate-y-1/2 flex items-center justify-center w-[349px] h-[871px]"
         >
           <div className="rotate-90 flex-none">
             <div
