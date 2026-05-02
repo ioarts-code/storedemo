@@ -2,7 +2,7 @@ interface HeroProps {
   bgPositionX?: number; // Background horizontal position in percentage (0-100)
 }
 
-export default function Hero({ bgPositionX = 50 }: HeroProps) {
+export default function Hero({ bgPositionX = 40 }: HeroProps) {
   return (
     <div className="relative w-full h-[900px] flex items-start justify-center overflow-hidden">
       {/* Background image */}
