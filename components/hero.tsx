@@ -33,7 +33,7 @@ export default function Hero() {
 
           {/* Taglines */}
           <div className="absolute flex flex-col justify-center h-[165px] left-0 right-0 top-[652px]">
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center text-right">
               <p
                 className="text-[12px] text-black text-center tracking-[-0.24px] leading-[25px]"
                 style={{ fontFamily: 'Inter, sans-serif', fontWeight: 500 }}
