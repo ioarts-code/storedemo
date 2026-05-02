@@ -21,7 +21,7 @@ export default function Hero({ bgPositionX = 40, containerPositionX = 75 }: Hero
 
       {/* Right panel */}
       <div 
-        className="absolute h-[700px] top-0 w-[300px]"
+        className="absolute h-[900px] top-0 w-[300px]"
         style={{
           left: `${containerPositionX}%`,
           transform: 'translateX(-50%)',
