@@ -72,7 +72,7 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              background: 'linear-gradient(90deg, #4F4F4F 0%, #CBCBCB 100%)',
+              background: 'linear-gradient(90deg, #1A1A1A 0%, #CBCBCB 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
