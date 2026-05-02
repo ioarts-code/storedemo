@@ -29,31 +29,7 @@ export function HeroFeatured({
   return (
     <div className="relative w-full min-h-[900px] 2xl:min-h-[400px] overflow-hidden flex items-center justify-center bg-[#05050500] border-white/10">
       {/* Background — product image or Dead Cells sketch on mobile/tablet */}
-      <div className={`absolute inset-0 z-0 overflow-hidden bg-[#05050500]${hideImage && hideProductCard ? '' : hideImage ? ' hidden' : ''}`}>
-        {hideImage && hideProductCard ? (
-          // Show Dead Cells background on mobile/tablet
-          <div
-            className="absolute inset-0 w-full h-full bg-cover bg-center opacity-30"
-            style={{
-              backgroundImage: 'url(/images/dead_cells_bg.png)',
-              backgroundPosition: 'center',
-            }}
-          />
-        ) : image && !imageError ? (
-          // show full image without cropping to remove top cutoff
-          <Image
-            src={image}
-            alt={name}
-            fill
-            className="object-contain object-center scale-[2.0]"
-            priority
-            onError={() => setImageError(true)}
-            sizes="(max-width: 640px) 100vw, (max-width: 1366px) 100vw, 60vw"
-          />
-        ) : (
-          <div className="w-full h-full bg-[#0f0f0f]" />
-        )}
-      </div>
+
 
       <div className="relative z-10 flex w-full mobile:px-6 tablet:px-6 desktop-lg:px-0 mobile:justify-center tablet:justify-center desktop-lg:max-w-[2400px] desktop-lg:mx-auto items-stretch gap-6 mobile:py-0 tablet:py-0 desktop-lg:pb-8 desktop-lg:pt-8 desktop-lg:px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24">
         {/* Left column — StoreInfo with top/bottom breathing room */}
