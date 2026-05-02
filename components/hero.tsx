@@ -3,7 +3,7 @@ interface HeroProps {
   containerPositionX?: number; // Merch container horizontal position in percentage (0-100)
 }
 
-export default function Hero({ bgPositionX = 50, containerPositionX = 50 }: HeroProps) {
+export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: HeroProps) {
   // Responsive positioning logic
   const getResponsivePosition = () => {
     if (typeof window === 'undefined') return containerPositionX;
@@ -18,12 +18,8 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 50 }: Hero
     if (width < 1024) {
       return 60;
     }
-    // Desktop: move to 70%
-    if (width < 1280) {
-      return 70;
-    }
-    // Wide: 75%
-    return 75;
+    // Desktop 1024px and above: use the prop value
+    return containerPositionX;
   };
 
   const responsivePosition = typeof window !== 'undefined' ? getResponsivePosition() : containerPositionX;
