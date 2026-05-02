@@ -22,7 +22,7 @@ export default function Hero() {
             <div className="rotate-90 flex-none">
               <div className="w-[871px] h-[349px] flex flex-col justify-center">
                 <p
-                  className="text-[170px] font-bold uppercase leading-none text-transparent"
+                  className="text-[120px] font-bold uppercase leading-none text-transparent"
                   style={{ fontFamily: 'Inter, sans-serif' }}
                 >
                   Merch
@@ -57,7 +57,7 @@ export default function Hero() {
               }}
             >
               <p
-                className="text-[170px] font-bold uppercase leading-none"
+                className="text-[120px] font-bold uppercase leading-none"
                 style={{ fontFamily: 'Inter, sans-serif' }}
               >
                 Merch
