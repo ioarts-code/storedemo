@@ -5,7 +5,7 @@ export default function Hero() {
       <img
         alt=""
         src="/images/hero-background.jpg"
-        className="absolute inset-0 w-full h-full object-cover opacity-80 pointer-events-none"
+        className="absolute inset-0 w-full h-full object-contain scale-250 opacity-80 pointer-events-none"
       />
 
       {/* Spacer */}
