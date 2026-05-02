@@ -1,6 +1,6 @@
 export default function Hero() {
   return (
-    <div className="relative w-full h-[900px] flex items-center justify-center overflow-hidden">
+    <div className="relative w-full h-[900px] flex items-start justify-center overflow-hidden">
       {/* Background image */}
       <img
         alt=""
@@ -8,8 +8,11 @@ export default function Hero() {
         className="absolute inset-0 w-full h-full object-contain scale-250 opacity-80 pointer-events-none"
       />
 
+      {/* Spacer */}
+      <div className="flex-1 min-w-0 self-stretch" />
+
       {/* Right panel */}
-      <div className="h-[700px] w-[300px]">
+      <div className="absolute h-[700px] left-[520px] top-0 w-[300px]">
         {/* White panel with taglines */}
         <div className="absolute inset-0 bg-[rgba(255,255,255,0.9)] overflow-hidden">
           <div className="absolute inset-0 border-r-[3px] border-white" />
