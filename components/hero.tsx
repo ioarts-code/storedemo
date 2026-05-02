@@ -96,7 +96,6 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
-              textFillColor: 'transparent',
               transform: 'rotate(90deg)',
               margin: 0,
             }}
