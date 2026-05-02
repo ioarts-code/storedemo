@@ -3,9 +3,33 @@ interface HeroProps {
   containerPositionX?: number; // Merch container horizontal position in percentage (0-100)
 }
 
-export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: HeroProps) {
+export default function Hero({ bgPositionX = 50, containerPositionX = 50 }: HeroProps) {
+  // Responsive positioning logic
+  const getResponsivePosition = () => {
+    if (typeof window === 'undefined') return containerPositionX;
+    
+    const width = window.innerWidth;
+    
+    // Mobile: center at 50%
+    if (width < 768) {
+      return 50;
+    }
+    // Tablet: move to 60%
+    if (width < 1024) {
+      return 60;
+    }
+    // Desktop: move to 70%
+    if (width < 1280) {
+      return 70;
+    }
+    // Wide: 75%
+    return 75;
+  };
+
+  const responsivePosition = typeof window !== 'undefined' ? getResponsivePosition() : containerPositionX;
+
   return (
-    <div className="relative w-full h-[900px] flex items-start justify-center overflow-hidden">
+    <div className="relative h-[900px] flex items-start justify-center overflow-hidden w-screen md:w-[90vw] lg:w-[85vw] xl:w-[80vw] 2xl:w-[1280px] mx-auto">
       {/* Background image */}
       <img
         alt=""
@@ -23,7 +47,7 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
       <div 
         className="absolute h-[900px] top-0 w-[300px]"
         style={{
-          left: `${containerPositionX}%`,
+          left: `${responsivePosition}%`,
           transform: 'translateX(-50%)',
         }}
       >
@@ -49,7 +73,7 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
           <div className="absolute flex flex-col justify-center h-[165px] left-0 right-0 top-[500px] pr-4">
             <p
               className="text-[14px] text-black text-right tracking-[-0.70px] leading-[20px]"
-              style={{ fontFamily: 'Inter, sans-serif', fontWeight: 800 }}
+              style={{ fontFamily: 'Inter, sans-serif', fontWeight: 600 }}
             >
               ILLUSTRATIONS THAT MAKE SENSE.<br />
               FIND NEW DIGITAL ART<br />
