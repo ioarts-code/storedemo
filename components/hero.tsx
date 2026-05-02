@@ -18,12 +18,8 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
     if (width < 1024) {
       return 60;
     }
-    // Desktop: move to 70%
-    if (width < 1280) {
-      return 70;
-    }
-    // Wide: 75%
-    return 75;
+    // Desktop 1024px and above: use the prop value
+    return containerPositionX;
   };
 
   const responsivePosition = typeof window !== 'undefined' ? getResponsivePosition() : containerPositionX;
