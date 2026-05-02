@@ -49,7 +49,7 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
           <div className="absolute flex flex-col justify-center h-[165px] left-0 right-0 top-[500px] pr-4">
             <p
               className="text-[14px] text-black text-right tracking-[-0.70px] leading-[20px]"
-              style={{ fontFamily: 'Inter, sans-serif', fontWeight: 800 }}
+              style={{ fontFamily: 'Inter, sans-serif', fontWeight: 600 }}
             >
               ILLUSTRATIONS THAT MAKE SENSE.<br />
               FIND NEW DIGITAL ART<br />
