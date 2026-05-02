@@ -32,7 +32,7 @@ export default function Hero() {
           </div>
 
           {/* Taglines */}
-          <div className="absolute flex flex-col justify-center h-[165px] left-0 right-20 top-[580px] pr-4">
+          <div className="absolute flex flex-col justify-center h-[165px] left-0 right-20 top-[500px] pr-4">
             <p
               className="text-[12px] text-black text-right tracking-[-0.24px] leading-[25px]"
               style={{ fontFamily: 'Inter, sans-serif', fontWeight: 500 }}
@@ -46,7 +46,7 @@ export default function Hero() {
 
         {/* Rotated gradient "Merch" text overlay */}
         <div
-          className="absolute w-[871px] h-[349px] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center"
+          className="absolute w-[871px] h-[349px] left-1/2 top-[35%] -translate-x-1/2 -translate-y-1/2 flex items-center justify-center"
         >
           <p
             className="uppercase font-bold"
