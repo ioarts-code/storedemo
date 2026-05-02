@@ -3,7 +3,7 @@ interface HeroProps {
   containerPositionX?: number; // Merch container horizontal position in percentage (0-100)
 }
 
-export default function Hero({ bgPositionX = 40, containerPositionX = 75 }: HeroProps) {
+export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: HeroProps) {
   return (
     <div className="relative w-full h-[900px] flex items-start justify-center overflow-hidden">
       {/* Background image */}
