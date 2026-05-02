@@ -30,7 +30,8 @@ function GridItem({ product }: GridItemProps) {
               width={800}
               height={1200}
               onError={() => setImageError(true)}
-              unoptimized
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1366px) 50vw, 33vw"
+              priority={false}
             />
           ) : (
             <div className="absolute inset-0 w-full h-full bg-transparent" />

@@ -48,7 +48,7 @@ export function HeroFeatured({
             className="object-contain object-center scale-[2.0]"
             priority
             onError={() => setImageError(true)}
-            unoptimized
+            sizes="(max-width: 640px) 100vw, (max-width: 1366px) 100vw, 60vw"
           />
         ) : (
           <div className="w-full h-full bg-[#0f0f0f]" />
