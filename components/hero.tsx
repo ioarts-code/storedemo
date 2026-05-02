@@ -46,8 +46,7 @@ export default function Hero() {
 
         {/* Rotated gradient "Merch" text overlay */}
         <div
-          className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center w-[349px] h-[871px]"
-          style={{ top: '491.52px', transform: 'translate(-50%, -50%)' }}
+          className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex items-center justify-center w-[349px] h-[871px]"
         >
           <div className="rotate-90 flex-none">
             <div
