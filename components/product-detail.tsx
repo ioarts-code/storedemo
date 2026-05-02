@@ -80,8 +80,8 @@ export function ProductDetail({ product }: ProductDetailProps) {
             alt={product.name}
             className="object-contain object-center scale-[1.8]"
             src={imageUrl}
-            width={600}
-            height={900}
+            width={900}
+            height={1200}
             priority
             sizes="(max-width: 768px) 100vw, 45vw"
           />
