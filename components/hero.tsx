@@ -9,28 +9,28 @@ const GRADIENT_COLOR_BOTTOM = '#888888'; // Grey
 const FADE_COLOR = '#000000'; // Black for fade overlay
 
 export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: HeroProps) {
-  // Responsive positioning and sizing logic
-  const getResponsiveSettings = () => {
-    if (typeof window === 'undefined') return { position: containerPositionX, width: 300, height: 900 };
+  // Responsive positioning logic
+  const getResponsivePosition = () => {
+    if (typeof window === 'undefined') return containerPositionX;
     
     const width = window.innerWidth;
     
-    // Mobile: center, reduce size
+    // Mobile: center at 50%
     if (width < 768) {
-      return { position: 50, width: 280, height: 700 };
+      return 50;
     }
-    // Tablet: increase size
+    // Tablet: move to 60%
     if (width < 1024) {
-      return { position: 60, width: 300, height: 800 };
+      return 60;
     }
-    // Desktop and above: use full prop value
-    return { position: containerPositionX, width: 300, height: 900 };
+    // Desktop 1024px and above: use the prop value
+    return containerPositionX;
   };
 
-  const settings = typeof window !== 'undefined' ? getResponsiveSettings() : { position: containerPositionX, width: 300, height: 900 };
+  const responsivePosition = typeof window !== 'undefined' ? getResponsivePosition() : containerPositionX;
 
   return (
-    <div className="relative mobile:h-[700px] tablet:h-[800px] desktop:h-[900px] flex items-start justify-center w-screen">
+    <div className="relative h-[900px] flex items-start justify-center w-screen">
       {/* Background image */}
       <img
         alt=""
@@ -49,11 +49,9 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
 
       {/* Right panel */}
       <div 
-        className="absolute top-0"
+        className="absolute h-[900px] top-0 w-[300px]"
         style={{
-          width: `${settings.width}px`,
-          height: `${settings.height}px`,
-          left: `${settings.position}%`,
+          left: `${responsivePosition}%`,
           transform: 'translateX(-50%)',
         }}
       >
