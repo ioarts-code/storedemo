@@ -103,7 +103,7 @@ export function Grid({ products, isLoading = false, isEmpty = false }: GridProps
   const categoryEntries = Object.entries(groupedByCategory);
 
   return (
-    <div className="content-stretch flex flex-col items-start px-[24px] relative size-full py-16 gap-16">
+    <div className="content-stretch flex flex-col items-start px-[24px] relative size-full py-16 gap-16 bg-transparent">
       {categoryEntries.map(([categoryName, categoryProducts]) => (
         <div key={categoryName} className="w-full">
           {/* Category Title */}
