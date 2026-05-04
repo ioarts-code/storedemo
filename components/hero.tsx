@@ -3,6 +3,12 @@ interface HeroProps {
   containerPositionX?: number; // Merch container horizontal position in percentage (0-100)
 }
 
+// Gradient colors - easy to change
+const GRADIENT_COLOR_TOP = '#000000'; // Black
+const GRADIENT_COLOR_BOTTOM = '#DB8F91'; // Rose
+const FADE_COLOR_TOP = '#000000'; // Black (opaque)
+const FADE_COLOR_BOTTOM = '#DB8F91'; // Rose
+
 export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: HeroProps) {
   // Responsive positioning logic
   const getResponsivePosition = () => {
@@ -37,7 +43,7 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
       />
 
       {/* Fade gradient overlay - extends beyond hero */}
-      <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 40%, rgba(15, 15, 15, 1) 100%)', height: '200vh', top: 0, left: 0, right: 0 }} />
+      <div className="absolute inset-0 pointer-events-none" style={{ background: `linear-gradient(to bottom, ${FADE_COLOR_TOP} 0%, ${FADE_COLOR_BOTTOM} 100%)`, height: '200vh', top: 0, left: 0, right: 0 }} />
 
       {/* Spacer */}
       <div className="flex-1 min-w-0 self-stretch" />
@@ -94,7 +100,7 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
                 <div className="content-stretch flex flex-col items-start relative">
                   <div className="content-stretch flex flex-col h-[349px] items-start justify-center relative shrink-0 w-[871px]">
                     <div className="content-stretch flex flex-col items-start py-[3px] relative shrink-0 w-full">
-                      <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] not-italic relative shrink-0 text-[170px] uppercase w-full" style={{ background: 'linear-gradient(90deg, #DB8F91 0%, #000000 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+                      <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] not-italic relative shrink-0 text-[170px] uppercase w-full" style={{ background: `linear-gradient(90deg, ${GRADIENT_COLOR_TOP} 0%, ${GRADIENT_COLOR_BOTTOM} 100%)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                         <p className="leading-[normal]">Merch</p>
                       </div>
                     </div>
