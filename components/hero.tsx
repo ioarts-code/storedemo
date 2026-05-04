@@ -36,8 +36,8 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
         }}
       />
 
-      {/* Fade gradient overlay */}
-      <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(15, 15, 15, 1) 100%)' }} />
+      {/* Fade gradient overlay - extends beyond hero */}
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 40%, rgba(15, 15, 15, 1) 100%)', height: '200vh', top: 0, left: 0, right: 0 }} />
 
       {/* Spacer */}
       <div className="flex-1 min-w-0 self-stretch" />
