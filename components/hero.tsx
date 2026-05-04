@@ -76,9 +76,9 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
             </div>
           </div>
           
-          {/* Taglines and Artist Name */}
-          <div className="absolute content-stretch flex flex-col h-[200px] items-start justify-center left-[23.5%] right-[24.75%] top-[630px]">
-            <div className="h-[130px] relative shrink-0 w-full">
+          {/* Taglines */}
+          <div className="absolute content-stretch flex flex-col h-[165px] items-start justify-center left-[23.5%] right-[24.75%] top-[735px]">
+            <div className="h-[75px] relative shrink-0 w-full">
               <div className="flex flex-col items-end size-full">
                 <div className="content-stretch flex flex-col items-end pr-[7px] relative size-full">
                   <div className="-translate-y-1/2 absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] lowercase not-italic right-[-0.24px] text-[#727272] text-[14px] text-right top-[43.98px] tracking-[-0.24px] whitespace-nowrap">
@@ -90,13 +90,13 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
                 </div>
               </div>
             </div>
+          </div>
 
-            {/* Artist Name */}
-            <div className="w-full text-right mt-6">
-              <p className="text-[16px] text-black" style={{ fontFamily: "'Sedgwick Ave', cursive" }}>
-                Anders Altmann
-              </p>
-            </div>
+          {/* Artist Name */}
+          <div className="absolute left-[23.5%] right-[24.75%] top-[825px]">
+            <p className="text-right text-[16px] text-black" style={{ fontFamily: "'Sedgwick Ave', cursive" }}>
+              Anders Altmann
+            </p>
           </div>
 
           {/* Gradient Merch Overlay */}
