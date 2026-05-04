@@ -77,7 +77,7 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
           </div>
           
           {/* Taglines */}
-          <div className="absolute content-stretch flex flex-col h-[165px] items-start justify-center left-[23.5%] right-[24.75%] top-[735px]">
+          <div className="absolute content-stretch flex flex-col h-[165px] items-start justify-center left-[23.5%] right-[24.75%] top-[650px]">
             <div className="h-[75px] relative shrink-0 w-full">
               <div className="flex flex-col items-end size-full">
                 <div className="content-stretch flex flex-col items-end pr-[7px] relative size-full">
@@ -93,7 +93,7 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
           </div>
 
           {/* Artist Name */}
-          <div className="absolute left-[23.5%] right-[24.75%] top-[825px]">
+          <div className="absolute left-[23.5%] right-[24.75%] top-[800px]">
             <p className="text-right text-[16px] text-black" style={{ fontFamily: "'Sedgwick Ave', cursive" }}>
               Anders Altmann
             </p>
