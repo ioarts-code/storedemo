@@ -5,7 +5,7 @@ interface HeroProps {
 
 // Gradient colors - easy to change
 const GRADIENT_COLOR_TOP = '#000000'; // Black
-const GRADIENT_COLOR_BOTTOM = '#888888'; // Grey
+const GRADIENT_COLOR_BOTTOM = '#333333'; // Grey
 const FADE_COLOR = '#000000'; // Black for fade overlay
 
 export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: HeroProps) {
