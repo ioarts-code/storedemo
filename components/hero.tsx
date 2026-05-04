@@ -57,7 +57,7 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
       >
         {/* Merch Banner */}
         <div className="bg-[rgba(255,255,255,0.9)] relative size-full">
-          <div className="absolute border-r-[3px] border-solid border-white inset-0" />
+          <div className="absolute border-solid border-white inset-0" />
           
           {/* Rotated Merch Text */}
           <div className="-translate-x-1/2 absolute content-stretch flex h-[871px] items-center justify-center left-1/2 top-[37px] w-[349px]">
