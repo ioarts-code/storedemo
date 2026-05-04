@@ -92,6 +92,13 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
             </div>
           </div>
 
+          {/* Artist Name */}
+          <div className="absolute bottom-[40px] left-[23.5%] right-[24.75%]">
+            <p className="text-right text-[16px] text-[#727272]" style={{ fontFamily: "'Sedgwick Ave', cursive" }}>
+              Anders Altmann
+            </p>
+          </div>
+
           {/* Gradient Merch Overlay */}
           <div className="-translate-x-1/2 absolute flex h-[871px] items-center justify-center left-1/2 top-[37px] w-[349px]">
             <div className="flex h-[871px] items-center justify-center relative shrink-0 w-[349px]">
