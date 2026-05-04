@@ -94,8 +94,8 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
 
           {/* Artist Name */}
           <div className="absolute left-[23.5%] right-[24.75%] top-[800px]">
-            <p className="text-right text-[18px] text-black" style={{ fontFamily: "'Homemade Apple', cursive" }}>
-              Anders Altmann
+            <p className="text-right text-[18px] text-black" style={{ fontFamily: '"Mr Dafoe", cursive', textTransform: 'capitalize' }}>
+              anders altmann
             </p>
           </div>
 
