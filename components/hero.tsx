@@ -9,28 +9,28 @@ const GRADIENT_COLOR_BOTTOM = '#888888'; // Grey
 const FADE_COLOR = '#000000'; // Black for fade overlay
 
 export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: HeroProps) {
-  // Responsive positioning logic
-  const getResponsivePosition = () => {
-    if (typeof window === 'undefined') return containerPositionX;
+  // Responsive positioning and sizing logic
+  const getResponsiveSettings = () => {
+    if (typeof window === 'undefined') return { position: containerPositionX, width: 300, height: 900 };
     
     const width = window.innerWidth;
     
-    // Mobile: center at 50%
+    // Mobile: center, reduce size
     if (width < 768) {
-      return 50;
+      return { position: 50, width: 280, height: 700 };
     }
-    // Tablet: move to 60%
+    // Tablet: increase size
     if (width < 1024) {
-      return 60;
+      return { position: 60, width: 300, height: 800 };
     }
-    // Desktop 1024px and above: use the prop value
-    return containerPositionX;
+    // Desktop and above: use full prop value
+    return { position: containerPositionX, width: 300, height: 900 };
   };
 
-  const responsivePosition = typeof window !== 'undefined' ? getResponsivePosition() : containerPositionX;
+  const settings = typeof window !== 'undefined' ? getResponsiveSettings() : { position: containerPositionX, width: 300, height: 900 };
 
   return (
-    <div className="relative h-[900px] flex items-start justify-center w-screen">
+    <div className="relative mobile:h-[700px] tablet:h-[800px] desktop:h-[900px] flex items-start justify-center w-screen">
       {/* Background image */}
       <img
         alt=""
@@ -49,9 +49,11 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
 
       {/* Right panel */}
       <div 
-        className="absolute h-[900px] top-0 w-[300px]"
+        className="absolute top-0"
         style={{
-          left: `${responsivePosition}%`,
+          width: `${settings.width}px`,
+          height: `${settings.height}px`,
+          left: `${settings.position}%`,
           transform: 'translateX(-50%)',
         }}
       >

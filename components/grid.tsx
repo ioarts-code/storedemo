@@ -103,16 +103,16 @@ export function Grid({ products, isLoading = false, isEmpty = false }: GridProps
   const categoryEntries = Object.entries(groupedByCategory);
 
   return (
-    <div className="content-stretch flex flex-col items-start px-[24px] relative size-full py-16 gap-16 bg-transparent">
+    <div className="content-stretch flex flex-col items-start mobile:px-[16px] tablet:px-[24px] desktop:px-[24px] relative size-full mobile:py-8 tablet:py-12 desktop:py-16 mobile:gap-8 tablet:gap-12 desktop:gap-16 bg-transparent">
       {categoryEntries.map(([categoryName, categoryProducts]) => (
         <div key={categoryName} className="w-full">
           {/* Category Title */}
-          <h2 className="font-['Inter:Bold',sans-serif] font-bold text-[32px] text-white tracking-[-0.64px] mb-8 block desktop:block tablet:hidden mobile:hidden">
+          <h2 className="font-['Inter:Bold',sans-serif] font-bold mobile:text-[24px] tablet:text-[28px] desktop:text-[32px] text-white mobile:tracking-[-0.48px] tablet:tracking-[-0.56px] desktop:tracking-[-0.64px] mobile:mb-4 tablet:mb-6 desktop:mb-8 block">
             {categoryName}
           </h2>
 
-          {/* Category Grid - 1 per row on desktop, responsive on smaller screens */}
-          <div className="grid grid-cols-1 tablet:grid-cols-2 desktop-lg:grid-cols-3 gap-x-6 gap-y-16 tablet:gap-y-6 w-full">
+          {/* Category Grid - responsive across breakpoints */}
+          <div className="grid mobile:grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 desktop-lg:grid-cols-3 desktop-wide:grid-cols-4 mobile:gap-x-3 mobile:gap-y-6 tablet:gap-x-6 tablet:gap-y-6 desktop:gap-x-6 desktop:gap-y-16 desktop-wide:gap-x-8 w-full">
             {categoryProducts.map((product) => (
               <GridItem key={product.id} product={product} />
             ))}
