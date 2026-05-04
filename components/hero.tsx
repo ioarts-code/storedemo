@@ -57,7 +57,7 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
       >
         {/* Merch Banner */}
         <div className="bg-[rgba(255,255,255,0.9)] relative size-full">
-          <div className="absolute border-r-[3px] border-solid border-white inset-0" />
+          <div className="absolute border-solid border-white inset-0" />
           
           {/* Rotated Merch Text */}
           <div className="-translate-x-1/2 absolute content-stretch flex h-[871px] items-center justify-center left-1/2 top-[37px] w-[349px]">
@@ -77,7 +77,7 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
           </div>
           
           {/* Taglines */}
-          <div className="absolute content-stretch flex flex-col h-[170px] items-start justify-center left-[23.5%] right-[24.75%] top-[650px]">
+          <div className="absolute content-stretch flex flex-col h-[165px] items-start justify-center left-[23.5%] right-[24.75%] top-[650px]">
             <div className="h-[75px] relative shrink-0 w-full">
               <div className="flex flex-col items-end size-full">
                 <div className="content-stretch flex flex-col items-end pr-[7px] relative size-full">
@@ -90,6 +90,13 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Artist Name */}
+          <div className="absolute left-[23.5%] right-[24.75%] top-[800px]">
+            <p className="text-right text-[18px] text-black" style={{ fontFamily: "'Homemade Apple', cursive" }}>
+              Anders Altmann
+            </p>
           </div>
 
           {/* Gradient Merch Overlay */}
