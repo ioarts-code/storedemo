@@ -42,12 +42,15 @@ export default function Hero({ bgPositionX = 50, bgPositionY = 50, containerPosi
       />
 
       {/* Right panel container */}
-      <div className="absolute inset-0 flex items-start justify-end">
+      <div className="absolute inset-0">
         {/* Right panel */}
         <div 
           className="h-[900px] w-[300px]"
           style={{
-            transform: 'translateX(0)',
+            position: 'absolute',
+            right: 0,
+            top: 0,
+            marginRight: `calc((100vw - ${responsivePosition}% * 100vw / 100) - 150px)`,
           }}
         >
         {/* Merch Banner */}
