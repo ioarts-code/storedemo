@@ -82,9 +82,9 @@ export default function ProductPage() {
 
   return (
     <main className="min-h-screen bg-[#0F0F0F]">
-      <div className="max-w-7xl mx-auto mobile:px-3 tablet:px-4 desktop:px-4 mobile:py-4 tablet:py-6 desktop:py-8">
-        <Link href="/products" className="inline-flex items-center gap-2 text-gray-400 hover:text-white mobile:mb-4 tablet:mb-6 desktop:mb-8 mobile:text-[14px] tablet:text-[15px] desktop:text-[16px]">
-          <ArrowLeft className="mobile:w-4 mobile:h-4 tablet:w-5 tablet:h-5 desktop:w-5 desktop:h-5" />
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        <Link href="/products" className="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-8">
+          <ArrowLeft className="w-5 h-5" />
           Back to Products
         </Link>
         <ProductDetail product={product} />
