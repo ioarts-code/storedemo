@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono, Mr_Dafoe } from 'next/font/google'
+import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
@@ -7,7 +7,6 @@ import './globals.css'
 
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
-const _mrDafoe = Mr_Dafoe({ weight: "400", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: 'Store | Hygraph Powered',
@@ -39,7 +38,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth" data-scroll-behavior="smooth">
-      <body className="font-sans antialiased bg-[#0F0F0F] text-foreground overflow-x-hidden w-full">
+      <body className="font-sans antialiased bg-[#0F0F0F] text-foreground">
         <Header />
         {children}
         <Footer />
