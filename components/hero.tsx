@@ -1,3 +1,5 @@
+'use client';
+
 interface HeroProps {
   bgPositionX?: number; // Background horizontal position in percentage (0-100)
   bgPositionY?: number; // Background vertical position in percentage (0-100) - 0=top, 50=center, 100=bottom
@@ -9,54 +11,41 @@ const GRADIENT_COLOR_TOP = '#000000'; // Black
 const GRADIENT_COLOR_BOTTOM = '#888888'; // Grey
 
 export default function Hero({ bgPositionX = 50, bgPositionY = 50, containerPositionX = 75 }: HeroProps) {
-  // Responsive positioning logic
+
+  // Responsive positioning: mobile=50%, tablet=60%, desktop+=use prop
   const getResponsivePosition = () => {
     if (typeof window === 'undefined') return containerPositionX;
-    
     const width = window.innerWidth;
-    
-    // Mobile: center at 50%
-    if (width < 768) {
-      return 50;
-    }
-    // Tablet: move to 60%
-    if (width < 1024) {
-      return 60;
-    }
-    // Desktop 1024px and above: use the prop value
+    if (width < 640) return 50;
+    if (width < 1024) return 60;
     return containerPositionX;
   };
 
-  const responsivePosition = typeof window !== 'undefined' ? getResponsivePosition() : containerPositionX;
+  const position = typeof window !== 'undefined' ? getResponsivePosition() : containerPositionX;
 
   return (
-    <div className="relative h-[900px] flex items-start justify-center w-screen">
+    <div className="relative h-[900px] overflow-visible" style={{ width: '100vw' }}>
       {/* Background image */}
       <img
         alt=""
         src="/images/hero-background.jpg"
-        className="absolute inset-0 w-full h-full object-contain scale-250 opacity-80 pointer-events-none"
-        style={{
-          objectPosition: `${bgPositionX}% ${bgPositionY}%`,
-        }}
+        className="absolute inset-0 w-full h-full object-contain scale-[2.5] opacity-80 pointer-events-none"
+        style={{ objectPosition: `${bgPositionX}% ${bgPositionY}%` }}
       />
 
-      {/* Spacer */}
-      <div className="flex-1 min-w-0 self-stretch" />
-
-      {/* Right panel */}
-      <div 
-        className="absolute h-[900px] top-0 w-[300px]"
+      {/* Merch panel - positioned by percentage across full viewport width */}
+      <div
+        className="absolute top-0 h-[900px] w-[300px]"
         style={{
-          left: `${responsivePosition}%`,
+          left: `${position}%`,
           transform: 'translateX(-50%)',
         }}
       >
         {/* Merch Banner */}
         <div className="bg-[rgba(255,255,255,0.9)] relative size-full">
           <div className="absolute border-solid border-white inset-0" />
-          
-          {/* Rotated Merch Text */}
+
+          {/* Rotated Merch Text - transparent base */}
           <div className="-translate-x-1/2 absolute content-stretch flex h-[871px] items-center justify-center left-1/2 top-[37px] w-[349px]">
             <div className="flex h-[871px] items-center justify-center relative shrink-0 w-[349px]">
               <div className="flex-none rotate-90">
@@ -72,7 +61,7 @@ export default function Hero({ bgPositionX = 50, bgPositionY = 50, containerPosi
               </div>
             </div>
           </div>
-          
+
           {/* Taglines */}
           <div className="absolute content-stretch flex flex-col h-[165px] items-start justify-center left-[23.5%] right-[24.75%] top-[650px]">
             <div className="h-[75px] relative shrink-0 w-full">
@@ -103,7 +92,15 @@ export default function Hero({ bgPositionX = 50, bgPositionY = 50, containerPosi
                 <div className="content-stretch flex flex-col items-start relative">
                   <div className="content-stretch flex flex-col h-[349px] items-start justify-center relative shrink-0 w-[871px]">
                     <div className="content-stretch flex flex-col items-start py-[3px] relative shrink-0 w-full">
-                      <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] not-italic relative shrink-0 text-[170px] uppercase w-full" style={{ background: `linear-gradient(90deg, ${GRADIENT_COLOR_TOP} 0%, ${GRADIENT_COLOR_BOTTOM} 100%)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+                      <div
+                        className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] not-italic relative shrink-0 text-[170px] uppercase w-full"
+                        style={{
+                          background: `linear-gradient(90deg, ${GRADIENT_COLOR_TOP} 0%, ${GRADIENT_COLOR_BOTTOM} 100%)`,
+                          WebkitBackgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                          backgroundClip: 'text',
+                        }}
+                      >
                         <p className="leading-[normal]">Merch</p>
                       </div>
                     </div>
