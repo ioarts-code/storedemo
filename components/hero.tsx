@@ -7,7 +7,6 @@ interface HeroProps {
 // Gradient colors - easy to change
 const GRADIENT_COLOR_TOP = '#000000'; // Black
 const GRADIENT_COLOR_BOTTOM = '#888888'; // Grey
-const FADE_COLOR = '#000000'; // Black for fade overlay
 
 export default function Hero({ bgPositionX = 50, bgPositionY = 50, containerPositionX = 75 }: HeroProps) {
   // Responsive positioning logic
@@ -41,9 +40,6 @@ export default function Hero({ bgPositionX = 50, bgPositionY = 50, containerPosi
           objectPosition: `${bgPositionX}% ${bgPositionY}%`,
         }}
       />
-
-      {/* Fade gradient overlay - contained within hero section */}
-      <div className="absolute inset-0 pointer-events-none" style={{ background: `linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, ${FADE_COLOR} 100%)` }} />
 
       {/* Spacer */}
       <div className="flex-1 min-w-0 self-stretch" />
