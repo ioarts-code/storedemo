@@ -30,7 +30,7 @@ export default function Hero({ bgPositionX = 50, bgPositionY = 50, containerPosi
   const responsivePosition = typeof window !== 'undefined' ? getResponsivePosition() : containerPositionX;
 
   return (
-    <div className="relative h-[900px] flex items-start justify-center w-screen">
+    <div className="relative h-[900px] w-screen">
       {/* Background image */}
       <img
         alt=""
@@ -41,17 +41,15 @@ export default function Hero({ bgPositionX = 50, bgPositionY = 50, containerPosi
         }}
       />
 
-      {/* Spacer */}
-      <div className="flex-1 min-w-0 self-stretch" />
-
-      {/* Right panel */}
-      <div 
-        className="absolute h-[900px] top-0 w-[300px]"
-        style={{
-          left: `${responsivePosition}%`,
-          transform: 'translateX(-50%)',
-        }}
-      >
+      {/* Right panel container */}
+      <div className="absolute inset-0 flex items-start justify-end">
+        {/* Right panel */}
+        <div 
+          className="h-[900px] w-[300px]"
+          style={{
+            transform: 'translateX(0)',
+          }}
+        >
         {/* Merch Banner */}
         <div className="bg-[rgba(255,255,255,0.9)] relative size-full">
           <div className="absolute border-solid border-white inset-0" />
@@ -113,6 +111,7 @@ export default function Hero({ bgPositionX = 50, bgPositionY = 50, containerPosi
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
