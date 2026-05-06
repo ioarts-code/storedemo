@@ -1,5 +1,6 @@
 interface HeroProps {
   bgPositionX?: number; // Background horizontal position in percentage (0-100)
+  bgPositionY?: number; // Background vertical position in percentage (0-100) - 0=top, 50=center, 100=bottom
   containerPositionX?: number; // Merch container horizontal position in percentage (0-100)
 }
 
@@ -8,7 +9,7 @@ const GRADIENT_COLOR_TOP = '#000000'; // Black
 const GRADIENT_COLOR_BOTTOM = '#888888'; // Grey
 const FADE_COLOR = '#000000'; // Black for fade overlay
 
-export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: HeroProps) {
+export default function Hero({ bgPositionX = 50, bgPositionY = 50, containerPositionX = 75 }: HeroProps) {
   // Responsive positioning logic
   const getResponsivePosition = () => {
     if (typeof window === 'undefined') return containerPositionX;
@@ -37,12 +38,12 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
         src="/images/hero-background.jpg"
         className="absolute inset-0 w-full h-full object-contain scale-250 opacity-80 pointer-events-none"
         style={{
-          objectPosition: `${bgPositionX}% center`,
+          objectPosition: `${bgPositionX}% ${bgPositionY}%`,
         }}
       />
 
-      {/* Fade gradient overlay - extends beyond hero */}
-      <div className="absolute inset-0 pointer-events-none" style={{ background: `linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, ${FADE_COLOR} 100%)`, height: '200vh', top: 0, left: 0, right: 0 }} />
+      {/* Fade gradient overlay - contained within hero section */}
+      <div className="absolute inset-0 pointer-events-none" style={{ background: `linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, ${FADE_COLOR} 100%)` }} />
 
       {/* Spacer */}
       <div className="flex-1 min-w-0 self-stretch" />
