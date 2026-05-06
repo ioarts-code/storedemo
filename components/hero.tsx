@@ -8,7 +8,7 @@ interface HeroProps {
 const GRADIENT_COLOR_TOP = '#000000'; // Black
 const GRADIENT_COLOR_BOTTOM = '#888888'; // Grey
 
-export default function Hero({ bgPositionX = 50, bgPositionY = 50, containerPositionX = 75 }: HeroProps) {
+export default function Hero({ bgPositionX = 50, bgPositionY = 50, containerPositionX = 60 }: HeroProps) {
   // Responsive positioning logic
   const getResponsivePosition = () => {
     if (typeof window === 'undefined') return containerPositionX;
