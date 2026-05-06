@@ -25,7 +25,7 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
   const responsivePosition = typeof window !== 'undefined' ? getResponsivePosition() : containerPositionX;
 
   return (
-    <div className="relative h-[900px] flex items-start justify-center w-screen">
+    <div className="relative h-[900px] flex items-start justify-center overflow-hidden w-screen">
       {/* Background image */}
       <img
         alt=""
