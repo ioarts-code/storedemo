@@ -1,0 +1,11 @@
+# Robots.txt for IOARTS
+# Only allow indexing of the homepage initially
+
+User-agent: *
+Allow: /$
+Disallow: /products
+Disallow: /api
+Disallow: /_next
+Disallow: /admin
+
+Sitemap: https://ioarts.vercel.app/sitemap.xml
