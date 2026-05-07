@@ -1,9 +1,41 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import { Product } from '@/lib/types';
+import { createHygraphClient } from '@/lib/hygraph-client';
+import { GET_PRODUCT_BY_SLUG } from '@/lib/graphql-queries';
+
 interface HeroProps {
   bgPositionX?: number; // Background horizontal position in percentage (0-100)
   containerPositionX?: number; // Merch container horizontal position in percentage (0-100)
 }
 
 export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: HeroProps) {
+  const [backgroundImage, setBackgroundImage] = useState<string>('');
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchHoodie = async () => {
+      try {
+        const client = createHygraphClient();
+        const data = await client.request<{ products: Product[] }>(
+          GET_PRODUCT_BY_SLUG,
+          { slug: 'hoodie-elden' }
+        );
+
+        if (data.products && data.products.length > 0 && data.products[0].images?.length > 0) {
+          setBackgroundImage(data.products[0].images[0].url);
+        }
+      } catch (error) {
+        console.error('Failed to fetch hoodie product:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchHoodie();
+  }, []);
+
   // Responsive positioning logic
   const getResponsivePosition = () => {
     if (typeof window === 'undefined') return containerPositionX;
@@ -28,9 +60,9 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
     <div className="relative h-[900px] flex items-start justify-center overflow-hidden w-screen">
       {/* Background image */}
       <img
-        alt=""
-        src="/images/hero-background.jpg"
-        className="absolute inset-0 w-full h-full bg-black object-contain scale-250 opacity-80 pointer-events-none"
+        alt="Hoodie Elden"
+        src={backgroundImage || '/images/hero-background.jpg'}
+        className="absolute inset-0 w-full h-full bg-neutral-900 object-cover scale-100 opacity-100 pointer-events-none"
         style={{
           objectPosition: `${bgPositionX}% center`,
         }}
@@ -48,8 +80,8 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
         }}
       >
         {/* Merch Banner */}
-        <div className="bg-[rgba(255,255,255,0.9)] relative size-full">
-          <div className="absolute border-r-[3px] border-solid border-white inset-0" />
+        <div className="bg-[rgba(72,72,72,0.56)] relative size-full">
+          <div className="absolute border-r-[3px] border-l-[3px] border-solid border-white inset-0" />
           
           {/* Rotated Merch Text */}
           <div className="-translate-x-1/2 absolute content-stretch flex h-[871px] items-center justify-center left-1/2 top-[37px] w-[349px]">
@@ -73,7 +105,7 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
             <div className="h-[75px] relative shrink-0 w-full">
               <div className="flex flex-col items-end size-full">
                 <div className="content-stretch flex flex-col items-end pr-[7px] relative size-full">
-                  <div className="-translate-y-1/2 absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] lowercase not-italic right-[-0.24px] text-[#727272] text-[14px] text-right top-[43.98px] tracking-[-0.24px] whitespace-nowrap">
+                  <div className="-translate-y-1/2 absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] lowercase not-italic right-[-0.24px] text-[#ffffff] text-[14px] text-right top-[43.98px] tracking-[-0.24px] whitespace-nowrap">
                     <p className="leading-[25px] mb-0 whitespace-pre">ILLUSTRATIONS THAT MAKE SENSE.</p>
                     <p className="leading-[25px] mb-0 whitespace-pre">FIND NEW DIGITAL ART</p>
                     <p className="leading-[25px] mb-0 whitespace-pre">{`LET'S MAKE EVERY `}</p>
@@ -91,7 +123,7 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
                 <div className="content-stretch flex flex-col items-start relative">
                   <div className="content-stretch flex flex-col h-[349px] items-start justify-center relative shrink-0 w-[871px]">
                     <div className="content-stretch flex flex-col items-start py-[3px] relative shrink-0 w-full">
-                      <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] not-italic relative shrink-0 text-[170px] uppercase w-full" style={{ background: 'linear-gradient(90deg, #1A1A1A 0%, #CBCBCB 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+                      <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] not-italic relative shrink-0 text-[170px] uppercase w-full text-black">
                         <p className="leading-[normal]">Merch</p>
                       </div>
                     </div>
