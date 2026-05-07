@@ -8,4 +8,4 @@ Disallow: /api
 Disallow: /_next
 Disallow: /admin
 
-Sitemap: https://ioarts.vercel.app/sitemap.xml
+Sitemap: https://www.ioarts.ink/sitemap.xml
