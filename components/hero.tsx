@@ -80,8 +80,8 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
         }}
       >
         {/* Merch Banner */}
-        <div className="bg-[rgba(255,255,255,0.54)] relative size-full">
-          <div className="absolute border-r-[3px] border-solid border-white inset-0" />
+        <div className="bg-[rgba(72,72,72,0.56)] relative size-full">
+          <div className="absolute border-r-[3px] border-l-[3px] border-solid border-white inset-0" />
           
           {/* Rotated Merch Text */}
           <div className="-translate-x-1/2 absolute content-stretch flex h-[871px] items-center justify-center left-1/2 top-[37px] w-[349px]">
@@ -105,7 +105,7 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
             <div className="h-[75px] relative shrink-0 w-full">
               <div className="flex flex-col items-end size-full">
                 <div className="content-stretch flex flex-col items-end pr-[7px] relative size-full">
-                  <div className="-translate-y-1/2 absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] lowercase not-italic right-[-0.24px] text-[#727272] text-[14px] text-right top-[43.98px] tracking-[-0.24px] whitespace-nowrap">
+                  <div className="-translate-y-1/2 absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] lowercase not-italic right-[-0.24px] text-[#ffffff] text-[14px] text-right top-[43.98px] tracking-[-0.24px] whitespace-nowrap">
                     <p className="leading-[25px] mb-0 whitespace-pre">ILLUSTRATIONS THAT MAKE SENSE.</p>
                     <p className="leading-[25px] mb-0 whitespace-pre">FIND NEW DIGITAL ART</p>
                     <p className="leading-[25px] mb-0 whitespace-pre">{`LET'S MAKE EVERY `}</p>
