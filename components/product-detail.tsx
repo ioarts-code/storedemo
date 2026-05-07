@@ -47,7 +47,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
 
           {/* Etsy Button */}
           <a
-            href="https://www.etsy.com/shop/ioarts"
+            href="https://www.etsy.com/shop/ioartseu"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-transparent mt-[10px] h-[45px] rounded-[6px] w-[176px] hover:bg-white/30 transition-colors relative flex items-center justify-center"
