@@ -30,7 +30,7 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
       <img
         alt=""
         src="/images/hero-background.jpg"
-        className="absolute inset-0 w-full h-full bg-black object-contain scale-250 opacity-80 pointer-events-none"
+        className="absolute inset-0 w-full h-full bg-black object-contain scale-300 opacity-80 pointer-events-none"
         style={{
           objectPosition: `${bgPositionX}% center`,
         }}
