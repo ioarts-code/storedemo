@@ -1,9 +1,41 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import { Product } from '@/lib/types';
+import { createHygraphClient } from '@/lib/hygraph-client';
+import { GET_PRODUCT_BY_SLUG } from '@/lib/graphql-queries';
+
 interface HeroProps {
   bgPositionX?: number; // Background horizontal position in percentage (0-100)
   containerPositionX?: number; // Merch container horizontal position in percentage (0-100)
 }
 
 export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: HeroProps) {
+  const [backgroundImage, setBackgroundImage] = useState<string>('');
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchHoodie = async () => {
+      try {
+        const client = createHygraphClient();
+        const data = await client.request<{ products: Product[] }>(
+          GET_PRODUCT_BY_SLUG,
+          { slug: 'hoodie-elden' }
+        );
+
+        if (data.products && data.products.length > 0 && data.products[0].images?.length > 0) {
+          setBackgroundImage(data.products[0].images[0].url);
+        }
+      } catch (error) {
+        console.error('Failed to fetch hoodie product:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchHoodie();
+  }, []);
+
   // Responsive positioning logic
   const getResponsivePosition = () => {
     if (typeof window === 'undefined') return containerPositionX;
@@ -28,8 +60,8 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
     <div className="relative h-[900px] flex items-start justify-center overflow-hidden w-screen">
       {/* Background image */}
       <img
-        alt=""
-        src="https://media.graphassets.com/4Ug7n8eR1GSJnSe6JbMm"
+        alt="Hoodie Elden"
+        src={backgroundImage || '/images/hero-background.jpg'}
         className="absolute inset-0 w-full h-full bg-black object-cover scale-100 opacity-100 pointer-events-none"
         style={{
           objectPosition: `${bgPositionX}% center`,
