@@ -123,7 +123,7 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
                 <div className="content-stretch flex flex-col items-start relative">
                   <div className="content-stretch flex flex-col h-[349px] items-start justify-center relative shrink-0 w-[871px]">
                     <div className="content-stretch flex flex-col items-start py-[3px] relative shrink-0 w-full">
-                      <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] not-italic relative shrink-0 text-[170px] uppercase w-full" style={{ background: 'linear-gradient(90deg, #1A1A1A 0%, #CBCBCB 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+                      <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] not-italic relative shrink-0 text-[170px] uppercase w-full text-black">
                         <p className="leading-[normal]">Merch</p>
                       </div>
                     </div>
