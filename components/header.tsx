@@ -17,13 +17,13 @@ export default function Header() {
         <nav className="absolute font-bold h-[32px] leading-[0] right-[28px] rounded-[4px] top-[8px] tracking-[-0.24px] uppercase px-[12px] flex items-center gap-[16px]">
           <Link
             href="/"
-            className="text-[15.6px] leading-[19.2px] hover:opacity-80 transition-opacity text-black"
+            className="text-[13.6px] leading-[19.2px] hover:opacity-80 transition-opacity text-black"
           >
             Home
           </Link>
           <Link
             href="/products"
-            className="text-[15.6px] leading-[19.2px] hover:opacity-80 transition-opacity text-black"
+            className="text-[13.6px] leading-[19.2px] hover:opacity-80 transition-opacity text-black"
           >
             Shop All
           </Link>
