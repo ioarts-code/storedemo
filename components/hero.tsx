@@ -61,7 +61,7 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
       {/* Background image */}
       <img
         alt="Hoodie Elden"
-        src={backgroundImage || '/images/hero-background.jpg'}
+        src={backgroundImage}
         className="absolute inset-0 w-full h-full bg-neutral-900 object-cover scale-100 opacity-100 pointer-events-none"
         style={{
           objectPosition: `${bgPositionX}% center`,
