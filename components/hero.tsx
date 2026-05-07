@@ -23,8 +23,9 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
           { slug: 'hoodie-elden' }
         );
 
-        if (data.products && data.products.length > 0 && data.products[0].images?.length > 0) {
-          setBackgroundImage(data.products[0].images[0].url);
+        const product = data?.products?.[0];
+        if (product?.images?.[0]?.url) {
+          setBackgroundImage(product.images[0].url);
         }
       } catch (error) {
         console.error('Failed to fetch hoodie product:', error);
