@@ -29,8 +29,8 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
       {/* Background image */}
       <img
         alt=""
-        src="/images/hero-background.jpg"
-        className="absolute inset-0 w-full h-full bg-black object-contain scale-300 opacity-80 pointer-events-none"
+        src="https://media.graphassets.com/4Ug7n8eR1GSJnSe6JbMm"
+        className="absolute inset-0 w-full h-full bg-black object-cover scale-100 opacity-100 pointer-events-none"
         style={{
           objectPosition: `${bgPositionX}% center`,
         }}
