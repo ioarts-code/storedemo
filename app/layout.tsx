@@ -9,25 +9,59 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Store | Hygraph Powered',
-  description: 'Discover our products. A modern store powered by Hygraph CMS.',
-  generator: 'v0.app',
-  icons: {
-    icon: [
+  title: 'IOARTS | Digital Art Merch & Illustration Store',
+  description: 'Discover unique digital art merchandise and illustrations. Official IOARTS store featuring exclusive illustrated products.',
+  keywords: ['digital art', 'merch', 'illustrations', 'art store', 'exclusive designs'],
+  authors: [{ name: 'Anders Altmann' }],
+  creator: 'Anders Altmann',
+  publisher: 'IOARTS',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-snippet': -1,
+      'max-image-preview': 'large',
+      'max-video-preview': -1,
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://ioarts.vercel.app',
+    siteName: 'IOARTS',
+    title: 'IOARTS | Digital Art Merch & Illustration Store',
+    description: 'Discover unique digital art merchandise and illustrations. Official IOARTS store featuring exclusive illustrated products.',
+    images: [
       {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
+        url: '/favicon.svg',
+        width: 219,
+        height: 226,
+        alt: 'IOARTS Logo',
         type: 'image/svg+xml',
       },
     ],
-    apple: '/apple-icon.png',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'IOARTS | Digital Art Merch & Illustration Store',
+    description: 'Discover unique digital art merchandise and illustrations.',
+    creator: '@ioarts',
+    images: ['/favicon.svg'],
+  },
+  icons: {
+    icon: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+    userScalable: true,
+  },
+  alternates: {
+    canonical: 'https://ioarts.vercel.app',
   },
 }
 
@@ -36,8 +70,34 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Store',
+    name: 'IOARTS',
+    description: 'Digital Art Merch & Illustration Store',
+    url: 'https://ioarts.vercel.app',
+    logo: 'https://ioarts.vercel.app/favicon.svg',
+    sameAs: [
+      'https://www.deviantart.com',
+    ],
+    address: {
+      '@type': 'PostalAddress',
+      addressCountry: 'US',
+    },
+  }
+
   return (
     <html lang="en" className="scroll-smooth" data-scroll-behavior="smooth">
+      <head>
+        <meta charSet="utf-8" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="theme-color" content="#0F0F0F" />
+        <link rel="canonical" href="https://ioarts.vercel.app" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      </head>
       <body className="font-sans antialiased bg-[#0F0F0F] text-foreground">
         <Header />
         {children}
