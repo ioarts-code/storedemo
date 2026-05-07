@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://ioarts.vercel.app',
+    url: 'https://www.ioarts.ink',
     siteName: 'IOARTS',
     title: 'IOARTS | Digital Art Merch & Illustration Store',
     description: 'Discover unique digital art merchandise and illustrations. Official IOARTS store featuring exclusive illustrated products.',
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     userScalable: true,
   },
   alternates: {
-    canonical: 'https://ioarts.vercel.app',
+    canonical: 'https://www.ioarts.ink',
   },
 }
 
@@ -75,8 +75,8 @@ export default function RootLayout({
     '@type': 'Store',
     name: 'IOARTS',
     description: 'Digital Art Merch & Illustration Store',
-    url: 'https://ioarts.vercel.app',
-    logo: 'https://ioarts.vercel.app/favicon.svg',
+    url: 'https://www.ioarts.ink',
+    logo: 'https://www.ioarts.ink/favicon.svg',
     sameAs: [
       'https://www.deviantart.com',
     ],
@@ -92,7 +92,7 @@ export default function RootLayout({
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="theme-color" content="#0F0F0F" />
-        <link rel="canonical" href="https://ioarts.vercel.app" />
+        <link rel="canonical" href="https://www.ioarts.ink" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
