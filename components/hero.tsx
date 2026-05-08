@@ -130,7 +130,7 @@ export default function Hero({
             className="mt-1"
             style={{ 
               fontFamily: "'Mr Dafoe', cursive",
-              fontSize: '32px',
+              fontSize: '16px',
               color: '#000',
             }}
           >
