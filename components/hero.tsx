@@ -214,3 +214,6 @@ export default function Hero({
           ) : null}
         </>
       )}
+    </div>
+  );
+}
