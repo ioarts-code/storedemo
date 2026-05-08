@@ -6,7 +6,6 @@ import { createHygraphClient } from '@/lib/hygraph-client';
 import { GET_PRODUCTS } from '@/lib/graphql-queries';
 import { Grid } from '@/components/grid';
 import Hero from '@/components/hero';
-import FeaturedCard from '@/components/featured-card';
 
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -46,15 +45,11 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-[#0F0F0F]">
-      <div className="relative">
-        <Hero />
-        <FeaturedCard 
-          productSlug="hoodie-elden"
-          positionTop="150px"
-          positionLeft="auto"
-          positionRight="80px"
-        />
-      </div>
+      <Hero 
+        showFeaturedCard={true}
+        featuredCardPositionTop="150px"
+        featuredCardPositionRight="80px"
+      />
 
       {error && (
         <div className="p-4 bg-[#1A1A1A] border border-red-700 rounded-lg text-center mx-4 mt-8">
