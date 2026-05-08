@@ -64,14 +64,14 @@ export default function Hero({ bgPositionX = 50, stripeScale = 1 }: HeroProps) {
 
       {/* Diagonal Stripe - Upper Left */}
       <div 
-        className="absolute top-0 left-0 bg-[rgba(255,255,255,0.95)] pointer-events-none"
+        className="absolute top-0 left-0 bg-[rgba(255,255,255,0.95)] pointer-events-none overflow-visible"
         style={{
           width: `${stripeWidth}px`,
           height: `${stripeHeight}px`,
-          transform: 'rotate(-45deg)',
+          transform: 'rotate(-45deg) translateX(-50%)',
           transformOrigin: 'top left',
-          marginTop: `-${(stripeHeight / 2) * Math.sin(Math.PI / 4)}px`,
-          marginLeft: `-${(stripeWidth / 2) * Math.cos(Math.PI / 4)}px`,
+          top: '0px',
+          left: '50%',
         }}
       >
         {/* Stripe Content */}
