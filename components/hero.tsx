@@ -148,13 +148,13 @@ export default function Hero({
               style={{
                 top: featuredCardPositionTop,
                 right: featuredCardPositionRight,
-                width: '400px',
+                width: '800px',
                 height: '220px',
               }}
             />
           ) : featuredProduct ? (
             <div 
-              className="absolute bg-[rgba(255,255,255,0.2)] content-stretch flex flex-col items-start pb-[32px] pl-[27px] pr-[16px] pt-[31px] relative rounded-[6px] w-[400px]"
+              className="absolute bg-[rgba(255,255,255,0.2)] content-stretch flex flex-col items-start pb-[32px] pl-[27px] pr-[16px] pt-[31px] relative rounded-[6px] w-[800px]"
               style={{
                 top: featuredCardPositionTop,
                 right: featuredCardPositionRight,
