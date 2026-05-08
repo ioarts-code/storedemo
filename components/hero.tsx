@@ -160,7 +160,7 @@ export default function Hero({
                 right: featuredCardPositionRight,
               }}
             >
-              <div aria-hidden="true" className="absolute border-l-3 border-solid border-white inset-0 pointer-events-none rounded-[6px]" />
+              <div aria-hidden="true" className="absolute border-l-3 border-solid border-white inset-0 pointer-events-none rounded-[0px]" />
 
               {/* Badge */}
               <div className="content-stretch flex items-start mb-[-0.6px] pb-[5px] pt-[6px] px-[16px] relative rounded-[33554400px] shrink-0">
