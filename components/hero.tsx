@@ -17,7 +17,7 @@ interface HeroProps {
 
 export default function Hero({ 
   bgPositionX = 50, 
-  bgPositionY = 10,
+  bgPositionY = 40,
   showFeaturedCard = true,
   featuredCardSlug = 'hoodie-elden',
   featuredCardPositionTop = '80px',
@@ -80,7 +80,7 @@ export default function Hero({
   }, [showFeaturedCard, featuredCardSlug]);
 
   return (
-    <div className="relative h-[900px] flex items-start justify-center overflow-hidden w-screen">
+    <div className="relative h-[1000px] flex items-start justify-center overflow-hidden w-screen">
       {/* Background image */}
       <img
         alt="Hoodie Elden"
@@ -144,7 +144,7 @@ export default function Hero({
         <>
           {featuredCardLoading ? (
             <div 
-              className="absolute bg-[rgba(255,255,255,0.2)] rounded-[6px] animate-pulse"
+              className="absolute bg-[rgba(255,255,255,0)] rounded-[0px] animate-pulse"
               style={{
                 top: featuredCardPositionTop,
                 right: featuredCardPositionRight,
