@@ -8,7 +8,7 @@ import { GET_PRODUCT_BY_SLUG } from '@/lib/graphql-queries';
 
 interface HeroProps {
   bgPositionX?: number; // Background horizontal position in percentage (0-100)
-  stripeScale?: number; // Stripe scale (default 1, can be 0.5, 1, 1.5, etc.)
+  bgPositionY?: number; // Background vertical position in percentage (0-100)
   showFeaturedCard?: boolean; // Show featured card overlay
   featuredCardSlug?: string; // Featured product slug
   featuredCardPositionTop?: string; // Featured card top position
@@ -17,7 +17,7 @@ interface HeroProps {
 
 export default function Hero({ 
   bgPositionX = 50, 
-  stripeScale = 1,
+  bgPositionY = 50,
   showFeaturedCard = true,
   featuredCardSlug = 'hoodie-elden',
   featuredCardPositionTop = '80px',
@@ -27,11 +27,6 @@ export default function Hero({
   const [isLoading, setIsLoading] = useState(true);
   const [featuredProduct, setFeaturedProduct] = useState<Product | null>(null);
   const [featuredCardLoading, setFeaturedCardLoading] = useState(true);
-
-  // Stripe dimensions (scalable)
-  const stripeWidth = 100; // Full width percentage
-  const stripeHeight = 120 * stripeScale; // Vertical height that scales
-  const textSize = Math.floor(24 * stripeScale);
 
   useEffect(() => {
     const fetchHoodie = async () => {
@@ -84,14 +79,6 @@ export default function Hero({
     fetchFeaturedProduct();
   }, [showFeaturedCard, featuredCardSlug]);
 
-  // Responsive positioning logic
-  const getResponsivePosition = () => {
-    if (typeof window === 'undefined') return 0;
-    return 0; // Always top-left for the diagonal stripe
-  };
-
-  const responsivePosition = typeof window !== 'undefined' ? getResponsivePosition() : 0;
-
   return (
     <div className="relative h-[900px] flex items-start justify-center overflow-hidden w-screen">
       {/* Background image */}
@@ -100,7 +87,7 @@ export default function Hero({
         src={backgroundImage}
         className="absolute inset-0 w-full h-full bg-neutral-900 object-cover scale-100 opacity-100 pointer-events-none"
         style={{
-          objectPosition: `${bgPositionX}% center`,
+          objectPosition: `${bgPositionX}% ${bgPositionY}%`,
         }}
       />
 
@@ -108,7 +95,7 @@ export default function Hero({
       <div 
         className="absolute bottom-0 left-0 right-0 w-full bg-[rgba(255,255,255,0.95)] pointer-events-none"
         style={{
-          height: `${stripeHeight}px`,
+          height: '120px',
         }}
       >
         {/* Stripe Content */}
@@ -117,7 +104,7 @@ export default function Hero({
           <div 
             className="font-['Inter:Bold',sans-serif] font-bold uppercase text-black text-center"
             style={{ 
-              fontSize: `${textSize}px`,
+              fontSize: '24px',
               lineHeight: '1.1',
               letterSpacing: '2px',
             }}
@@ -129,7 +116,7 @@ export default function Hero({
           <div 
             className="font-['Inter:Bold',sans-serif] font-bold text-black text-center"
             style={{ 
-              fontSize: `${Math.floor(11 * stripeScale)}px`,
+              fontSize: '11px',
               lineHeight: '1.4',
               letterSpacing: '-0.24px',
             }}
@@ -143,7 +130,7 @@ export default function Hero({
             className="mt-1"
             style={{ 
               fontFamily: "'Mr Dafoe', cursive",
-              fontSize: `${Math.floor(14 * stripeScale)}px`,
+              fontSize: '14px',
               color: '#000',
             }}
           >
