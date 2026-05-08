@@ -11,6 +11,7 @@ interface FeaturedCardProps {
   badge?: string;
   positionTop?: string;
   positionLeft?: string;
+  positionRight?: string;
 }
 
 export default function FeaturedCard({
@@ -18,6 +19,7 @@ export default function FeaturedCard({
   badge = 'Top Pick',
   positionTop = '80px',
   positionLeft = '60px',
+  positionRight,
 }: FeaturedCardProps) {
   const [product, setProduct] = useState<Product | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -52,6 +54,7 @@ export default function FeaturedCard({
         style={{
           top: positionTop,
           left: positionLeft,
+          right: positionRight,
           width: '400px',
           height: '220px',
         }}
@@ -69,6 +72,7 @@ export default function FeaturedCard({
       style={{
         top: positionTop,
         left: positionLeft,
+        right: positionRight,
       }}
     >
       <div aria-hidden="true" className="absolute border-l-3 border-solid border-white inset-0 pointer-events-none rounded-[6px]" />

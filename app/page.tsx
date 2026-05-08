@@ -50,8 +50,9 @@ export default function Home() {
         <Hero />
         <FeaturedCard 
           productSlug="hoodie-elden"
-          positionTop="80px"
-          positionLeft="60px"
+          positionTop="150px"
+          positionLeft="auto"
+          positionRight="80px"
         />
       </div>
 
