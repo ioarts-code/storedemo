@@ -47,6 +47,12 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[#0F0F0F]">
       <div className="relative">
+        <Hero />
+        <FeaturedCard 
+          productSlug="hoodie-elden"
+          positionTop="80px"
+          positionLeft="60px"
+        />
       </div>
 
       {error && (
