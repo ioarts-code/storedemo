@@ -95,7 +95,7 @@ export default function Hero({
       <div 
         className="absolute bottom-0 left-0 right-0 w-full bg-[rgba(255,255,255,0.95)] pointer-events-none"
         style={{
-          height: '120px',
+          height: '160px',
         }}
       >
         {/* Stripe Content */}
