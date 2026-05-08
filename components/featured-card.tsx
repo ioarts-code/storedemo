@@ -9,9 +9,16 @@ import { GET_PRODUCT_BY_SLUG } from '@/lib/graphql-queries';
 interface FeaturedCardProps {
   productSlug?: string; // Slug of product to feature (can be set via props)
   badge?: string; // Custom badge text (default: "Top Pick")
+  positionTop?: string; // Top position (e.g., "60px", "10%") - default: "80px"
+  positionLeft?: string; // Left position (e.g., "40px", "5%") - default: "60px"
 }
 
-export default function FeaturedCard({ productSlug = 'hoodie-elden', badge = 'Top Pick' }: FeaturedCardProps) {
+export default function FeaturedCard({ 
+  productSlug = 'hoodie-elden', 
+  badge = 'Top Pick',
+  positionTop = '80px',
+  positionLeft = '60px',
+}: FeaturedCardProps) {
   const [product, setProduct] = useState<Product | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -48,7 +55,13 @@ export default function FeaturedCard({ productSlug = 'hoodie-elden', badge = 'To
   }
 
   return (
-    <div className="flex flex-col items-start p-8 w-[742px] bg-white rounded-lg gap-4">
+    <div 
+      className="absolute flex flex-col items-start p-8 w-[742px] bg-white rounded-lg gap-4 z-10 shadow-lg"
+      style={{
+        top: positionTop,
+        left: positionLeft,
+      }}
+    >
       {/* Badge */}
       <div className="px-4 py-1 bg-black rounded-full">
         <span className="text-white font-bold text-xs uppercase tracking-tight">
