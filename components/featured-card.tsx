@@ -7,14 +7,14 @@ import { createHygraphClient } from '@/lib/hygraph-client';
 import { GET_PRODUCT_BY_SLUG } from '@/lib/graphql-queries';
 
 interface FeaturedCardProps {
-  productSlug?: string; // Slug of product to feature (can be set via props)
-  badge?: string; // Custom badge text (default: "Top Pick")
-  positionTop?: string; // Top position (e.g., "60px", "10%") - default: "80px"
-  positionLeft?: string; // Left position (e.g., "40px", "5%") - default: "60px"
+  productSlug?: string;
+  badge?: string;
+  positionTop?: string;
+  positionLeft?: string;
 }
 
-export default function FeaturedCard({ 
-  productSlug = 'hoodie-elden', 
+export default function FeaturedCard({
+  productSlug = 'hoodie-elden',
   badge = 'Top Pick',
   positionTop = '80px',
   positionLeft = '60px',
@@ -31,8 +31,9 @@ export default function FeaturedCard({
           { slug: productSlug }
         );
 
-        if (data.products && data.products.length > 0) {
-          setProduct(data.products[0]);
+        const fetchedProduct = data?.products?.[0];
+        if (fetchedProduct) {
+          setProduct(fetchedProduct);
         }
       } catch (error) {
         console.error('Failed to fetch featured product:', error);
@@ -46,7 +47,15 @@ export default function FeaturedCard({
 
   if (isLoading) {
     return (
-      <div className="w-[380px] h-[180px] bg-white rounded-lg animate-pulse" />
+      <div 
+        className="absolute bg-[rgba(255,255,255,0.2)] rounded-[6px] animate-pulse"
+        style={{
+          top: positionTop,
+          left: positionLeft,
+          width: '400px',
+          height: '220px',
+        }}
+      />
     );
   }
 
@@ -56,35 +65,48 @@ export default function FeaturedCard({
 
   return (
     <div 
-      className="absolute flex flex-col items-start p-5 w-[380px] bg-white rounded-lg gap-3 z-10 shadow-lg"
+      className="absolute bg-[rgba(255,255,255,0.2)] content-stretch flex flex-col items-start pb-[32px] pl-[27px] pr-[16px] pt-[31px] relative rounded-[6px] w-[400px]"
       style={{
         top: positionTop,
         left: positionLeft,
       }}
     >
+      <div aria-hidden="true" className="absolute border-l-3 border-solid border-white inset-0 pointer-events-none rounded-[6px]" />
+
       {/* Badge */}
-      <div className="px-3 py-1 bg-black rounded-full">
-        <span className="text-white font-bold text-[10px] uppercase tracking-tight">
-          {badge}
-        </span>
+      <div className="content-stretch flex items-start mb-[-0.6px] pb-[5px] pt-[6px] px-[16px] relative rounded-[33554400px] shrink-0">
+        <div aria-hidden="true" className="absolute border-3 border-[#e0e0e0] border-solid inset-0 pointer-events-none rounded-[33554400px]" />
+        <div className="capitalize flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] not-italic relative shrink-0 text-[#e0e0e0] text-[11.6px] tracking-[-0.18px] whitespace-nowrap">
+          <p className="leading-[14.4px]">{badge}</p>
+        </div>
       </div>
 
       {/* Title */}
-      <h3 className="text-lg font-bold text-black leading-tight">
-        {product.name}
-      </h3>
+      <div className="content-stretch flex flex-col items-start mb-[-0.6px] pb-[3px] pt-[19.6px] relative shrink-0 w-full">
+        <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] not-italic relative shrink-0 text-[36px] text-white tracking-[-0.36px] w-full line-clamp-2">
+          <p className="leading-[41px]">{product.name}</p>
+        </div>
+      </div>
 
       {/* Description */}
-      <p className="text-xs text-black leading-relaxed line-clamp-2">
-        {product.description}
-      </p>
+      <div className="content-stretch flex flex-col items-start mb-[-0.6px] pb-[19.6px] relative shrink-0 w-full">
+        <div className="flex flex-col font-['Inter:Regular',sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[13.2px] text-white tracking-[-0.21px] w-full line-clamp-2">
+          <p className="leading-[16.8px]">{product.description}</p>
+        </div>
+      </div>
 
-      {/* Shop Button */}
-      <Link
-        href={`/products/${product.slug}`}
-        className="mt-auto px-6 py-2 bg-black text-white font-bold text-sm uppercase rounded-lg hover:bg-gray-800 transition-colors"
-      >
-        Shop
+      {/* Button */}
+      <Link href={`/products/${product.slug}`}>
+        <div className="content-stretch flex items-center justify-center px-[48px] py-[15px] relative rounded-[6px] shrink-0 w-[201px] cursor-pointer hover:opacity-80 transition-opacity">
+          <div aria-hidden="true" className="absolute border-3 border-[#e0e0e0] border-solid inset-0 pointer-events-none rounded-[6px]" />
+          <div className="relative shrink-0">
+            <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex items-start justify-center relative size-full">
+              <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] not-italic relative shrink-0 text-[#e0e0e0] text-[20px] text-center tracking-[-0.36px] uppercase whitespace-nowrap">
+                <p className="leading-[28.8px]">Shop</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </Link>
     </div>
   );
