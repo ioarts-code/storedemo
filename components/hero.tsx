@@ -15,9 +15,9 @@ export default function Hero({ bgPositionX = 50, stripeScale = 1 }: HeroProps) {
   const [isLoading, setIsLoading] = useState(true);
 
   // Stripe dimensions (scalable)
-  const stripeWidth = 800 * stripeScale;
-  const stripeHeight = 300 * stripeScale;
-  const textSize = Math.floor(170 * stripeScale);
+  const stripeWidth = 100; // Full width percentage
+  const stripeHeight = 120 * stripeScale; // Vertical height that scales
+  const textSize = Math.floor(24 * stripeScale);
 
   useEffect(() => {
     const fetchHoodie = async () => {
@@ -62,26 +62,23 @@ export default function Hero({ bgPositionX = 50, stripeScale = 1 }: HeroProps) {
         }}
       />
 
-      {/* Diagonal Stripe - Upper Left */}
+      {/* Horizontal Stripe Divider - Bottom */}
       <div 
-        className="absolute top-0 left-0 bg-[rgba(255,255,255,0.95)] pointer-events-none overflow-visible"
+        className="absolute bottom-0 left-0 right-0 w-full bg-[rgba(255,255,255,0.95)] pointer-events-none"
         style={{
-          width: `${stripeWidth}px`,
           height: `${stripeHeight}px`,
-          transform: 'rotate(-45deg) translateX(-50%)',
-          transformOrigin: 'top left',
-          top: '0px',
-          left: '50%',
+          transform: 'translateY(0deg)',
         }}
       >
         {/* Stripe Content */}
-        <div className="relative w-full h-full flex flex-col items-center justify-center p-4">
+        <div className="relative w-full h-full flex flex-col items-center justify-center px-8 py-4">
           {/* Merch Text */}
           <div 
             className="font-['Inter:Bold',sans-serif] font-bold uppercase text-black text-center"
             style={{ 
               fontSize: `${textSize}px`,
               lineHeight: '1.1',
+              letterSpacing: '2px',
             }}
           >
             Merch
@@ -89,22 +86,23 @@ export default function Hero({ bgPositionX = 50, stripeScale = 1 }: HeroProps) {
           
           {/* Taglines */}
           <div 
-            className="font-['Inter:Bold',sans-serif] font-bold text-black text-center mt-2"
+            className="font-['Inter:Bold',sans-serif] font-bold text-black text-center"
             style={{ 
-              fontSize: `${Math.floor(12 * stripeScale)}px`,
-              lineHeight: '1.3',
+              fontSize: `${Math.floor(11 * stripeScale)}px`,
+              lineHeight: '1.4',
+              letterSpacing: '-0.24px',
             }}
           >
-            <p>ILLUSTRATIONS THAT MAKE SENSE</p>
-            <p>FIND NEW DIGITAL ART</p>
+            <p>ILLUSTRATIONS THAT MAKE SENSE. FIND NEW DIGITAL ART</p>
+            <p>{`LET'S MAKE EVERY PRODUCT YOURS FOR REAL.`}</p>
           </div>
           
           {/* Artist Name */}
           <div 
-            className="mt-2"
+            className="mt-1"
             style={{ 
               fontFamily: "'Mr Dafoe', cursive",
-              fontSize: `${Math.floor(16 * stripeScale)}px`,
+              fontSize: `${Math.floor(14 * stripeScale)}px`,
               color: '#000',
             }}
           >
