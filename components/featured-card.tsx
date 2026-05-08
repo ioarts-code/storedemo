@@ -46,7 +46,7 @@ export default function FeaturedCard({
 
   if (isLoading) {
     return (
-      <div className="w-[742px] h-[250px] bg-white rounded-lg animate-pulse" />
+      <div className="w-[380px] h-[180px] bg-white rounded-lg animate-pulse" />
     );
   }
 
@@ -56,33 +56,33 @@ export default function FeaturedCard({
 
   return (
     <div 
-      className="absolute flex flex-col items-start p-8 w-[742px] bg-white rounded-lg gap-4 z-10 shadow-lg"
+      className="absolute flex flex-col items-start p-5 w-[380px] bg-white rounded-lg gap-3 z-10 shadow-lg"
       style={{
         top: positionTop,
         left: positionLeft,
       }}
     >
       {/* Badge */}
-      <div className="px-4 py-1 bg-black rounded-full">
-        <span className="text-white font-bold text-xs uppercase tracking-tight">
+      <div className="px-3 py-1 bg-black rounded-full">
+        <span className="text-white font-bold text-[10px] uppercase tracking-tight">
           {badge}
         </span>
       </div>
 
       {/* Title */}
-      <h3 className="text-2xl font-bold text-black leading-tight">
+      <h3 className="text-lg font-bold text-black leading-tight">
         {product.name}
       </h3>
 
       {/* Description */}
-      <p className="text-sm text-black leading-relaxed line-clamp-3">
+      <p className="text-xs text-black leading-relaxed line-clamp-2">
         {product.description}
       </p>
 
       {/* Shop Button */}
       <Link
         href={`/products/${product.slug}`}
-        className="mt-auto px-12 py-3 bg-black text-white font-bold text-lg uppercase rounded-lg hover:bg-gray-800 transition-colors"
+        className="mt-auto px-6 py-2 bg-black text-white font-bold text-sm uppercase rounded-lg hover:bg-gray-800 transition-colors"
       >
         Shop
       </Link>
