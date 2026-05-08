@@ -67,7 +67,6 @@ export default function Hero({ bgPositionX = 50, stripeScale = 1 }: HeroProps) {
         className="absolute bottom-0 left-0 right-0 w-full bg-[rgba(255,255,255,0.95)] pointer-events-none"
         style={{
           height: `${stripeHeight}px`,
-          transform: 'translateY(0deg)',
         }}
       >
         {/* Stripe Content */}
