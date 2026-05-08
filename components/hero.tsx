@@ -85,7 +85,7 @@ export default function Hero({
       <img
         alt="Hoodie Elden"
         src={backgroundImage}
-        className="absolute inset-0 w-full h-full bg-neutral-900 object-cover scale-100 opacity-100 pointer-events-none"
+        className="absolute inset-0 w-full h-full bg-transparent object-cover scale-100 opacity-100 pointer-events-none"
         style={{
           objectPosition: `${bgPositionX}% ${bgPositionY}%`,
         }}
