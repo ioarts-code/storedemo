@@ -7,12 +7,17 @@ import { GET_PRODUCT_BY_SLUG } from '@/lib/graphql-queries';
 
 interface HeroProps {
   bgPositionX?: number; // Background horizontal position in percentage (0-100)
-  containerPositionX?: number; // Merch container horizontal position in percentage (0-100)
+  stripeScale?: number; // Diagonal stripe scale (default 1, can be 0.5, 1, 1.5, etc.)
 }
 
-export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: HeroProps) {
+export default function Hero({ bgPositionX = 50, stripeScale = 1 }: HeroProps) {
   const [backgroundImage, setBackgroundImage] = useState<string>('');
   const [isLoading, setIsLoading] = useState(true);
+
+  // Stripe dimensions (scalable)
+  const stripeWidth = 800 * stripeScale;
+  const stripeHeight = 300 * stripeScale;
+  const textSize = Math.floor(170 * stripeScale);
 
   useEffect(() => {
     const fetchHoodie = async () => {
@@ -39,23 +44,11 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
 
   // Responsive positioning logic
   const getResponsivePosition = () => {
-    if (typeof window === 'undefined') return containerPositionX;
-    
-    const width = window.innerWidth;
-    
-    // Mobile: center at 50%
-    if (width < 768) {
-      return 50;
-    }
-    // Tablet: move to 60%
-    if (width < 1024) {
-      return 60;
-    }
-    // Desktop 1024px and above: use the prop value
-    return containerPositionX;
+    if (typeof window === 'undefined') return 0;
+    return 0; // Always top-left for the diagonal stripe
   };
 
-  const responsivePosition = typeof window !== 'undefined' ? getResponsivePosition() : containerPositionX;
+  const responsivePosition = typeof window !== 'undefined' ? getResponsivePosition() : 0;
 
   return (
     <div className="relative h-[900px] flex items-start justify-center overflow-hidden w-screen">
@@ -69,69 +62,53 @@ export default function Hero({ bgPositionX = 50, containerPositionX = 75 }: Hero
         }}
       />
 
-      {/* Spacer */}
-      <div className="flex-1 min-w-0 self-stretch" />
-
-      {/* Right panel */}
+      {/* Diagonal Stripe - Upper Left */}
       <div 
-        className="absolute h-[900px] top-0 w-[300px]"
+        className="absolute top-0 left-0 bg-[rgba(255,255,255,0.95)] pointer-events-none"
         style={{
-          left: `${responsivePosition}%`,
-          transform: 'translateX(-50%)',
+          width: `${stripeWidth}px`,
+          height: `${stripeHeight}px`,
+          transform: 'rotate(-45deg)',
+          transformOrigin: 'top left',
+          marginTop: `-${(stripeHeight / 2) * Math.sin(Math.PI / 4)}px`,
+          marginLeft: `-${(stripeWidth / 2) * Math.cos(Math.PI / 4)}px`,
         }}
       >
-        {/* Merch Banner */}
-        <div className="bg-[rgba(72,72,72,0.56)] relative size-full">
-          <div className="absolute border-r-[3px] border-l-[3px] border-solid border-white inset-0" />
-          
-          {/* Rotated Merch Text */}
-          <div className="-translate-x-1/2 absolute content-stretch flex h-[871px] items-center justify-center left-1/2 top-[37px] w-[349px]">
-            <div className="flex h-[871px] items-center justify-center relative shrink-0 w-[349px]">
-              <div className="flex-none rotate-90">
-                <div className="content-stretch flex flex-col items-start relative">
-                  <div className="content-stretch flex flex-col h-[349px] items-start justify-center relative shrink-0 w-[871px]">
-                    <div className="content-stretch flex flex-col items-start py-[3px] relative shrink-0 w-full">
-                      <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] not-italic relative shrink-0 text-[170px] text-[transparent] uppercase w-full">
-                        <p className="leading-[normal]">Merch</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+        {/* Stripe Content */}
+        <div className="relative w-full h-full flex flex-col items-center justify-center p-4">
+          {/* Merch Text */}
+          <div 
+            className="font-['Inter:Bold',sans-serif] font-bold uppercase text-black text-center"
+            style={{ 
+              fontSize: `${textSize}px`,
+              lineHeight: '1.1',
+            }}
+          >
+            Merch
           </div>
           
           {/* Taglines */}
-          <div className="absolute content-stretch flex flex-col h-[132px] items-start justify-center left-[23.5%] right-[24.75%] top-[670px]">
-            <div className="h-[75px] relative shrink-0 w-full">
-              <div className="flex flex-col items-end size-full">
-                <div className="content-stretch flex flex-col items-end pr-[7px] relative size-full">
-                  <div className="-translate-y-1/2 absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] lowercase not-italic right-[-0.24px] text-[#ffffff] text-[14px] text-right top-[43.98px] tracking-[-0.24px] whitespace-nowrap">
-                    <p className="leading-[25px] mb-0 whitespace-pre">ILLUSTRATIONS THAT MAKE SENSE.</p>
-                    <p className="leading-[25px] mb-0 whitespace-pre">FIND NEW DIGITAL ART</p>
-                    <p className="leading-[25px] mb-0 whitespace-pre">{`LET'S MAKE EVERY `}</p>
-                    <p className="leading-[25px] whitespace-pre">PRODUCT YOURS FOR REAL.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div 
+            className="font-['Inter:Bold',sans-serif] font-bold text-black text-center mt-2"
+            style={{ 
+              fontSize: `${Math.floor(12 * stripeScale)}px`,
+              lineHeight: '1.3',
+            }}
+          >
+            <p>ILLUSTRATIONS THAT MAKE SENSE</p>
+            <p>FIND NEW DIGITAL ART</p>
           </div>
-
-          {/* Gradient Merch Overlay */}
-          <div className="-translate-x-1/2 absolute flex h-[871px] items-center justify-center left-1/2 top-[37px] w-[349px]">
-            <div className="flex h-[871px] items-center justify-center relative shrink-0 w-[349px]">
-              <div className="flex-none rotate-90">
-                <div className="content-stretch flex flex-col items-start relative">
-                  <div className="content-stretch flex flex-col h-[349px] items-start justify-center relative shrink-0 w-[871px]">
-                    <div className="content-stretch flex flex-col items-start py-[3px] relative shrink-0 w-full">
-                      <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] not-italic relative shrink-0 text-[170px] uppercase w-full text-white">
-                        <p className="leading-[normal]">Merch</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          
+          {/* Artist Name */}
+          <div 
+            className="mt-2"
+            style={{ 
+              fontFamily: "'Mr Dafoe', cursive",
+              fontSize: `${Math.floor(16 * stripeScale)}px`,
+              color: '#000',
+            }}
+          >
+            Anders Altmann
           </div>
         </div>
       </div>
