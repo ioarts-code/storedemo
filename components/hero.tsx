@@ -17,7 +17,7 @@ interface HeroProps {
 
 export default function Hero({ 
   bgPositionX = 50, 
-  bgPositionY = 50,
+  bgPositionY = 10,
   showFeaturedCard = true,
   featuredCardSlug = 'hoodie-elden',
   featuredCardPositionTop = '80px',
