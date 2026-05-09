@@ -140,14 +140,14 @@ export default function Hero({
       {showFeaturedCard && (
         <>
           {featuredCardLoading ? (
-            <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 lg:left-auto lg:top-20 lg:right-20 lg:translate-y-0 lg:translate-x-0 w-96 h-56 bg-transparent rounded-lg animate-pulse" />
+            <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 lg:left-auto lg:top-20 lg:right-20 lg:translate-y-0 lg:translate-x-0 w-96 h-56 bg-white/20 rounded-lg animate-pulse" />
           ) : featuredProduct ? (
             <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 lg:left-auto lg:top-20 lg:right-20 lg:translate-y-0 lg:translate-x-0 flex flex-col items-start p-8 w-96 bg-transparent rounded-lg gap-4 z-10">
               <div className="absolute border-l-3 border-white inset-0 pointer-events-none" />
 
               {/* Badge */}
-              <div className="flex items-center px-4 py-1 border-2 border-white rounded-full">
-                <span className="text-xs font-bold text-white uppercase tracking-tight">Top Pick</span>
+              <div className="flex items-center px-4 py-1 border-2 border-gray-300 rounded-full">
+                <span className="text-xs font-bold text-gray-300 uppercase tracking-tight">Top Pick</span>
               </div>
 
               {/* Title */}
