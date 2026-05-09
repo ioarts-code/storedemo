@@ -55,15 +55,6 @@ function ShopOnEtsy() {
   );
 }
 
-function DivAbsolute() {
-  return (
-    <div className="absolute content-stretch cursor-pointer flex gap-[8px] items-start right-[44px] top-[31px]" data-name="div.absolute">
-      <VisitDeviantArt />
-      <ShopOnEtsy />
-    </div>
-  );
-}
-
 function A() {
   return (
     <a
