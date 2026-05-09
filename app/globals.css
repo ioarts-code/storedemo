@@ -95,7 +95,6 @@
   --breakpoint-mobile: 0;
   --breakpoint-tablet: 40rem;        /* 640px  */
   --breakpoint-desktop: 64rem;       /* 1024px */
-  --breakpoint-desktop-lg: 85.375rem; /* 1366px */
   --breakpoint-desktop-wide: 90rem;  /* 1440px */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
