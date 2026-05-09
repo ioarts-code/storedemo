@@ -22,8 +22,8 @@ const truncateDescription = (text: string, maxLength: number = 60): string => {
 };
 
 export default function Hero({
-  bgPositionX = 25,
-  bgPositionY = 40,
+  bgPositionX = 50,
+  bgPositionY = 50,
   showFeaturedCard = true,
   featuredCardSlug = 'hoodie-elden',
   featuredCardPositionTop = '80px',
