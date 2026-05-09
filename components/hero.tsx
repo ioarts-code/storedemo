@@ -136,7 +136,7 @@ export default function Hero({
         </div>
       </div>
 
-      {/* Featured Card Overlay */}
+      {/* Featured Card Overlay. */}
       {showFeaturedCard && (
         <>
           {featuredCardLoading ? (
