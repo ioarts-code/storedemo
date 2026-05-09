@@ -44,7 +44,7 @@ function ShopOnEtsy() {
   return (
     <a
       className="content-stretch flex items-center justify-center p-[3px] relative rounded-[6px] shrink-0 size-[48px]"
-      href="https://oats-iso-27040139.figma.site/"
+      href="https://www.etsy.com/shop/ioartseu"
       target="_blank"
       rel="noreferrer"
       data-name="Shop on Etsy"
