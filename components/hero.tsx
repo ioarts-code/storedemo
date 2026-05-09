@@ -7,13 +7,8 @@ import { createHygraphClient } from '@/lib/hygraph-client';
 import { GET_PRODUCT_BY_SLUG } from '@/lib/graphql-queries';
 
 interface HeroProps {
-  bgPositionX?: number; // Background horizontal position in percentage (0-100)
-  bgPositionY?: number; // Background vertical position in percentage (0-100)
   showFeaturedCard?: boolean; // Show featured card overlay
   featuredCardSlug?: string; // Featured product slug
-  featuredCardPositionTop?: string; // Featured card top position
-  featuredCardPositionRight?: string; // Featured card right position
-  featuredCardPositionLeft?: string; // Featured card left position (for mobile centering)
 }
 
 // Helper function to truncate text to 60 characters
@@ -23,39 +18,9 @@ const truncateDescription = (text: string, maxLength: number = 60): string => {
 };
 
 export default function Hero({
-  bgPositionX = 50,
-  bgPositionY = 50,
   showFeaturedCard = true,
   featuredCardSlug = 'hoodie-elden',
-  featuredCardPositionTop = '80px',
-  featuredCardPositionRight = '80px',
-  featuredCardPositionLeft,
 }: HeroProps) {
-  // Responsive positioning for featured card
-  const getCardPositioning = () => {
-    if (typeof window === 'undefined') {
-      return { right: featuredCardPositionRight, left: 'auto' };
-    }
-    
-    const width = window.innerWidth;
-    
-    // Mobile: center the card
-    if (width < 768) {
-      return { 
-        right: 'auto', 
-        left: '50%',
-        transform: 'translateX(-50%)',
-      };
-    }
-    
-    // Desktop: position on right
-    return { 
-      right: featuredCardPositionRight, 
-      left: 'auto',
-    };
-  };
-  
-  const cardPositioning = typeof window !== 'undefined' ? getCardPositioning() : { right: featuredCardPositionRight, left: 'auto' };
   const [backgroundImage, setBackgroundImage] = useState<string>('');
   const [isLoading, setIsLoading] = useState(true);
   const [featuredProduct, setFeaturedProduct] = useState<Product | null>(null);
@@ -115,18 +80,12 @@ export default function Hero({
 
   return (
     <div className="relative h-[1000px] flex items-start justify-center overflow-hidden w-screen">
-      {/* Background image */}
+      {/* Background image - hidden on screens smaller than 1024px */}
       <img
         alt="Hoodie Elden"
         src={backgroundImage}
         loading="eager"
-        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-        style={{
-          objectPosition: typeof window !== 'undefined' && window.innerWidth < 768 
-            ? '50% 50%' 
-            : `${bgPositionX}% ${bgPositionY}%`,
-          opacity: 1,
-        }}
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none hidden lg:block"
       />
 
       {/* Horizontal Stripe Divider - Bottom */}
@@ -181,62 +140,45 @@ export default function Hero({
       {showFeaturedCard && (
         <>
           {featuredCardLoading ? (
-            <div
-              className="absolute bg-[rgba(255,255,255,0)] rounded-[0px] animate-pulse"
-              style={{
-                top: featuredCardPositionTop,
-                right: featuredCardPositionRight,
-                width: '300px',
-                height: '220px',
-              }}
-            />
+            <div className="absolute hidden lg:block top-20 right-20 w-96 h-56 bg-white/20 rounded-lg animate-pulse" />
           ) : featuredProduct ? (
-            <div
-              className="absolute bg-[rgba(255,255,255,0)] content-stretch flex flex-col items-start pb-[32px] pl-[27px] pr-[16px] pt-[31px] relative rounded-[6px] w-[400px] mr-80"
-              style={{
-                top: featuredCardPositionTop,
-                right: cardPositioning.right,
-                left: cardPositioning.left,
-                transform: (cardPositioning as any).transform,
-              }}
-            >
-              <div aria-hidden="true" className="absolute border-l-3 border-solid border-white inset-0 pointer-events-none rounded-[0px]" />
+            <div className="absolute hidden lg:flex lg:right-20 lg:top-20 flex flex-col items-start p-8 w-96 bg-white/20 rounded-lg gap-4 z-10">
+              <div className="absolute border-l-3 border-white inset-0 pointer-events-none rounded-lg" />
 
               {/* Badge */}
-              <div className="content-stretch flex items-start mb-[-0.6px] pb-[5px] pt-[6px] px-[16px] relative rounded-[33554400px] shrink-0">
-                <div aria-hidden="true" className="absolute border-3 border-[#e0e0e0] border-solid inset-0 pointer-events-none rounded-[33554400px]" />
-                <div className="capitalize flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] not-italic relative shrink-0 text-[#e0e0e0] text-[11.6px] tracking-[-0.18px] whitespace-nowrap">
-                  <p className="leading-[14.4px]">Top Pick</p>
-                </div>
+              <div className="flex items-center px-4 py-1 border-2 border-gray-300 rounded-full">
+                <span className="text-xs font-bold text-gray-300 uppercase tracking-tight">Top Pick</span>
               </div>
 
               {/* Title */}
-              <div className="content-stretch flex flex-col items-start mb-[-0.6px] pb-[3px] pt-[19.6px] relative shrink-0 w-full">
-                <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] not-italic relative shrink-0 text-[36px] text-white tracking-[-0.36px] w-full line-clamp-2">
-                  <p className="leading-[41px]">{featuredProduct.name}</p>
-                </div>
-              </div>
+              <h3 className="text-3xl font-bold text-white leading-tight line-clamp-2">
+                {featuredProduct.name}
+              </h3>
 
               {/* Description */}
-              <div className="content-stretch flex flex-col items-start mb-[-0.6px] pb-[19.6px] relative shrink-0 w-full">
-                <div className="flex flex-col font-['Inter:Regular',sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[13.2px] text-white tracking-[-0.21px] w-full line-clamp-2">
-                  <p className="leading-[16.8px]">{truncateDescription(featuredProduct.description)}</p>
-                </div>
-              </div>
+              <p className="text-sm text-white leading-relaxed line-clamp-2">
+                {truncateDescription(featuredProduct.description)}
+              </p>
 
               {/* Button */}
-              <Link href={`/products/${featuredProduct.slug}`}>
-                <div className="content-stretch flex items-center justify-center px-[48px] py-[15px] relative rounded-[6px] shrink-0 w-[201px] cursor-pointer hover:opacity-80 transition-opacity">
-                  <div aria-hidden="true" className="absolute border-3 border-[#e0e0e0] border-solid inset-0 pointer-events-none rounded-[6px]" />
-                  <div className="relative shrink-0">
-                    <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex items-start justify-center relative size-full">
-                      <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] not-italic relative shrink-0 text-[#e0e0e0] text-[20px] text-center tracking-[-0.36px] uppercase whitespace-nowrap">
-                        <p className="leading-[28.8px]">Shop</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              <Link
+                href={`/products/${featuredProduct.slug}`}
+                className="flex items-center justify-center px-12 py-3 border-3 border-gray-300 rounded-lg text-gray-300 font-bold uppercase hover:opacity-80 transition-opacity"
+              >
+                Shop
               </Link>
+
+              {/* Mobile: Center the card */}
+              <style>{`
+                @media (max-width: 1023px) {
+                  [data-featured-card] {
+                    left: 50% !important;
+                    right: auto !important;
+                    transform: translateX(-50%) !important;
+                    display: flex !important;
+                  }
+                }
+              `}</style>
             </div>
           ) : null}
         </>
