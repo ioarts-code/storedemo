@@ -13,6 +13,7 @@ interface HeroProps {
   featuredCardSlug?: string; // Featured product slug
   featuredCardPositionTop?: string; // Featured card top position
   featuredCardPositionRight?: string; // Featured card right position
+  featuredCardPositionLeft?: string; // Featured card left position (for mobile centering)
 }
 
 // Helper function to truncate text to 60 characters
@@ -28,7 +29,33 @@ export default function Hero({
   featuredCardSlug = 'hoodie-elden',
   featuredCardPositionTop = '80px',
   featuredCardPositionRight = '80px',
+  featuredCardPositionLeft,
 }: HeroProps) {
+  // Responsive positioning for featured card
+  const getCardPositioning = () => {
+    if (typeof window === 'undefined') {
+      return { right: featuredCardPositionRight, left: 'auto' };
+    }
+    
+    const width = window.innerWidth;
+    
+    // Mobile: center the card
+    if (width < 768) {
+      return { 
+        right: 'auto', 
+        left: '50%',
+        transform: 'translateX(-50%)',
+      };
+    }
+    
+    // Desktop: position on right
+    return { 
+      right: featuredCardPositionRight, 
+      left: 'auto',
+    };
+  };
+  
+  const cardPositioning = typeof window !== 'undefined' ? getCardPositioning() : { right: featuredCardPositionRight, left: 'auto' };
   const [backgroundImage, setBackgroundImage] = useState<string>('');
   const [isLoading, setIsLoading] = useState(true);
   const [featuredProduct, setFeaturedProduct] = useState<Product | null>(null);
@@ -95,7 +122,9 @@ export default function Hero({
         loading="eager"
         className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         style={{
-          objectPosition: `${bgPositionX}% ${bgPositionY}%`,
+          objectPosition: typeof window !== 'undefined' && window.innerWidth < 768 
+            ? '50% 50%' 
+            : `${bgPositionX}% ${bgPositionY}%`,
           opacity: 1,
         }}
       />
@@ -166,7 +195,9 @@ export default function Hero({
               className="absolute bg-[rgba(255,255,255,0)] content-stretch flex flex-col items-start pb-[32px] pl-[27px] pr-[16px] pt-[31px] relative rounded-[6px] w-[400px] mr-80"
               style={{
                 top: featuredCardPositionTop,
-                right: featuredCardPositionRight,
+                right: cardPositioning.right,
+                left: cardPositioning.left,
+                transform: (cardPositioning as any).transform,
               }}
             >
               <div aria-hidden="true" className="absolute border-l-3 border-solid border-white inset-0 pointer-events-none rounded-[0px]" />
