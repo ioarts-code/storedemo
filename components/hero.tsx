@@ -51,7 +51,7 @@ export default function Hero({
     // Desktop: position on right
     return { 
       right: featuredCardPositionRight, 
-      left: 'auto',
+      left: '25%',
     };
   };
   
