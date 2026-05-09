@@ -163,7 +163,7 @@ export default function Hero({
             />
           ) : featuredProduct ? (
             <div
-              className="absolute bg-[rgba(255,255,255,0)] content-stretch flex flex-col items-start pb-[32px] pl-[27px] pr-[16px] pt-[31px] relative rounded-[6px] w-[400px]"
+              className="absolute bg-[rgba(255,255,255,0)] content-stretch flex flex-col items-start pb-[32px] pl-[27px] pr-[16px] pt-[31px] relative rounded-[6px] w-[400px] mr-80"
               style={{
                 top: featuredCardPositionTop,
                 right: featuredCardPositionRight,
