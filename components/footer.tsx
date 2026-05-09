@@ -14,7 +14,7 @@ function VisitDeviantArt() {
   return (
     <a
       className="content-stretch flex items-center justify-center p-[3px] relative rounded-[6px] shrink-0 size-[48px]"
-      href="https://oats-iso-27040139.figma.site/"
+      href="https://www.deviantart.com/ioartseu/"
       target="_blank"
       rel="noreferrer"
       data-name="Visit DeviantArt"
@@ -44,7 +44,7 @@ function ShopOnEtsy() {
   return (
     <a
       className="content-stretch flex items-center justify-center p-[3px] relative rounded-[6px] shrink-0 size-[48px]"
-      href="https://oats-iso-27040139.figma.site/"
+      href="https://www.etsy.com/shop/ioartseu"
       target="_blank"
       rel="noreferrer"
       data-name="Shop on Etsy"
@@ -67,7 +67,7 @@ function DivAbsolute() {
 function A() {
   return (
     <a
-      href="mailto:contact@ioarts.com"
+      href="mailto:brevduva999@proton.me"
       className="flex items-center shrink-0 hover:opacity-75 transition-opacity font-['Inter:Regular',sans-serif] font-normal text-[14.6px] text-white tracking-[-0.24px] leading-[19.2px]"
       data-name="a"
     >
