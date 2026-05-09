@@ -15,8 +15,8 @@ interface HeroProps {
   featuredCardPositionRight?: string; // Featured card right position
 }
 
-export default function Hero({ 
-  bgPositionX = 20, 
+export default function Hero({
+  bgPositionX = 200,
   bgPositionY = 40,
   showFeaturedCard = true,
   featuredCardSlug = 'hoodie-elden',
@@ -93,7 +93,7 @@ export default function Hero({
       />
 
       {/* Horizontal Stripe Divider - Bottom */}
-      <div 
+      <div
         className="absolute bottom-0 left-0 right-0 w-full bg-[rgba(255,255,255,0.95)] pointer-events-none"
         style={{
           height: '160px',
@@ -102,9 +102,9 @@ export default function Hero({
         {/* Stripe Content */}
         <div className="relative w-full h-full flex flex-col items-center justify-center px-8 py-4">
           {/* Merch Text */}
-          <div 
+          <div
             className="font-['Inter:Bold',sans-serif] font-bold uppercase text-black text-center"
-            style={{ 
+            style={{
               fontSize: '24px',
               lineHeight: '1.1',
               letterSpacing: '2px',
@@ -112,11 +112,11 @@ export default function Hero({
           >
             Merch
           </div>
-          
+
           {/* Taglines */}
-          <div 
+          <div
             className="font-['Inter:Bold',sans-serif] font-bold text-black text-center"
-            style={{ 
+            style={{
               fontSize: '11px',
               lineHeight: '1.4',
               letterSpacing: '-0.24px',
@@ -125,11 +125,11 @@ export default function Hero({
             <p>ILLUSTRATIONS THAT MAKE SENSE. FIND NEW DIGITAL ART</p>
             <p>{`LET'S MAKE EVERY PRODUCT YOURS FOR REAL.`}</p>
           </div>
-          
+
           {/* Artist Name */}
-          <div 
+          <div
             className="mt-1"
-            style={{ 
+            style={{
               fontFamily: "'Mr Dafoe', cursive",
               fontSize: '16px',
               color: '#000',
@@ -144,7 +144,7 @@ export default function Hero({
       {showFeaturedCard && (
         <>
           {featuredCardLoading ? (
-            <div 
+            <div
               className="absolute bg-[rgba(255,255,255,0)] rounded-[0px] animate-pulse"
               style={{
                 top: featuredCardPositionTop,
@@ -154,7 +154,7 @@ export default function Hero({
               }}
             />
           ) : featuredProduct ? (
-            <div 
+            <div
               className="absolute bg-[rgba(255,255,255,0.2)] content-stretch flex flex-col items-start pb-[32px] pl-[27px] pr-[16px] pt-[31px] relative rounded-[6px] w-[800px]"
               style={{
                 top: featuredCardPositionTop,
