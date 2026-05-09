@@ -39,6 +39,7 @@ export default function Hero({
 
         const product = data?.products?.[0];
         if (product?.images?.[0]?.url) {
+          console.log('[v0] Background image URL:', product.images[0].url);
           setBackgroundImage(product.images[0].url);
         }
       } catch (error) {
@@ -89,7 +90,7 @@ export default function Hero({
         className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         style={{
           objectPosition: `${bgPositionX}% ${bgPositionY}%`,
-          opacity: backgroundImage ? 1 : 0,
+          opacity: 1,
         }}
       />
 
