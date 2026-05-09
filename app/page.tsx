@@ -46,9 +46,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[#0F0F0F]">
       <Hero 
-        showFeaturedCard={true}
-                featuredCardPositionRight="80px"
-      />
+        />
 
       {error && (
         <div className="p-4 bg-[#1A1A1A] border border-red-700 rounded-lg text-center mx-4 mt-8">
