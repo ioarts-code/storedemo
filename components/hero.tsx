@@ -15,6 +15,12 @@ interface HeroProps {
   featuredCardPositionRight?: string; // Featured card right position
 }
 
+// Helper function to truncate text to 60 characters
+const truncateDescription = (text: string, maxLength: number = 60): string => {
+  if (text.length <= maxLength) return text;
+  return text.substring(0, maxLength).trim() + '...';
+};
+
 export default function Hero({
   bgPositionX = 25,
   bgPositionY = 40,
@@ -183,7 +189,7 @@ export default function Hero({
               {/* Description */}
               <div className="content-stretch flex flex-col items-start mb-[-0.6px] pb-[19.6px] relative shrink-0 w-full">
                 <div className="flex flex-col font-['Inter:Regular',sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[13.2px] text-white tracking-[-0.21px] w-full line-clamp-2">
-                  <p className="leading-[16.8px]">{featuredProduct.description}</p>
+                  <p className="leading-[16.8px]">{truncateDescription(featuredProduct.description)}</p>
                 </div>
               </div>
 
