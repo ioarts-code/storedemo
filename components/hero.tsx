@@ -15,9 +15,15 @@ interface HeroProps {
   featuredCardPositionRight?: string; // Featured card right position
 }
 
-export default function Hero({ 
-  bgPositionX = 50, 
-  bgPositionY = 10,
+// Helper function to truncate text to 60 characters
+const truncateDescription = (text: string, maxLength: number = 60): string => {
+  if (text.length <= maxLength) return text;
+  return text.substring(0, maxLength).trim() + '...';
+};
+
+export default function Hero({
+  bgPositionX = 25,
+  bgPositionY = 40,
   showFeaturedCard = true,
   featuredCardSlug = 'hoodie-elden',
   featuredCardPositionTop = '80px',
@@ -39,6 +45,7 @@ export default function Hero({
 
         const product = data?.products?.[0];
         if (product?.images?.[0]?.url) {
+          console.log('[v0] Background image URL:', product.images[0].url);
           setBackgroundImage(product.images[0].url);
         }
       } catch (error) {
@@ -80,30 +87,32 @@ export default function Hero({
   }, [showFeaturedCard, featuredCardSlug]);
 
   return (
-    <div className="relative h-[900px] flex items-start justify-center overflow-hidden w-screen">
+    <div className="relative h-[1000px] flex items-start justify-center overflow-hidden w-screen">
       {/* Background image */}
       <img
         alt="Hoodie Elden"
         src={backgroundImage}
-        className="absolute inset-0 w-full h-full bg-neutral-900 object-cover scale-100 opacity-100 pointer-events-none"
+        loading="eager"
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         style={{
           objectPosition: `${bgPositionX}% ${bgPositionY}%`,
+          opacity: 1,
         }}
       />
 
       {/* Horizontal Stripe Divider - Bottom */}
-      <div 
+      <div
         className="absolute bottom-0 left-0 right-0 w-full bg-[rgba(255,255,255,0.95)] pointer-events-none"
         style={{
-          height: '120px',
+          height: '160px',
         }}
       >
         {/* Stripe Content */}
         <div className="relative w-full h-full flex flex-col items-center justify-center px-8 py-4">
           {/* Merch Text */}
-          <div 
+          <div
             className="font-['Inter:Bold',sans-serif] font-bold uppercase text-black text-center"
-            style={{ 
+            style={{
               fontSize: '24px',
               lineHeight: '1.1',
               letterSpacing: '2px',
@@ -111,11 +120,11 @@ export default function Hero({
           >
             Merch
           </div>
-          
+
           {/* Taglines */}
-          <div 
+          <div
             className="font-['Inter:Bold',sans-serif] font-bold text-black text-center"
-            style={{ 
+            style={{
               fontSize: '11px',
               lineHeight: '1.4',
               letterSpacing: '-0.24px',
@@ -124,13 +133,13 @@ export default function Hero({
             <p>ILLUSTRATIONS THAT MAKE SENSE. FIND NEW DIGITAL ART</p>
             <p>{`LET'S MAKE EVERY PRODUCT YOURS FOR REAL.`}</p>
           </div>
-          
+
           {/* Artist Name */}
-          <div 
+          <div
             className="mt-1"
-            style={{ 
+            style={{
               fontFamily: "'Mr Dafoe', cursive",
-              fontSize: '14px',
+              fontSize: '16px',
               color: '#000',
             }}
           >
@@ -143,24 +152,24 @@ export default function Hero({
       {showFeaturedCard && (
         <>
           {featuredCardLoading ? (
-            <div 
-              className="absolute bg-[rgba(255,255,255,0.2)] rounded-[6px] animate-pulse"
+            <div
+              className="absolute bg-[rgba(255,255,255,0)] rounded-[0px] animate-pulse"
               style={{
                 top: featuredCardPositionTop,
                 right: featuredCardPositionRight,
-                width: '800px',
+                width: '300px',
                 height: '220px',
               }}
             />
           ) : featuredProduct ? (
-            <div 
-              className="absolute bg-[rgba(255,255,255,0.2)] content-stretch flex flex-col items-start pb-[32px] pl-[27px] pr-[16px] pt-[31px] relative rounded-[6px] w-[800px]"
+            <div
+              className="absolute bg-[rgba(255,255,255,0)] content-stretch flex flex-col items-start pb-[32px] pl-[27px] pr-[16px] pt-[31px] relative rounded-[6px] w-[400px]"
               style={{
                 top: featuredCardPositionTop,
                 right: featuredCardPositionRight,
               }}
             >
-              <div aria-hidden="true" className="absolute border-l-3 border-solid border-white inset-0 pointer-events-none rounded-[6px]" />
+              <div aria-hidden="true" className="absolute border-l-3 border-solid border-white inset-0 pointer-events-none rounded-[0px]" />
 
               {/* Badge */}
               <div className="content-stretch flex items-start mb-[-0.6px] pb-[5px] pt-[6px] px-[16px] relative rounded-[33554400px] shrink-0">
@@ -180,7 +189,7 @@ export default function Hero({
               {/* Description */}
               <div className="content-stretch flex flex-col items-start mb-[-0.6px] pb-[19.6px] relative shrink-0 w-full">
                 <div className="flex flex-col font-['Inter:Regular',sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[13.2px] text-white tracking-[-0.21px] w-full line-clamp-2">
-                  <p className="leading-[16.8px]">{featuredProduct.description}</p>
+                  <p className="leading-[16.8px]">{truncateDescription(featuredProduct.description)}</p>
                 </div>
               </div>
 
