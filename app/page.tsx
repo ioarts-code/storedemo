@@ -47,8 +47,7 @@ export default function Home() {
     <main className="min-h-screen bg-[#0F0F0F]">
       <Hero 
         showFeaturedCard={true}
-        featuredCardPositionTop="150px"
-        featuredCardPositionRight="80px"
+                featuredCardPositionRight="80px"
       />
 
       {error && (
