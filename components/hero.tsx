@@ -79,7 +79,7 @@ export default function Hero({
   }, [showFeaturedCard, featuredCardSlug]);
 
   return (
-    <div className="relative lg:h-[1000px] mobile:h-[600px] flex items-start justify-center overflow-hidden w-screen">
+    <div className="relative lg:h-[1000px] mobile:h-[600px] flex lg:items-start mobile:items-middle justify-center overflow-hidden w-screen">
       {/* Background image - hidden on screens smaller than 1024px */}
       <img
         alt="Hoodie Elden"
