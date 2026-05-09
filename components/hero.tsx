@@ -142,7 +142,7 @@ export default function Hero({
           {featuredCardLoading ? (
             <div className="absolute hidden lg:block top-20 right-20 w-96 h-56 bg-white/20 rounded-lg animate-pulse" />
           ) : featuredProduct ? (
-            <div className="absolute hidden lg:flex lg:right-20 lg:top-20 flex flex-col items-start p-8 w-96 bg-white/20 rounded-lg gap-4 z-10">
+            <div className="absolute top-20 right-20 hidden lg:flex flex-col items-start p-8 w-96 bg-white/20 rounded-lg gap-4 z-10">
               <div className="absolute border-l-3 border-white inset-0 pointer-events-none rounded-lg" />
 
               {/* Badge */}
@@ -167,18 +167,6 @@ export default function Hero({
               >
                 Shop
               </Link>
-
-              {/* Mobile: Center the card */}
-              <style>{`
-                @media (max-width: 1023px) {
-                  [data-featured-card] {
-                    left: 50% !important;
-                    right: auto !important;
-                    transform: translateX(-50%) !important;
-                    display: flex !important;
-                  }
-                }
-              `}</style>
             </div>
           ) : null}
         </>
