@@ -11,7 +11,7 @@ interface HeroProps {
   featuredCardSlug?: string; // Featured product slug
 }
 
-// Helper function to truncate text to 60 characters
+// Helper function to truncate text to specified character length
 const truncateDescription = (text: string, maxLength: number = 60): string => {
   if (text.length <= maxLength) return text;
   return text.substring(0, maxLength).trim() + '...';
@@ -85,7 +85,7 @@ export default function Hero({
         alt="Hoodie Elden"
         src={backgroundImage}
         loading="eager"
-        className="absolute inset-0 w-full h-full object-cover pointer-events-none hidden lg:block"
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none lg:block"
       />
 
       {/* Horizontal Stripe Divider - Bottom */}
@@ -136,34 +136,35 @@ export default function Hero({
         </div>
       </div>
 
-      {/* Featured Card Overlay. */}
+      {/* Featured Card Overlay */}
       {showFeaturedCard && (
         <>
           {featuredCardLoading ? (
-            <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 lg:left-auto lg:top-20 lg:right-20 lg:translate-y-0 lg:translate-x-0 w-96 h-56 bg-white/20 rounded-lg animate-pulse" />
+            <div className="absolute top-6 right-6 sm:top-8 sm:right-8 md:top-10 md:right-10 lg:top-20 lg:right-20 w-56 sm:w-72 md:w-80 lg:w-96 h-auto bg-white/20 rounded-lg animate-pulse" />
           ) : featuredProduct ? (
-            <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 lg:left-auto lg:top-20 lg:right-20 lg:translate-y-0 lg:translate-x-0 flex flex-col items-start p-8 w-96 bg-transparent rounded-lg gap-4 z-10">
-              <div className="absolute border-l-3 border-white inset-0 pointer-events-none" />
+            <div className="absolute top-6 right-6 sm:top-8 sm:right-8 md:top-10 md:right-10 lg:top-20 lg:right-20 flex flex-col items-start p-4 sm:p-6 md:p-7 lg:p-8 w-56 sm:w-72 md:w-80 lg:w-96 bg-white/20 rounded-lg gap-2 sm:gap-4 z-10">
+              <div className="absolute border-l-3 border-white inset-0 pointer-events-none " />
 
               {/* Badge */}
-              <div className="flex items-center px-4 py-1 border-2 border-gray-300 rounded-full">
-                <span className="text-xs font-bold text-gray-300 uppercase tracking-tight">Top Pick</span>
+              <div className="flex items-center px-3 py-1 sm:px-4 border-2 border-white rounded-full">
+                <span className="text-xs font-bold text-white uppercase tracking-tight">Top Pick</span>
               </div>
 
               {/* Title */}
-              <h3 className="text-3xl font-bold text-white leading-tight line-clamp-2">
+              <h3 className="text-lg sm:text-2xl md:text-2xl lg:text-3xl font-bold text-white leading-tight line-clamp-2">
                 {featuredProduct.name}
               </h3>
 
               {/* Description */}
-              <p className="text-sm text-white leading-relaxed line-clamp-2">
-                {truncateDescription(featuredProduct.description)}
+              <p className="text-xs sm:text-sm text-white leading-relaxed line-clamp-2">
+                <span className="block sm:hidden">{truncateDescription(featuredProduct.description, 20)}</span>
+                <span className="hidden sm:block">{truncateDescription(featuredProduct.description, 60)}</span>
               </p>
 
               {/* Button */}
               <Link
                 href={`/products/${featuredProduct.slug}`}
-                className="flex items-center justify-center px-12 py-3 border-3 border-gray-300 rounded-lg text-gray-300 font-bold uppercase hover:opacity-80 transition-opacity"
+                className="flex items-center justify-center px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 border-3 border-white rounded-lg text-white font-bold text-xs sm:text-sm uppercase hover:opacity-80 transition-opacity"
               >
                 Shop
               </Link>

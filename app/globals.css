@@ -79,17 +79,24 @@
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
 
   /*
-   * Breakpoints
+   * Breakpoints & Tailwind Shortcuts
    * -----------------------------------------------------------
-   * mobile       base (no prefix) — 0px and up
-   * tablet       640px  — small tablets, large phones landscape
-   * desktop      1024px — laptops and standard desktops
-   * desktop-wide 1440px — wide monitors and large desktops
+   * mobile       (no prefix)  — 0px and up
+   * sm:          — 640px      — small tablets, large phones landscape
+   * md:          — 768px      — medium tablets
+   * lg:          — 1024px     — laptops and standard desktops
+   * xl:          — 1280px     — large desktops
+   * 2xl:         — 1536px     — extra large monitors
    *
    * Usage in JSX:
-   *   tablet:flex-row
-   *   desktop:grid-cols-3
-   *   desktop-wide:max-w-screen-desktop-wide
+   *   sm:flex-row
+   *   md:grid-cols-2
+   *   lg:grid-cols-3
+   *   xl:max-w-7xl
+   *   2xl:text-2xl
+   *
+   * Example: Apply different text sizes across breakpoints
+   *   text-sm sm:text-base md:text-lg lg:text-xl
    * -----------------------------------------------------------
    */
   --breakpoint-mobile: 0;
