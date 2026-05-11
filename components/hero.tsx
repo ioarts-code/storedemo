@@ -142,8 +142,8 @@ export default function Hero({
           {featuredCardLoading ? (
             <div className="absolute top-6 right-6 sm:top-8 sm:right-8 md:top-10 md:right-10 lg:top-20 lg:right-20 w-64 sm:w-72 md:w-80 lg:w-96 h-auto bg-white/20 rounded-lg animate-pulse" />
           ) : featuredProduct ? (
-            <div className="absolute top-6 right-6 sm:top-8 sm:right-8 md:top-10 md:right-10 lg:top-20 lg:right-20 flex flex-col items-start p-5 sm:p-6 md:p-7 lg:p-8 w-64 sm:w-72 md:w-80 lg:w-96 bg-white/20 gap-3 sm:gap-4 z-10">
-              <div className="absolute border-l-3 border-white inset-0 pointer-events-none rounded-lg" />
+            <div className="absolute top-6 right-6 sm:top-8 sm:right-8 md:top-10 md:right-10 lg:top-20 lg:right-20 flex flex-col items-start p-5 sm:p-6 md:p-7 lg:p-8 w-64 sm:w-72 md:w-80 lg:w-96 bg-white/20 rounded-lg gap-3 sm:gap-4 z-10">
+              <div className="absolute border-l-3 border-white inset-0 pointer-events-none " />
 
               {/* Badge */}
               <div className="flex items-center px-3 py-1 sm:px-4 border-2 border-white rounded-full">
