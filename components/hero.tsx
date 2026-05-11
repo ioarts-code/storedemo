@@ -145,6 +145,15 @@ export default function Hero({
             <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 lg:top-20 lg:left-auto lg:right-20 lg:translate-y-0 lg:translate-x-0 flex flex-col items-start p-8 w-96 bg-white/20 rounded-lg gap-4 z-10">
               <div className="absolute border-l-3 border-white inset-0 pointer-events-none rounded-lg" />
 
+              {/* Product Image */}
+              {featuredProduct.images?.[0]?.url && (
+                <img
+                  src={featuredProduct.images[0].url}
+                  alt={featuredProduct.name}
+                  className="absolute inset-0 w-full h-full object-cover rounded-lg opacity-30 pointer-events-none"
+                />
+              )}
+
               {/* Badge */}
               <div className="flex items-center px-4 py-1 border-2 border-white rounded-full">
                 <span className="text-xs font-bold text-white uppercase tracking-tight">Top Pick</span>
