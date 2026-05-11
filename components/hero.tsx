@@ -140,30 +140,30 @@ export default function Hero({
       {showFeaturedCard && (
         <>
           {featuredCardLoading ? (
-            <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 lg:top-20 lg:left-auto lg:right-20 lg:translate-y-0 lg:translate-x-0 w-96 h-56 bg-white/20 rounded-lg animate-pulse" />
+            <div className="absolute top-6 right-6 sm:top-8 sm:right-8 md:top-10 md:right-10 lg:top-20 lg:right-20 w-64 sm:w-72 md:w-80 lg:w-96 h-auto bg-white/20 rounded-lg animate-pulse" />
           ) : featuredProduct ? (
-            <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 lg:top-20 lg:left-auto lg:right-20 lg:translate-y-0 lg:translate-x-0 flex flex-col items-start p-8 w-96 bg-white/20 rounded-lg gap-4 z-10">
+            <div className="absolute top-6 right-6 sm:top-8 sm:right-8 md:top-10 md:right-10 lg:top-20 lg:right-20 flex flex-col items-start p-5 sm:p-6 md:p-7 lg:p-8 w-64 sm:w-72 md:w-80 lg:w-96 bg-white/20 rounded-lg gap-3 sm:gap-4 z-10">
               <div className="absolute border-l-3 border-white inset-0 pointer-events-none rounded-lg" />
 
               {/* Badge */}
-              <div className="flex items-center px-4 py-1 border-2 border-white rounded-full">
+              <div className="flex items-center px-3 py-1 sm:px-4 border-2 border-white rounded-full">
                 <span className="text-xs font-bold text-white uppercase tracking-tight">Top Pick</span>
               </div>
 
               {/* Title */}
-              <h3 className="text-3xl font-bold text-white leading-tight line-clamp-2">
+              <h3 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold text-white leading-tight line-clamp-2">
                 {featuredProduct.name}
               </h3>
 
               {/* Description */}
-              <p className="text-sm text-white leading-relaxed line-clamp-2">
+              <p className="text-xs sm:text-sm text-white leading-relaxed line-clamp-2">
                 {truncateDescription(featuredProduct.description)}
               </p>
 
               {/* Button */}
               <Link
                 href={`/products/${featuredProduct.slug}`}
-                className="flex items-center justify-center px-12 py-3 border-3 border-white rounded-lg text-white font-bold uppercase hover:opacity-80 transition-opacity"
+                className="flex items-center justify-center px-8 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 border-3 border-white rounded-lg text-white font-bold text-xs sm:text-sm uppercase hover:opacity-80 transition-opacity"
               >
                 Shop
               </Link>
