@@ -85,7 +85,7 @@ export default function Hero({
         alt="Hoodie Elden"
         src={backgroundImage}
         loading="eager"
-        className="absolute inset-0 w-full h-full object-cover pointer-events-none hidden"
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none lg:block"
       />
 
       {/* Horizontal Stripe Divider - Bottom */}
