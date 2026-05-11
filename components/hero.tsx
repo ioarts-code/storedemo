@@ -118,7 +118,7 @@ export default function Hero({
               letterSpacing: '-0.24px',
             }}
           >
-            <p>ILLUSTRATIONS THAT MAKE SENSE. FIND NEW DIGITAL ART</p>
+            <p>ILLUSTRATIONS THAT MAKE SENSE. FIND NEW ART WITH IOARTSEU</p>
             <p>{`LET'S MAKE EVERY PRODUCT YOURS FOR REAL.`}</p>
           </div>
 
