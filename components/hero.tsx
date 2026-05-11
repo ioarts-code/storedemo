@@ -11,7 +11,7 @@ interface HeroProps {
   featuredCardSlug?: string; // Featured product slug
 }
 
-// Helper function to truncate text to 60 characters
+// Helper function to truncate text to specified character length
 const truncateDescription = (text: string, maxLength: number = 60): string => {
   if (text.length <= maxLength) return text;
   return text.substring(0, maxLength).trim() + '...';
@@ -157,7 +157,8 @@ export default function Hero({
 
               {/* Description */}
               <p className="text-xs sm:text-sm text-white leading-relaxed line-clamp-2">
-                {truncateDescription(featuredProduct.description)}
+                <span className="block sm:hidden">{truncateDescription(featuredProduct.description, 20)}</span>
+                <span className="hidden sm:block">{truncateDescription(featuredProduct.description, 60)}</span>
               </p>
 
               {/* Button */}
