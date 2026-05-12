@@ -20,7 +20,7 @@ function GridItem({ product }: GridItemProps) {
 
   return (
     <Link href={`/products/${product.slug}`}>
-      <div className="content-stretch flex flex-col aspect-[3/4] desktop:aspect-auto desktop:h-[480px] desktop-wide:h-[650px] items-center justify-end justify-self-stretch overflow-clip pb-[5%] desktop:pb-[68px] desktop-wide:pb-[88px] relative shrink-0 cursor-pointer">
+      <div className="content-stretch flex flex-col aspect-[3/4] tablet:aspect-auto tablet:h-[350px] desktop:h-[480px] desktop-wide:h-[650px] items-center justify-end justify-self-stretch overflow-visible pb-[5%] desktop:pb-[68px] desktop-wide:pb-[88px] relative shrink-0 cursor-pointer">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {imageSrc && !imageError ? (
             <Image
@@ -38,7 +38,7 @@ function GridItem({ product }: GridItemProps) {
           )}
         </div>
 
-        <div className="content-stretch flex flex-col items-start w-[90%] relative shrink-1">
+        <div className="content-stretch flex flex-col items-start w-[90%] relative shrink-1 z-10">
           <div className="bg-[rgba(255,255,255,0.2)] mobile:h-[55px] tablet:h-[65px] desktop:h-[75px] desktop-wide:h-[90px] mobile:min-h-[55px] tablet:min-h-[65px] desktop:min-h-[75px] desktop-wide:min-h-[90px] relative rounded-[6px] shrink-0 w-full flex items-center justify-between px-4 desktop:px-6 desktop-wide:px-8">
             <div aria-hidden="true" className="absolute border-3 border-solid border-white inset-0 pointer-events-none rounded-[6px]" />
 
@@ -105,14 +105,14 @@ export function Grid({ products, isLoading = false, isEmpty = false }: GridProps
   return (
     <div className="content-stretch flex flex-col items-start px-[24px] relative size-full py-16 gap-16 bg-transparent">
       {categoryEntries.map(([categoryName, categoryProducts]) => (
-        <div key={categoryName} className="w-full">
+        <div key={categoryName} className="w-full bg-transparent">
           {/* Category Title */}
-          <h2 className="font-['Inter:Bold',sans-serif] font-bold text-[32px] text-white tracking-[-0.64px] mb-8 block desktop:block tablet:hidden mobile:hidden">
+          <h2 className="font-['Inter:Bold',sans-serif] font-bold text-[32px] text-white tracking-[-0.64px] mb-8 block desktop:block tablet:hidden mobile:hidden bg-transparent">
             {categoryName}
           </h2>
 
           {/* Category Grid - 1 per row on desktop, responsive on smaller screens */}
-          <div className="grid grid-cols-1 tablet:grid-cols-2 desktop-lg:grid-cols-3 gap-x-6 gap-y-16 tablet:gap-y-6 w-full">
+          <div className="grid grid-cols-1 tablet:grid-cols-2 desktop-lg:grid-cols-3 gap-x-6 gap-y-32 tablet:gap-y-16 w-full bg-transparent">
             {categoryProducts.map((product) => (
               <GridItem key={product.id} product={product} />
             ))}
