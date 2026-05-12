@@ -105,9 +105,9 @@ export function Grid({ products, isLoading = false, isEmpty = false }: GridProps
   return (
     <div className="content-stretch flex flex-col items-start px-[24px] relative size-full py-16 gap-16 bg-transparent">
       {categoryEntries.map(([categoryName, categoryProducts]) => (
-        <div key={categoryName} className="w-full">
+        <div key={categoryName} className="w-full bg-transparent">
           {/* Category Title */}
-          <h2 className="font-['Inter:Bold',sans-serif] font-bold text-[32px] text-white tracking-[-0.64px] mb-8 block desktop:block tablet:hidden mobile:hidden">
+          <h2 className="font-['Inter:Bold',sans-serif] font-bold text-[32px] text-white tracking-[-0.64px] mb-8 block desktop:block tablet:hidden mobile:hidden bg-transparent">
             {categoryName}
           </h2>
 
