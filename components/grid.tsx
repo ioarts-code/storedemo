@@ -20,12 +20,12 @@ function GridItem({ product }: GridItemProps) {
 
   return (
     <Link href={`/products/${product.slug}`}>
-      <div className="content-stretch flex flex-col aspect-[3/4] tablet:aspect-auto tablet:h-[250px] desktop:h-[480px] desktop-wide:h-[650px] items-center justify-end justify-self-stretch overflow-visible pb-[5%] desktop:pb-[68px] desktop-wide:pb-[88px] relative shrink-0 cursor-pointer">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none bg-transparent">
+      <div className="content-stretch flex flex-col aspect-[3/4] tablet:aspect-auto tablet:h-[350px] desktop:h-[480px] desktop-wide:h-[650px] items-center justify-end justify-self-stretch overflow-visible pb-[5%] desktop:pb-[68px] desktop-wide:pb-[88px] relative shrink-0 cursor-pointer">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {imageSrc && !imageError ? (
             <Image
               alt={product.name}
-              className="absolute inset-0 w-full h-full object-cover opacity-80"
+              className="absolute inset-0 w-full h-full object-cover"
               src={imageSrc}
               width={800}
               height={1200}
