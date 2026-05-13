@@ -29,7 +29,7 @@ export function HeroFeatured({
   return (
     <div className="relative w-full min-h-[900px] 2xl:min-h-[400px] overflow-hidden flex items-center justify-center bg-[#05050500] border-white/10">
             <div className="font-['Inter:Extra_Bold',sans-serif] font-extrabold text-white text-[16px] uppercase">
-              Etsy
+              Etsyasdad
             </div>
       </div>
     
