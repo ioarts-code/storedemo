@@ -45,35 +45,19 @@ export function ProductDetail({ product }: ProductDetailProps) {
             {product.description}
           </p>
 
-          {/* Etsy Button - Split Design */}
+          {/* Etsy Button */}
           <a
             href="https://www.etsy.com/shop/ioartseu"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 lg:mt-[10px] h-10 sm:h-11 lg:h-[45px] w-48 sm:w-56 lg:w-[280px] relative flex overflow-hidden rounded-lg lg:rounded-[6px] group hover:shadow-lg transition-shadow"
+            className="bg-transparent mt-4 lg:mt-[10px] h-10 sm:h-11 lg:h-[45px] rounded-lg lg:rounded-[6px] w-32 sm:w-40 lg:w-[176px] hover:bg-white/30 transition-colors relative flex items-center justify-center"
           >
-            {/* Diagonal divider SVG */}
-            <svg
-              className="absolute inset-0 w-full h-full pointer-events-none"
-              viewBox="0 0 280 45"
-              preserveAspectRatio="none"
-            >
-              <polygon points="0,0 140,45 280,45 280,0" fill="white" />
-              <polygon points="0,0 140,45 140,45 0,45" fill="black" />
-            </svg>
-
-            {/* Etsy - White background, black text (Left) */}
-            <div className="flex-1 flex items-center justify-center relative z-10">
-              <span className="font-['Inter:Extra_Bold',sans-serif] font-extrabold text-black text-xs sm:text-sm lg:text-[16px] uppercase">
-                Etsy
-              </span>
-            </div>
-
-            {/* Shop Now - Black background, white text (Right) */}
-            <div className="flex-1 flex items-center justify-center relative z-10">
-              <span className="font-['Inter:Extra_Bold',sans-serif] font-extrabold text-white text-xs sm:text-sm lg:text-[16px] uppercase">
-                Shop Now
-              </span>
+            <div
+              aria-hidden="true"
+              className="absolute border-2 border-white border-solid inset-0 pointer-events-none rounded-lg lg:rounded-[6px]"
+            />
+            <div className="font-['Inter:Extra_Bold',sans-serif] font-extrabold text-white text-sm sm:text-base lg:text-[16px] uppercase">
+              Etsy
             </div>
           </a>
 
