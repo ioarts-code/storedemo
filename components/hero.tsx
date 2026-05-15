@@ -147,7 +147,7 @@ export default function Hero({
 
               {/* Badge */}
               <div className="flex items-center px-2 py-0.5 sm:px-4 sm:py-1 border-2 border-white rounded-full">
-                <span className="text-[10px] sm:text-xs font-bold text-white uppercase tracking-tight">Top Pick</span>
+                <span className="text-[10px] sm:text-xl font-bold text-white uppercase tracking-tight">Top Pick</span>
               </div>
 
               {/* Title */}
@@ -156,7 +156,7 @@ export default function Hero({
               </h3>
 
               {/* Description */}
-              <p className="text-xs sm:text-sm text-white leading-relaxed line-clamp-2">
+              <p className="text-xs sm:text-sm text-white leading-tight line-clamp-2">
                 <span className="block sm:hidden">{truncateDescription(featuredProduct.description, 20)}</span>
                 <span className="hidden sm:block">{truncateDescription(featuredProduct.description, 60)}</span>
               </p>
@@ -164,7 +164,7 @@ export default function Hero({
               {/* Button */}
               <Link
                 href={`/products/${featuredProduct.slug}`}
-                className="flex items-center justify-center px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 border-3 border-white rounded-lg text-white font-bold text-xs sm:text-sm uppercase hover:opacity-80 transition-opacity"
+                className="flex items-center justify-center px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 border-3 border-white rounded-full text-white font-bold text-xs sm:text-sm uppercase hover:opacity-80 transition-opacity"
               >
                 Shop
               </Link>
