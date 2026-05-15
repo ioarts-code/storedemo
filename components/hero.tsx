@@ -79,7 +79,7 @@ export default function Hero({
   }, [showFeaturedCard, featuredCardSlug]);
 
   return (
-    <div className="relative lg:h-[1000px] mobile:h-[600px] flex items-start justify-center overflow-hidden w-screen">
+    <div className="relative lg:h-[1000px] mobile:h-[650px] flex items-start justify-center overflow-hidden w-screen">
       {/* Background image - hidden on screens smaller than 1024px */}
       <img
         alt="Hoodie Elden"
@@ -156,7 +156,7 @@ export default function Hero({
               </h3>
 
               {/* Description */}
-              <p className="text-xs sm:text-sm text-white leading-tight mobile:leading-tight line-clamp-2">
+              <p className="text-xs sm:text-sm text-white leading-tight line-clamp-2">
                 <span className="block sm:hidden">{truncateDescription(featuredProduct.description, 20)}</span>
                 <span className="hidden sm:block">{truncateDescription(featuredProduct.description, 60)}</span>
               </p>
