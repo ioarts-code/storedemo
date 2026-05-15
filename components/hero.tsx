@@ -147,7 +147,7 @@ export default function Hero({
 
               {/* Badge */}
               <div className="flex items-center px-2 py-0.5 sm:px-4 sm:py-1 border-2 border-white rounded-full">
-                <span className="text-[10px] sm:text-xl font-bold text-white uppercase tracking-tight">Top Pick</span>
+                <span className="text-[10px] sm:text-xs font-bold text-white uppercase tracking-tight">Top Pick</span>
               </div>
 
               {/* Title */}
