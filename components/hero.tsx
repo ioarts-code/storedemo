@@ -164,7 +164,7 @@ export default function Hero({
               {/* Button */}
               <Link
                 href={`/products/${featuredProduct.slug}`}
-                className="flex items-center justify-center px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 lg:border-3 sm:border-3 border-white rounded-lg text-white font-bold text-xs sm:text-sm uppercase hover:opacity-80 transition-opacity"
+                className="flex items-center justify-center px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 border-3 border-white rounded-lg text-white font-bold text-xs sm:text-sm uppercase hover:opacity-80 transition-opacity"
               >
                 Shop
               </Link>
