@@ -79,14 +79,15 @@ export default function Hero({
   }, [showFeaturedCard, featuredCardSlug]);
 
   return (
-    <div className="relative lg:h-[1000px] mobile:h-[650px] flex items-start justify-center overflow-hidden w-screen">
-      {/* Background image - hidden on screens smaller than 1024px */}
-      <img
-        alt="Hoodie Elden"
-        src={backgroundImage}
-        loading="eager"
-        className="absolute inset-0 w-full h-full object-cover pointer-events-none lg:block"
-      />
+    <Link href={`/products/hoodie-elden`} className="block relative">
+      <div className="relative lg:h-[1000px] mobile:h-[650px] flex items-start justify-center overflow-hidden w-screen cursor-pointer">
+        {/* Background image - hidden on screens smaller than 1024px */}
+        <img
+          alt="Hoodie Elden"
+          src={backgroundImage}
+          loading="eager"
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none lg:block hover:opacity-90 transition-opacity"
+        />
 
       {/* Horizontal Stripe Divider - Bottom */}
       <div
@@ -172,6 +173,7 @@ export default function Hero({
           ) : null}
         </>
       )}
-    </div>
+      </div>
+    </Link>
   );
 }
