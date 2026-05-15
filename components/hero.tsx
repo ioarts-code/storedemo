@@ -146,8 +146,8 @@ export default function Hero({
               <div className="absolute border-l-3 border-white inset-0 pointer-events-none " />
 
               {/* Badge */}
-              <div className="flex items-center px-2 py-0.5 sm:px-4 sm:py-1 border-2 border-white rounded-full">
-                <span className="text-[10px] sm:text-xs font-bold text-white uppercase tracking-tight">Top Pick</span>
+              <div className="flex items-center px-2 py-0.5 sm:px-4 mobile:py-2 mobile:px-4 sm:py-1 border-2 border-white rounded-full">
+                <span className="text-[10px] sm:text-xs mobile:text-[8px] font-bold text-white uppercase tracking-tight">Top Pick</span>
               </div>
 
               {/* Title */}
@@ -156,7 +156,7 @@ export default function Hero({
               </h3>
 
               {/* Description */}
-              <p className="text-xs sm:text-sm text-white leading-tight line-clamp-2">
+              <p className="text-xs sm:text-sm text-white leading-tight mobile:leading-tight line-clamp-2">
                 <span className="block sm:hidden">{truncateDescription(featuredProduct.description, 20)}</span>
                 <span className="hidden sm:block">{truncateDescription(featuredProduct.description, 60)}</span>
               </p>
