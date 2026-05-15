@@ -15,25 +15,25 @@ export function ProductDetail({ product }: ProductDetailProps) {
 
   return (
     <div
-      className="flex min-h-screen w-full"
+      className="flex flex-col lg:flex-row min-h-screen w-full gap-6 lg:gap-0"
       style={{
         backgroundImage:
           'linear-gradient(90deg, rgb(15, 15, 15) 0%, rgb(15, 15, 15) 100%), linear-gradient(90deg, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 100%)',
       }}
     >
       {/* Left Column */}
-      <div className="flex flex-col justify-between w-[55%] p-12 bg-transparent">
+      <div className="flex flex-col justify-between w-full lg:w-[55%] p-4 sm:p-6 md:p-8 lg:p-12 bg-transparent">
         {/* Product Content */}
         <div className="flex flex-col gap-4">
           {/* Title and Price */}
           <div className="flex flex-col gap-0">
-            <h1 className="font-['Inter:Bold',sans-serif] font-bold text-[128px] text-white tracking-[4.1px] uppercase leading-none">
+            <h1 className="font-['Inter:Bold',sans-serif] font-bold text-3xl sm:text-4xl md:text-6xl lg:text-[128px] text-white tracking-tighter lg:tracking-[4.1px] uppercase leading-none">
               {product.name}
             </h1>
 
             {/* Price */}
             <div
-              className="font-['Roboto:SemiBold',sans-serif] font-semibold text-[96px] text-white"
+              className="font-['Roboto:SemiBold',sans-serif] font-semibold text-2xl sm:text-3xl md:text-5xl lg:text-[96px] text-white"
               style={{ fontVariationSettings: "'wdth' 100" }}
             >
               {product.price ? `$${product.price}` : 'Contact for price'}
@@ -41,7 +41,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
           </div>
 
           {/* Description */}
-          <p className="font-['Inter:Regular',sans-serif] font-normal text-[16px] text-white leading-[1.5] max-w-[640px]">
+          <p className="font-['Inter:Regular',sans-serif] font-normal text-sm sm:text-base text-white leading-[1.5] max-w-[640px]">
             {product.description}
           </p>
 
@@ -50,40 +50,40 @@ export function ProductDetail({ product }: ProductDetailProps) {
             href="https://www.etsy.com/shop/ioartseu"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-transparent mt-[10px] h-[45px] rounded-[6px] w-[176px] hover:bg-white/30 transition-colors relative flex items-center justify-center"
+            className="bg-transparent mt-4 lg:mt-[10px] h-10 sm:h-11 lg:h-[45px] rounded-lg lg:rounded-[6px] w-32 sm:w-40 lg:w-[176px] hover:bg-white/30 transition-colors relative flex items-center justify-center"
           >
             <div
               aria-hidden="true"
-              className="absolute border-2 border-white border-solid inset-0 pointer-events-none rounded-[6px]"
+              className="absolute border-2 border-white border-solid inset-0 pointer-events-none rounded-lg lg:rounded-[6px]"
             />
-            <div className="font-['Inter:Extra_Bold',sans-serif] font-extrabold text-white text-[16px] uppercase">
+            <div className="font-['Inter:Extra_Bold',sans-serif] font-extrabold text-white text-sm sm:text-base lg:text-[16px] uppercase">
               Etsy
             </div>
           </a>
 
           {/* Category */}
-          <p className="font-['Inter:Regular',sans-serif] font-normal text-[14.9px] text-gray-400 tracking-[-0.24px] mt-[20px] pt-[11px] pb-[0px]">
+          <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-gray-400 tracking-tight lg:tracking-[-0.24px] mt-4 lg:mt-[20px] pt-2 lg:pt-[11px] pb-0">
             Category: {category}
           </p>
 
           {/* Copyright */}
-          <p className="font-['Inter:Regular',sans-serif] font-normal text-[14.8px] text-gray-400 tracking-[-0.24px]">
+          <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-gray-400 tracking-tight lg:tracking-[-0.24px]">
             Copyright: {copyright}
           </p>
         </div>
       </div>
 
       {/* Right Column - Product Image */}
-      <div className="w-[45%] flex items-center justify-center p-4 pr-8">
+      <div className="w-full lg:w-[45%] flex items-center justify-center p-4 lg:p-4 lg:pr-8 order-first lg:order-last">
         {imageUrl ? (
           <Image
             alt={product.name}
-            className="object-contain object-center scale-[1.8]"
+            className="object-contain object-center max-h-[300px] sm:max-h-[400px] md:max-h-[500px] lg:max-h-none lg:scale-[1.8]"
             src={imageUrl}
             width={900}
             height={1200}
             priority
-            sizes="(max-width: 768px) 100vw, 45vw"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 45vw"
           />
         ) : (
           <div className="text-gray-500 text-center">No image available</div>
