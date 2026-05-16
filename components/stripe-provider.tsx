@@ -6,29 +6,9 @@ import { ReactNode } from 'react';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
-interface StripeProviderProps {
-  children: ReactNode;
-  clientSecret: string;
-}
-
-export function StripeProvider({ children, clientSecret }: StripeProviderProps) {
+export function StripeProvider({ children }: { children: ReactNode }) {
   return (
-    <Elements
-      stripe={stripePromise}
-      options={{
-        clientSecret,
-        appearance: {
-          theme: 'dark',
-          variables: {
-            colorPrimary: '#ffffff',
-            colorBackground: '#1f2937',
-            colorText: '#ffffff',
-            colorDanger: '#ef4444',
-            borderRadius: '8px',
-          },
-        },
-      }}
-    >
+    <Elements stripe={stripePromise}>
       {children}
     </Elements>
   );

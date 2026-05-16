@@ -21,7 +21,6 @@ export async function POST(req: NextRequest) {
       amount: Math.round(amount * 100), // Convert to cents
       currency: 'sek',
       receipt_email: email,
-      payment_method_types: ['card', 'klarna'], // Enable Klarna and Card payments
       metadata: metadata || {},
     });
 

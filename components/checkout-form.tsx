@@ -1,6 +1,6 @@
 'use client';
 
-import { PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useState } from 'react';
 import { useCart } from '@/lib/cart-context';
 import Link from 'next/link';
@@ -28,7 +28,7 @@ export function CheckoutForm() {
     setSuccessMessage(null);
 
     if (!stripe || !elements) {
-      setErrorMessage('Payment system not loaded');
+      setErrorMessage('Stripe not loaded');
       return;
     }
 
@@ -58,7 +58,7 @@ export function CheckoutForm() {
         }),
       });
 
-      const { clientSecret } = await response.json();
+      const { clientSecret, paymentIntentId } = await response.json();
 
       if (!clientSecret) {
         setErrorMessage('Failed to create payment intent');
@@ -66,22 +66,25 @@ export function CheckoutForm() {
         return;
       }
 
-      // Confirm payment with PaymentElement (supports Card, Klarna, etc.)
-      const result = await stripe.confirmPayment({
-        elements,
-        clientSecret,
-        confirmParams: {
-          return_url: `${window.location.origin}/checkout/success`,
-          payment_method_data: {
-            billing_details: {
-              name: fullName,
-              email,
-              address: {
-                line1: address,
-                city,
-                postal_code: postalCode,
-                country,
-              },
+      // Confirm payment
+      const cardElement = elements.getElement(CardElement);
+      if (!cardElement) {
+        setErrorMessage('Card element not found');
+        setIsProcessing(false);
+        return;
+      }
+
+      const result = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: cardElement,
+          billing_details: {
+            name: fullName,
+            email,
+            address: {
+              line1: address,
+              city,
+              postal_code: postalCode,
+              country,
             },
           },
         },
@@ -93,6 +96,10 @@ export function CheckoutForm() {
       } else if (result.paymentIntent?.status === 'succeeded') {
         setSuccessMessage('Payment successful! Your order has been placed.');
         dispatch({ type: 'CLEAR_CART' });
+        // Redirect to success page
+        setTimeout(() => {
+          window.location.href = `/checkout/success?orderId=${result.paymentIntent.id}`;
+        }, 2000);
       }
     } catch (error) {
       setErrorMessage('An error occurred. Please try again.');
@@ -183,21 +190,30 @@ export function CheckoutForm() {
 
       {/* Payment Information */}
       <div className="space-y-6">
-        <h2 className="text-2xl font-bold text-white">Payment Method</h2>
+        <h2 className="text-2xl font-bold text-white">Payment Information</h2>
 
-        <div className="px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg">
-          <PaymentElement
-            options={{
-              layout: 'tabs',
-              defaultValues: {
-                billingDetails: {
-                  address: {
-                    country: 'SE',
+        <div>
+          <label className="block text-sm font-semibold text-gray-300 mb-2">
+            Card Details *
+          </label>
+          <div className="px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg">
+            <CardElement
+              options={{
+                style: {
+                  base: {
+                    fontSize: '16px',
+                    color: '#ffffff',
+                    '::placeholder': {
+                      color: '#9CA3AF',
+                    },
+                  },
+                  invalid: {
+                    color: '#EF4444',
                   },
                 },
-              },
-            }}
-          />
+              }}
+            />
+          </div>
         </div>
       </div>
 
@@ -230,7 +246,7 @@ export function CheckoutForm() {
         <div className="flex justify-between items-center">
           <span className="text-lg font-bold text-white">Total</span>
           <span className="text-2xl font-bold text-white">
-            ${state.total.toFixed(2)} SEK
+            ${state.total.toFixed(2)}
           </span>
         </div>
       </div>
