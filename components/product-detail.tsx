@@ -55,44 +55,47 @@ export function ProductDetail({ product }: ProductDetailProps) {
             {product.description}
           </p>
 
-          {/* Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 mt-4 lg:mt-[10px]">
-            {/* Add to Cart Button */}
-            <button
-              onClick={handleAddToCart}
-              className={`h-10 sm:h-11 lg:h-[45px] px-6 sm:px-8 rounded-lg lg:rounded-[6px] font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase transition-all relative flex items-center justify-center flex-1 sm:flex-initial ${
-                addedToCart
-                  ? 'bg-green-500 text-black border-2 border-green-500'
-                  : 'bg-white text-black border-2 border-white hover:bg-gray-200'
-              }`}
-            >
-              {addedToCart ? '✓ Added to Cart' : 'Add to Cart'}
-            </button>
+          {/* Buttons Container */}
+          <div className="flex flex-col gap-4 mt-4 lg:mt-[10px]">
+            {/* Cart Buttons Row */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              {/* Add to Cart Button */}
+              <button
+                onClick={handleAddToCart}
+                className={`h-10 sm:h-11 lg:h-[45px] px-6 sm:px-8 rounded-lg lg:rounded-[6px] font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase transition-all relative flex items-center justify-center flex-1 ${
+                  addedToCart
+                    ? 'bg-green-500 text-black border-2 border-green-500'
+                    : 'bg-white text-black border-2 border-white hover:bg-gray-200'
+                }`}
+              >
+                {addedToCart ? '✓ Added to Cart' : 'Add to Cart'}
+              </button>
 
-            {/* View Cart Button */}
-            <Link
-              href="/cart"
-              className="h-10 sm:h-11 lg:h-[45px] px-6 sm:px-8 rounded-lg lg:rounded-[6px] border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase hover:bg-white/10 transition-colors relative flex items-center justify-center"
-            >
-              View Cart
-            </Link>
-          </div>
-
-          {/* Etsy Button */}
-          <a
-            href="https://www.etsy.com/shop/ioartseu"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-4 h-10 sm:h-11 lg:h-[45px] rounded-lg lg:rounded-[6px] hover:bg-white/30 transition-colors relative flex items-center justify-center"
-          >
-            <div
-              aria-hidden="true"
-              className="absolute border-2 border-white border-solid inset-0 pointer-events-none rounded-lg lg:rounded-[6px]"
-            />
-            <div className="font-['Inter:Extra_Bold',sans-serif] font-extrabold text-white text-sm sm:text-base lg:text-[16px] uppercase">
-              Etsy
+              {/* View Cart Button */}
+              <Link
+                href="/cart"
+                className="h-10 sm:h-11 lg:h-[45px] px-6 sm:px-8 rounded-lg lg:rounded-[6px] border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase hover:bg-white/10 transition-colors relative flex items-center justify-center flex-1 sm:flex-initial"
+              >
+                View Cart
+              </Link>
             </div>
-          </a>
+
+            {/* Etsy Button - Full Width */}
+            <a
+              href="https://www.etsy.com/shop/ioartseu"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="h-10 sm:h-11 lg:h-[45px] rounded-lg lg:rounded-[6px] hover:bg-white/30 transition-colors relative flex items-center justify-center w-full"
+            >
+              <div
+                aria-hidden="true"
+                className="absolute border-2 border-white border-solid inset-0 pointer-events-none rounded-lg lg:rounded-[6px]"
+              />
+              <div className="font-['Inter:Extra_Bold',sans-serif] font-extrabold text-white text-sm sm:text-base lg:text-[16px] uppercase">
+                Etsy
+              </div>
+            </a>
+          </div>
 
           {/* Category */}
           <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-gray-400 tracking-tight lg:tracking-[-0.24px] mt-4 lg:mt-[20px] pt-2 lg:pt-[11px] pb-0">
