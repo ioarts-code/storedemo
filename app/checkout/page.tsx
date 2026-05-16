@@ -1,11 +1,8 @@
+'use client';
+
 import Link from 'next/link';
 import { StripeProvider } from '@/components/stripe-provider';
 import { CheckoutForm } from '@/components/checkout-form';
-
-export const metadata = {
-  title: 'Checkout | IOARTS',
-  description: 'Complete your purchase at IOARTS',
-};
 
 export default function CheckoutPage() {
   return (
