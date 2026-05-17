@@ -17,21 +17,30 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const paymentIntent = await stripe.paymentIntents.create({
+    // Build payment intent options
+    const paymentIntentOptions: any = {
       amount: Math.round(amount * 100), // Convert to cents
       currency: 'sek',
-      receipt_email: email,
+      payment_method_types: ['card', 'klarna'],
       metadata: metadata || {},
-    });
+    };
+
+    // Only add receipt_email if email is provided and not empty
+    if (email && email.trim()) {
+      paymentIntentOptions.receipt_email = email;
+    }
+
+    const paymentIntent = await stripe.paymentIntents.create(paymentIntentOptions);
 
     return NextResponse.json({
       clientSecret: paymentIntent.client_secret,
       paymentIntentId: paymentIntent.id,
     });
   } catch (error) {
-    console.error('Payment intent error:', error);
+    console.error('[v0] Payment intent error:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     return NextResponse.json(
-      { error: 'Failed to create payment intent' },
+      { error: `Failed to create payment intent: ${errorMessage}` },
       { status: 500 }
     );
   }

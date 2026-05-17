@@ -28,7 +28,9 @@ export function createHygraphClient() {
       });
 
       if (!response.ok) {
-        throw new Error(`API request failed with status ${response.status}`);
+        const errorData = await response.json().catch(() => ({}));
+        console.error('[v0] GraphQL error response:', errorData);
+        throw new Error(`API request failed with status ${response.status}: ${errorData.errors?.[0]?.message || 'Unknown error'}`);
       }
 
       const data = await response.json();
