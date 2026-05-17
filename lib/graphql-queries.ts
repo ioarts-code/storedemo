@@ -6,7 +6,6 @@ export const GET_PRODUCTS = /* GraphQL */ `
       slug
       description
       price
-      download
       categories {
         id
         name
@@ -29,7 +28,6 @@ export const GET_PRODUCTS_BY_CATEGORY = /* GraphQL */ `
       slug
       description
       price
-      download
       categories {
         id
         name
@@ -62,7 +60,6 @@ export const SEARCH_PRODUCTS = /* GraphQL */ `
       slug
       description
       price
-      download
       categories {
         id
         name
@@ -85,7 +82,6 @@ export const GET_PRODUCT_BY_SLUG = /* GraphQL */ `
       slug
       description
       price
-      download
       categories {
         id
         name
