@@ -4,7 +4,10 @@ export interface Product {
   slug: string;
   description: string;
   price: number;
-  download?: string | null;
+  download?: {
+    url: string;
+    fileName?: string;
+  } | null;
   categories?: Category[];
   images?: ProductImage[];
   variants?: ProductVariant[];
