@@ -21,6 +21,7 @@ export async function POST(req: NextRequest) {
       amount: Math.round(amount * 100), // Convert to cents
       currency: 'sek',
       receipt_email: email,
+      payment_method_types: ['card', 'klarna'],
       metadata: metadata || {},
     });
 
@@ -29,9 +30,10 @@ export async function POST(req: NextRequest) {
       paymentIntentId: paymentIntent.id,
     });
   } catch (error) {
-    console.error('Payment intent error:', error);
+    console.error('[v0] Payment intent error:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     return NextResponse.json(
-      { error: 'Failed to create payment intent' },
+      { error: `Failed to create payment intent: ${errorMessage}` },
       { status: 500 }
     );
   }

@@ -32,14 +32,17 @@ export default function CheckoutPage() {
         });
 
         const data = await response.json();
+        console.log('[v0] Checkout response:', { status: response.status, data });
+        
         if (data.clientSecret) {
           setClientSecret(data.clientSecret);
         } else {
-          setError('Failed to initialize payment');
+          console.error('[v0] No clientSecret in response:', data);
+          setError(data.error || 'Failed to initialize payment');
         }
       } catch (err) {
+        console.error('[v0] Checkout request error:', err);
         setError('Failed to create payment intent');
-        console.error(err);
       } finally {
         setIsLoading(false);
       }
