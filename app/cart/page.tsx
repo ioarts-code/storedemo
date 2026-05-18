@@ -97,7 +97,10 @@ export default function CartPage() {
 
                         <button
                           onClick={() => handleRemove(item.product.id)}
-                          className="text-red-500 hover:text-red-400 text-sm font-semibold"
+                          className="text-sm font-semibold transition-colors"
+                          style={{ color: '#6d6d6d' }}
+                          onMouseEnter={(e) => (e.currentTarget.style.color = '#808080')}
+                          onMouseLeave={(e) => (e.currentTarget.style.color = '#6d6d6d')}
                         >
                           Remove
                         </button>

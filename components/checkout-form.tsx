@@ -125,7 +125,7 @@ export function CheckoutForm() {
               required
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
-              className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:border-white focus:outline-none"
+              className="w-full px-4 py-3 bg-white/5 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:border-white focus:outline-none"
               placeholder="John Doe"
             />
           </div>
@@ -139,7 +139,7 @@ export function CheckoutForm() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:border-white focus:outline-none"
+              className="w-full px-4 py-3 bg-white/5 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:border-white focus:outline-none"
               placeholder="john@example.com"
             />
           </div>
@@ -153,7 +153,7 @@ export function CheckoutForm() {
               required
               value={address}
               onChange={(e) => setAddress(e.target.value)}
-              className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:border-white focus:outline-none"
+              className="w-full px-4 py-3 bg-white/5 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:border-white focus:outline-none"
               placeholder="123 Main Street"
             />
           </div>
@@ -167,7 +167,7 @@ export function CheckoutForm() {
               required
               value={city}
               onChange={(e) => setCity(e.target.value)}
-              className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:border-white focus:outline-none"
+              className="w-full px-4 py-3 bg-white/5 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:border-white focus:outline-none"
               placeholder="Stockholm"
             />
           </div>
@@ -181,7 +181,7 @@ export function CheckoutForm() {
               required
               value={postalCode}
               onChange={(e) => setPostalCode(e.target.value)}
-              className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:border-white focus:outline-none"
+              className="w-full px-4 py-3 bg-white/5 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:border-white focus:outline-none"
               placeholder="10123"
             />
           </div>
@@ -196,7 +196,7 @@ export function CheckoutForm() {
           <label className="block text-sm font-semibold text-gray-300 mb-2">
             Card Details *
           </label>
-          <div className="px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg">
+          <div className="px-4 py-3 bg-white/5 border border-gray-700 rounded-lg">
             <CardElement
               options={{
                 style: {

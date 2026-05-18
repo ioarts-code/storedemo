@@ -2,11 +2,26 @@
 
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { Suspense } from 'react';
+import { Suspense, useEffect, useState } from 'react';
+import { useCart } from '@/lib/cart-context';
 
 function SuccessContent() {
   const searchParams = useSearchParams();
   const orderId = searchParams.get('orderId');
+  const { state } = useCart();
+  const [downloadItems, setDownloadItems] = useState<any[]>([]);
+
+  useEffect(() => {
+    // Collect all downloadable items from cart
+    const items = state.items
+      .filter((item) => item.product.download?.url)
+      .map((item) => ({
+        productName: item.product.name,
+        downloadUrl: item.product.download.url,
+        fileName: item.product.download.fileName || item.product.name,
+      }));
+    setDownloadItems(items);
+  }, [state.items]);
 
   return (
     <main className="min-h-screen bg-[#0F0F0F]">
@@ -33,6 +48,36 @@ function SuccessContent() {
             </p>
           )}
         </div>
+
+        {/* Downloads Section */}
+        {downloadItems.length > 0 && (
+          <div className="bg-white/5 border border-green-500/50 rounded-lg p-8 mb-12">
+            <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+              <svg className="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+              Your Downloads
+            </h2>
+            <div className="space-y-3">
+              {downloadItems.map((item, index) => (
+                <a
+                  key={index}
+                  href={item.downloadUrl}
+                  download
+                  className="flex items-center justify-between p-4 bg-gray-800/50 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors group"
+                >
+                  <div>
+                    <p className="text-white font-semibold">{item.productName}</p>
+                    <p className="text-gray-400 text-sm">{item.fileName}</p>
+                  </div>
+                  <svg className="w-5 h-5 text-green-500 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Details */}
         <div className="bg-white/5 border border-gray-700 rounded-lg p-8 mb-12">

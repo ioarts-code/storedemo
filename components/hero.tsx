@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Product } from '@/lib/types';
 import { createHygraphClient } from '@/lib/hygraph-client';
 import { GET_PRODUCT_BY_SLUG } from '@/lib/graphql-queries';
@@ -21,6 +22,7 @@ export default function Hero({
   showFeaturedCard = true,
   featuredCardSlug = 'hoodie-elden',
 }: HeroProps) {
+  const router = useRouter();
   const [backgroundImage, setBackgroundImage] = useState<string>('');
   const [isLoading, setIsLoading] = useState(true);
   const [featuredProduct, setFeaturedProduct] = useState<Product | null>(null);
@@ -79,8 +81,8 @@ export default function Hero({
   }, [showFeaturedCard, featuredCardSlug]);
 
   return (
-    <Link href={`/products/hoodie-elden`} className="block relative">
-      <div className="relative lg:h-[1000px] mobile:h-[650px] flex items-start justify-center overflow-hidden w-screen cursor-pointer">
+    <div className="relative">
+      <div className="relative lg:h-[1000px] mobile:h-[650px] flex items-start justify-center overflow-hidden w-screen cursor-pointer" onClick={() => router.push('/products/hoodie-elden')}>
         {/* Background image - hidden on screens smaller than 1024px */}
         <img
           alt="Hoodie Elden"
@@ -174,6 +176,6 @@ export default function Hero({
         </>
       )}
       </div>
-    </Link>
+    </div>
   );
 }
