@@ -39,10 +39,13 @@ export default function Header() {
           >
             <svg
               className="w-5 h-5"
-              fill="currentColor"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
               viewBox="0 0 24 24"
             >
-              <path d="M7 4V3c0-.55.45-1 1-1h8c.55 0 1 .45 1 1v1h5.7c.46 0 .88.37.97.83l.3 2.65c.13 1.23-.98 2.52-2.27 2.52H6.27c-1.29 0-2.4-1.29-2.27-2.52l.3-2.65C4.4 4.37 4.82 4 5.3 4H7zm10 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm9-5H8c-.55 0-1 .45-1 1s.45 1 1 1h8c.55 0 1-.45 1-1s-.45-1-1-1z" />
+              <path d="M6 2h12v3H6V2z" fill="currentColor" />
+              <path d="M5 5h14l-1.5 12c-.2 1.5-1.6 2.5-3.1 2.5H9.6c-1.5 0-2.9-1-3.1-2.5L5 5z" fill="currentColor" />
             </svg>
             {cartItemCount > 0 && (
               <span className="absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">
