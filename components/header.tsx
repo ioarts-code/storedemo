@@ -39,16 +39,10 @@ export default function Header() {
           >
             <svg
               className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
+              fill="currentColor"
               viewBox="0 0 24 24"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 9m10 0l2-9m-10 9v2m10-2v2"
-              />
+              <path d="M7 4V3c0-.55.45-1 1-1h8c.55 0 1 .45 1 1v1h5.7c.46 0 .88.37.97.83l.3 2.65c.13 1.23-.98 2.52-2.27 2.52H6.27c-1.29 0-2.4-1.29-2.27-2.52l.3-2.65C4.4 4.37 4.82 4 5.3 4H7zm10 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm9-5H8c-.55 0-1 .45-1 1s.45 1 1 1h8c.55 0 1-.45 1-1s-.45-1-1-1z" />
             </svg>
             {cartItemCount > 0 && (
               <span className="absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">
