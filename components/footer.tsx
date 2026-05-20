@@ -79,7 +79,7 @@ function A() {
 function A1() {
   return (
     <a
-      href="/terms"
+      href="/terms-of-sale"
       className="content-stretch flex flex-col items-start relative self-stretch shrink-0 hover:opacity-75 transition-opacity"
       data-name="a"
     >
@@ -93,12 +93,26 @@ function A1() {
 function A2() {
   return (
     <a
-      href="/privacy"
+      href="/privacy-policy"
       className="content-stretch flex flex-col items-start relative self-stretch shrink-0 hover:opacity-75 transition-opacity"
       data-name="a"
     >
       <div className="flex flex-col font-['Inter:Regular',sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[15px] text-white tracking-[-0.24px] whitespace-nowrap">
         <p className="leading-[19.2px]">Privacy Policy</p>
+      </div>
+    </a>
+  );
+}
+
+function A3() {
+  return (
+    <a
+      href="/copyright-attribution"
+      className="content-stretch flex flex-col items-start relative self-stretch shrink-0 hover:opacity-75 transition-opacity"
+      data-name="a"
+    >
+      <div className="flex flex-col font-['Inter:Regular',sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[15px] text-white tracking-[-0.24px] whitespace-nowrap">
+        <p className="leading-[19.2px]">Copyright & Attribution</p>
       </div>
     </a>
   );
@@ -110,6 +124,7 @@ function DivAbsolute1() {
       <A />
       <A1 />
       <A2 />
+      <A3 />
     </div>
   );
 }
