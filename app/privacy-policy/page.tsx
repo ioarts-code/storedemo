@@ -33,14 +33,7 @@ export default function PrivacyPolicy() {
             </p>
             <p className="text-gray-300 leading-relaxed">
               Please read this Privacy Policy carefully. If you do not agree with our policies and practices, please do not use our Services.
-            </p>Privacy Policy for Ioarts
-Last Updated: 2026-01-29Your privacy is important to me. This policy explains what information I collect on ioarts.se and how it is used.
-Contact InformationIf you have any questions about this policy, please contact me at:Email: info@ioarts.se
-Information I CollectI only collect information that you choose to provide to me, for example, via a contact form or if you send me an email. This may include:NameEmail addressAny messages you send
-Automatic Data Collection (Cookies & Logs)This website may automatically collect certain technical information, such as your IP address and browser type, to analyze traffic and improve the user experience. If I use tools such as Google Analytics, this data is collected anonymously.
-How the information is usedI only use your information to:Respond to your questions or messages.Improve the content and functionality of the website.I never sell or share your personal information with third parties for marketing purposes.
-Your RightsYou have the right to request to see what information I have about you, or to ask me to delete it, at any time. In that case, please contact me at the email address below.
-info@ioarts.se
+            </p>
           </section>
 
           {/* Information We Collect */}
