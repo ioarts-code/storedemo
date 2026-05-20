@@ -93,7 +93,7 @@ function A1() {
 function A2() {
   return (
     <a
-      href="/privacy"
+      href="/privacy-policy"
       className="content-stretch flex flex-col items-start relative self-stretch shrink-0 hover:opacity-75 transition-opacity"
       data-name="a"
     >
