@@ -29,10 +29,19 @@ export default function CopyrightAttributionPage() {
             <h2 className="text-2xl md:text-3xl font-bold text-white">Copyright Notice</h2>
             <div className="bg-white/5 border border-gray-700 rounded-lg p-6 space-y-4 text-gray-300">
               <p>
-                © 2024 IOARTS. All rights reserved. The IOARTS brand, logo, and website design are the property of IOARTS and protected under international copyright law.
-              </p>
-              <p>
-                All product designs, artwork, and merchandise featured on this website are original creations or licensed works. Unauthorized reproduction, distribution, or commercial use of any content without explicit written permission is strictly prohibited.
+Copyright & Attribution Information
+
+Last updated: January 2026
+About This SiteI am an independent fan artist and individual creator, NOT a company or organization. This site is a personal creative project showcasing fan-inspired vector designs and artwork based on themes I’m passionate about. I operate solely as a private individual creator.
+Fan Works & Original InterpretationsMany of the designs on this site are inspired by themes from video games, music, films, and other media that I am a fan of. When creating vector designs based on these themes, I always aim to develop my own original interpretation rather than copying existing artwork. This means:
+I create unique vector designs that capture the spirit and aesthetic of themes I admireMy designs are original artistic expressions inspired by, not reproductions of, existing worksI put creative effort into reimagining these themes through my own artistic lensEach piece represents my personal interpretation and artistic contribution
+Attribution & OwnershipI acknowledge and respect the original creators and intellectual property holders of the themes and franchises that inspire my work. When my designs are based on specific media or brands, I recognize the original creators and owners:
+Video Games: Designs inspired by video game themes are fan creations and are not affiliated with or endorsed by the game publishers or developersMusic: Music-themed designs respect the original artists and composers while offering my creative interpretationFilms: Film-inspired artwork is fan-created and is not affiliated with film studios, production companies, or copyright holdersOther Media: All fan-inspired designs credit the original intellectual property owners
+I Am a Fan & CustomerI want to be clear: I am a devoted fan and customer of the original products and themes I draw inspiration from. My work celebrates and honors these themes rather than diminishing them. I support the original creators through purchasing their products and sharing my passion for their work. My designs are a tribute to the themes and franchises I love, created by someone who genuinely cares about the original content.
+Independent Creator StatusI am not representing myself as, and am not affiliated with, any official company, organization, or brand related to the themes in my work. I operate as an independent artist creating original fan interpretations for personal creative expression and small-scale sales. I do not claim ownership of the intellectual properties that inspire my designs.
+Fair Use & Creative ExpressionMy designs represent fan art and creative expression based on themes from media I admire. I create original vector interpretations that transform these themes into new artistic works. While I respect all copyrights and trademarks, I believe that fan creators like myself contribute to the cultural appreciation and celebration of the media we love.
+Respect for Intellectual PropertyI fully respect the intellectual property rights of all original creators and copyright holders. If you are an intellectual property holder and have concerns about my work, please contact me directly. I am open to dialogue and will work to resolve any issues respectfully and appropriately.
+Contact & QuestionsIf you have questions about my work, attribution practices, or concerns about intellectual property, please reach out using the contact information on this website. I’m committed to operating transparently and respectfully as an independent creator.
               </p>
             </div>
           </section>
