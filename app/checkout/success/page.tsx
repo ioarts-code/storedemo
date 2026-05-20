@@ -17,8 +17,8 @@ function SuccessContent() {
       .filter((item) => item.product.download?.url)
       .map((item) => ({
         productName: item.product.name,
-        downloadUrl: item.product.download.url,
-        fileName: item.product.download.fileName || item.product.name,
+        downloadUrl: item.product.download?.url || '',
+        fileName: item.product.download?.fileName || item.product.name,
       }));
     setDownloadItems(items);
   }, [state.items]);
