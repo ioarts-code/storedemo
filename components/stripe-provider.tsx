@@ -18,7 +18,7 @@ export function StripeProvider({ children, clientSecret }: StripeProviderProps) 
       options={{
         clientSecret,
         appearance: {
-          theme: 'dark',
+          theme: 'night',
           variables: {
             colorPrimary: '#ffffff',
             colorBackground: '#1f2937',
