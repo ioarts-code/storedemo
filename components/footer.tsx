@@ -79,7 +79,7 @@ function A() {
 function A1() {
   return (
     <a
-      href="/terms"
+      href="/terms-of-sale"
       className="content-stretch flex flex-col items-start relative self-stretch shrink-0 hover:opacity-75 transition-opacity"
       data-name="a"
     >
