@@ -104,12 +104,27 @@ function A2() {
   );
 }
 
+function A3() {
+  return (
+    <a
+      href="/copyright-attribution"
+      className="content-stretch flex flex-col items-start relative self-stretch shrink-0 hover:opacity-75 transition-opacity"
+      data-name="a"
+    >
+      <div className="flex flex-col font-['Inter:Regular',sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[15px] text-white tracking-[-0.24px] whitespace-nowrap">
+        <p className="leading-[19.2px]">Copyright & Attribution</p>
+      </div>
+    </a>
+  );
+}
+
 function DivAbsolute1() {
   return (
     <div className="absolute content-stretch flex mobile:flex-wrap mobile:gap-y-2 tablet:gap-[16px] h-auto mobile:h-auto tablet:h-[20px] items-start left-[44px] mobile:top-[430px] tablet:top-[464px] mobile:w-[calc(100%-88px)] mobile:flex-col tablet:flex-row" data-name="div.absolute">
       <A />
       <A1 />
       <A2 />
+      <A3 />
     </div>
   );
 }
