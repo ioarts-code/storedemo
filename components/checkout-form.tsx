@@ -1,6 +1,6 @@
 'use client';
 
-import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import { PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useState } from 'react';
 import { useCart } from '@/lib/cart-context';
 import Link from 'next/link';
@@ -66,25 +66,22 @@ export function CheckoutForm() {
         return;
       }
 
-      // Confirm payment
-      const cardElement = elements.getElement(CardElement);
-      if (!cardElement) {
-        setErrorMessage('Card element not found');
-        setIsProcessing(false);
-        return;
-      }
-
-      const result = await stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-          card: cardElement,
-          billing_details: {
-            name: fullName,
-            email,
-            address: {
-              line1: address,
-              city,
-              postal_code: postalCode,
-              country,
+      // Confirm payment with PaymentElement (supports Card, Klarna, PayPal, etc.)
+      const result = await stripe.confirmPayment({
+        elements,
+        clientSecret,
+        confirmParams: {
+          return_url: `${window.location.origin}/checkout/success`,
+          payment_method_data: {
+            billing_details: {
+              name: fullName,
+              email,
+              address: {
+                line1: address,
+                city,
+                postal_code: postalCode,
+                country,
+              },
             },
           },
         },
@@ -194,21 +191,17 @@ export function CheckoutForm() {
 
         <div>
           <label className="block text-sm font-semibold text-gray-300 mb-2">
-            Card Details *
+            Payment Method *
           </label>
           <div className="px-4 py-3 bg-white/5 border border-gray-700 rounded-lg">
-            <CardElement
+            <PaymentElement
               options={{
-                style: {
-                  base: {
-                    fontSize: '16px',
-                    color: '#ffffff',
-                    '::placeholder': {
-                      color: '#9CA3AF',
+                layout: 'tabs',
+                defaultValues: {
+                  billingDetails: {
+                    address: {
+                      country: 'SE',
                     },
-                  },
-                  invalid: {
-                    color: '#EF4444',
                   },
                 },
               }}
