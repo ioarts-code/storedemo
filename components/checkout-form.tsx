@@ -2,12 +2,14 @@
 
 import { PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { useCart } from '@/lib/cart-context';
 import Link from 'next/link';
 
 export function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
+  const router = useRouter();
   const { state, dispatch } = useCart();
 
   const [isProcessing, setIsProcessing] = useState(false);
@@ -79,32 +81,29 @@ export function CheckoutForm() {
         elements,
         clientSecret,
         confirmParams: {
-          return_url: `${window.location.origin}/checkout/success`,
-          payment_method_data: {
-            billing_details: {
-              name: fullName,
-              email,
-              address: {
-                line1: address,
-                city,
-                postal_code: postalCode,
-                country,
-              },
-            },
-          },
+          return_url: `${typeof window !== 'undefined' ? window.location.origin : ''}/checkout/success`,
         },
+        redirect: 'if_required',
       });
 
       if (result.error) {
         setErrorMessage(result.error.message || 'Payment failed');
         setIsProcessing(false);
-      } else if (result.paymentIntent?.status === 'succeeded') {
-        setSuccessMessage('Payment successful! Your order has been placed.');
-        dispatch({ type: 'CLEAR_CART' });
-        // Redirect to success page
-        setTimeout(() => {
-          window.location.href = `/checkout/success?orderId=${result.paymentIntent.id}`;
-        }, 2000);
+      } else if (result.paymentIntent) {
+        if (result.paymentIntent.status === 'succeeded') {
+          setSuccessMessage('Payment successful! Your order has been placed.');
+          dispatch({ type: 'CLEAR_CART' });
+          // Use Next.js router to navigate
+          setTimeout(() => {
+            router.push(`/checkout/success?orderId=${result.paymentIntent.id}`);
+          }, 1500);
+        } else if (result.paymentIntent.status === 'processing') {
+          setSuccessMessage('Payment is processing. You will be redirected shortly...');
+          dispatch({ type: 'CLEAR_CART' });
+          setTimeout(() => {
+            router.push(`/checkout/success?orderId=${result.paymentIntent.id}`);
+          }, 2000);
+        }
       }
     } catch (error) {
       setErrorMessage('An error occurred. Please try again.');
