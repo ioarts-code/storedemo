@@ -258,7 +258,7 @@ export function CheckoutForm() {
         disabled={isProcessing || !stripe}
         className="w-full py-4 bg-white text-black font-bold text-lg rounded-lg hover:bg-gray-200 disabled:bg-gray-600 disabled:cursor-not-allowed transition-colors"
       >
-        {isProcessing ? 'Processing...' : `Pay ${state.total.toFixed(2)} SEK`}
+        {isProcessing ? 'Processing...' : `Pay $${state.total.toFixed(2)} USD`}
       </button>
 
       <div className="flex justify-center">
