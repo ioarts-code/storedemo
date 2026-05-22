@@ -66,6 +66,14 @@ export function CheckoutForm() {
         return;
       }
 
+      // Submit elements first as required by Stripe
+      const submitResult = await elements.submit();
+      if (submitResult.error) {
+        setErrorMessage(submitResult.error.message || 'Payment validation failed');
+        setIsProcessing(false);
+        return;
+      }
+
       // Confirm payment with PaymentElement (supports Card, Klarna, PayPal, etc.)
       const result = await stripe.confirmPayment({
         elements,
