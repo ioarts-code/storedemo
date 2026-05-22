@@ -1,13 +1,15 @@
 'use client';
 
-import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import { PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { useCart } from '@/lib/cart-context';
 import Link from 'next/link';
 
 export function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
+  const router = useRouter();
   const { state, dispatch } = useCart();
 
   const [isProcessing, setIsProcessing] = useState(false);
@@ -66,40 +68,41 @@ export function CheckoutForm() {
         return;
       }
 
-      // Confirm payment
-      const cardElement = elements.getElement(CardElement);
-      if (!cardElement) {
-        setErrorMessage('Card element not found');
+      // Submit elements first as required by Stripe
+      const submitResult = await elements.submit();
+      if (submitResult.error) {
+        setErrorMessage(submitResult.error.message || 'Payment validation failed');
         setIsProcessing(false);
         return;
       }
 
-      const result = await stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-          card: cardElement,
-          billing_details: {
-            name: fullName,
-            email,
-            address: {
-              line1: address,
-              city,
-              postal_code: postalCode,
-              country,
-            },
-          },
+      // Confirm payment with card only (no external redirects)
+      const result = await stripe.confirmPayment({
+        elements,
+        clientSecret,
+        confirmParams: {
+          return_url: `${typeof window !== 'undefined' ? window.location.origin : ''}/checkout/success`,
         },
       });
 
       if (result.error) {
         setErrorMessage(result.error.message || 'Payment failed');
         setIsProcessing(false);
-      } else if (result.paymentIntent?.status === 'succeeded') {
-        setSuccessMessage('Payment successful! Your order has been placed.');
-        dispatch({ type: 'CLEAR_CART' });
-        // Redirect to success page
-        setTimeout(() => {
-          window.location.href = `/checkout/success?orderId=${result.paymentIntent.id}`;
-        }, 2000);
+      } else if (result.paymentIntent) {
+        if (result.paymentIntent.status === 'succeeded') {
+          setSuccessMessage('Payment successful! Your order has been placed.');
+          dispatch({ type: 'CLEAR_CART' });
+          // Use Next.js router to navigate
+          setTimeout(() => {
+            router.push(`/checkout/success?orderId=${result.paymentIntent.id}`);
+          }, 1500);
+        } else if (result.paymentIntent.status === 'processing') {
+          setSuccessMessage('Payment is processing. You will be redirected shortly...');
+          dispatch({ type: 'CLEAR_CART' });
+          setTimeout(() => {
+            router.push(`/checkout/success?orderId=${result.paymentIntent.id}`);
+          }, 2000);
+        }
       }
     } catch (error) {
       setErrorMessage('An error occurred. Please try again.');
@@ -194,21 +197,17 @@ export function CheckoutForm() {
 
         <div>
           <label className="block text-sm font-semibold text-gray-300 mb-2">
-            Card Details *
+            Payment Method *
           </label>
           <div className="px-4 py-3 bg-white/5 border border-gray-700 rounded-lg">
-            <CardElement
+            <PaymentElement
               options={{
-                style: {
-                  base: {
-                    fontSize: '16px',
-                    color: '#ffffff',
-                    '::placeholder': {
-                      color: '#9CA3AF',
+                layout: 'tabs',
+                defaultValues: {
+                  billingDetails: {
+                    address: {
+                      country: 'SE',
                     },
-                  },
-                  invalid: {
-                    color: '#EF4444',
                   },
                 },
               }}
@@ -257,7 +256,7 @@ export function CheckoutForm() {
         disabled={isProcessing || !stripe}
         className="w-full py-4 bg-white text-black font-bold text-lg rounded-lg hover:bg-gray-200 disabled:bg-gray-600 disabled:cursor-not-allowed transition-colors"
       >
-        {isProcessing ? 'Processing...' : `Pay ${state.total.toFixed(2)} SEK`}
+        {isProcessing ? 'Processing...' : `Pay $${state.total.toFixed(2)} USD`}
       </button>
 
       <div className="flex justify-center">

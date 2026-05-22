@@ -14,6 +14,7 @@ interface StripeProviderProps {
 export function StripeProvider({ children, clientSecret }: StripeProviderProps) {
   return (
     <Elements
+      key={clientSecret}
       stripe={stripePromise}
       options={{
         clientSecret,
