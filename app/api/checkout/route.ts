@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
     const paymentIntentOptions: any = {
       amount: Math.round(amount * 100), // Convert to cents
       currency: 'usd',
-      payment_method_types: ['card'],
+      payment_method_types: ['card', 'paypal'],
       metadata: metadata || {},
     };
 

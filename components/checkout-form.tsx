@@ -76,7 +76,7 @@ export function CheckoutForm() {
         return;
       }
 
-      // Confirm payment with card only (no external redirects)
+      // Confirm payment with PaymentElement (supports Card and PayPal)
       const result = await stripe.confirmPayment({
         elements,
         clientSecret,
