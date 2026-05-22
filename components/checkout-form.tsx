@@ -76,14 +76,13 @@ export function CheckoutForm() {
         return;
       }
 
-      // Confirm payment with PaymentElement (supports Card, Klarna, PayPal, etc.)
+      // Confirm payment with card only (no external redirects)
       const result = await stripe.confirmPayment({
         elements,
         clientSecret,
         confirmParams: {
           return_url: `${typeof window !== 'undefined' ? window.location.origin : ''}/checkout/success`,
         },
-        redirect: 'if_required',
       });
 
       if (result.error) {
