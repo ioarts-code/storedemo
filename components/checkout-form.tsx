@@ -94,13 +94,13 @@ export function CheckoutForm() {
           dispatch({ type: 'CLEAR_CART' });
           // Use Next.js router to navigate
           setTimeout(() => {
-            router.push(`/checkout/success?orderId=${result.paymentIntent.id}`);
+            router.push(`/checkout/success?orderId=${result.paymentIntent?.id}`);
           }, 1500);
         } else if (result.paymentIntent.status === 'processing') {
           setSuccessMessage('Payment is processing. You will be redirected shortly...');
           dispatch({ type: 'CLEAR_CART' });
           setTimeout(() => {
-            router.push(`/checkout/success?orderId=${result.paymentIntent.id}`);
+            router.push(`/checkout/success?orderId=${result.paymentIntent?.id}`);
           }, 2000);
         }
       }
