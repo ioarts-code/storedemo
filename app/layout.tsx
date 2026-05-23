@@ -9,6 +9,22 @@ import './globals.css'
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Store',
+  name: 'IOARTS',
+  description: 'Digital Art Merch & Illustration Store',
+  url: 'https://www.ioarts.ink',
+  logo: 'https://www.ioarts.ink/favicon.svg',
+  sameAs: [
+    'https://www.deviantart.com',
+  ],
+  address: {
+    '@type': 'PostalAddress',
+    addressCountry: 'US',
+  },
+}
+
 export const metadata: Metadata = {
   title: 'IOARTS | Digital Art Merch & Illustration Store',
   description: 'Discover unique digital art merchandise and illustrations. Official IOARTS store featuring exclusive illustrated products.',
@@ -71,22 +87,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const structuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'Store',
-    name: 'IOARTS',
-    description: 'Digital Art Merch & Illustration Store',
-    url: 'https://www.ioarts.ink',
-    logo: 'https://www.ioarts.ink/favicon.svg',
-    sameAs: [
-      'https://www.deviantart.com',
-    ],
-    address: {
-      '@type': 'PostalAddress',
-      addressCountry: 'US',
-    },
-  }
-
   return (
     <html lang="en" className="scroll-smooth" data-scroll-behavior="smooth">
       <head>
@@ -97,6 +97,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+          suppressHydrationWarning
         />
       </head>
       <body className="font-sans antialiased bg-[#0F0F0F] text-foreground">

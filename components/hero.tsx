@@ -84,12 +84,14 @@ export default function Hero({
     <div className="relative">
       <div className="relative lg:h-[1000px] mobile:h-[650px] flex items-start justify-center overflow-hidden w-screen cursor-pointer" onClick={() => router.push('/products/hoodie-elden')}>
         {/* Background image - hidden on screens smaller than 1024px */}
-        <img
-          alt="Hoodie Elden"
-          src={backgroundImage}
-          loading="eager"
-          className="absolute inset-0 w-full h-full object-cover pointer-events-none lg:block hover:opacity-90 transition-opacity"
-        />
+        {backgroundImage && (
+          <img
+            alt="Hoodie Elden"
+            src={backgroundImage}
+            loading="eager"
+            className="absolute inset-0 w-full h-full object-cover pointer-events-none lg:block hover:opacity-90 transition-opacity"
+          />
+        )}
 
       {/* Horizontal Stripe Divider - Bottom */}
       <div
