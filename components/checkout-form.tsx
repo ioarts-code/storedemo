@@ -76,7 +76,7 @@ export function CheckoutForm() {
         return;
       }
 
-      // Confirm payment with card only (no external redirects)
+      // Confirm payment with PaymentElement (supports Card and PayPal)
       try {
         const result = await stripe.confirmPayment({
           elements,
@@ -106,12 +106,7 @@ export function CheckoutForm() {
           }
         }
       } catch (paymentError: any) {
-        // Handle SecurityError from PayPal redirects in restricted environments
-        if (paymentError?.name === 'SecurityError' || paymentError?.message?.includes('pm-redirects')) {
-          setErrorMessage('PayPal is not available in test mode. Please use a card to complete your purchase.');
-        } else {
-          setErrorMessage(paymentError?.message || 'Payment failed');
-        }
+        setErrorMessage(paymentError?.message || 'Payment failed');
         setIsProcessing(false);
       }
     } catch (error) {
