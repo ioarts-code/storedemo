@@ -106,7 +106,12 @@ export function CheckoutForm() {
           }
         }
       } catch (paymentError: any) {
-        setErrorMessage(paymentError?.message || 'Payment failed');
+        // Handle SecurityError from PayPal redirects - only occurs in restricted environments
+        if (paymentError?.name === 'SecurityError') {
+          setErrorMessage('PayPal requires a production environment. Please use a card to complete your purchase, or deploy to production for PayPal support.');
+        } else {
+          setErrorMessage(paymentError?.message || 'Payment failed');
+        }
         setIsProcessing(false);
       }
     } catch (error) {
