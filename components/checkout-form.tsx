@@ -76,33 +76,43 @@ export function CheckoutForm() {
         return;
       }
 
-      // Confirm payment with card only (no external redirects)
-      const result = await stripe.confirmPayment({
-        elements,
-        clientSecret,
-        confirmParams: {
-          return_url: `${typeof window !== 'undefined' ? window.location.origin : ''}/checkout/success`,
-        },
-      });
+      // Confirm payment with PaymentElement (supports Card and PayPal)
+      try {
+        const result = await stripe.confirmPayment({
+          elements,
+          clientSecret,
+          confirmParams: {
+            return_url: `${typeof window !== 'undefined' ? window.location.origin : ''}/checkout/success`,
+          },
+        });
 
-      if (result.error) {
-        setErrorMessage(result.error.message || 'Payment failed');
-        setIsProcessing(false);
-      } else if (result.paymentIntent) {
-        if (result.paymentIntent.status === 'succeeded') {
-          setSuccessMessage('Payment successful! Your order has been placed.');
-          dispatch({ type: 'CLEAR_CART' });
-          // Use Next.js router to navigate
-          setTimeout(() => {
-            router.push(`/checkout/success?orderId=${result.paymentIntent.id}`);
-          }, 1500);
-        } else if (result.paymentIntent.status === 'processing') {
-          setSuccessMessage('Payment is processing. You will be redirected shortly...');
-          dispatch({ type: 'CLEAR_CART' });
-          setTimeout(() => {
-            router.push(`/checkout/success?orderId=${result.paymentIntent.id}`);
-          }, 2000);
+        if (result.error) {
+          setErrorMessage(result.error.message || 'Payment failed');
+          setIsProcessing(false);
+        } else if (result.paymentIntent) {
+          if (result.paymentIntent.status === 'succeeded') {
+            setSuccessMessage('Payment successful! Your order has been placed.');
+            dispatch({ type: 'CLEAR_CART' });
+            // Use Next.js router to navigate
+            setTimeout(() => {
+              router.push(`/checkout/success?orderId=${result.paymentIntent?.id}`);
+            }, 1500);
+          } else if (result.paymentIntent.status === 'processing') {
+            setSuccessMessage('Payment is processing. You will be redirected shortly...');
+            dispatch({ type: 'CLEAR_CART' });
+            setTimeout(() => {
+              router.push(`/checkout/success?orderId=${result.paymentIntent?.id}`);
+            }, 2000);
+          }
         }
+      } catch (paymentError: any) {
+        // Handle SecurityError from PayPal redirects - only occurs in restricted environments
+        if (paymentError?.name === 'SecurityError') {
+          setErrorMessage('PayPal requires a production environment. Please use a card to complete your purchase, or deploy to production for PayPal support.');
+        } else {
+          setErrorMessage(paymentError?.message || 'Payment failed');
+        }
+        setIsProcessing(false);
       }
     } catch (error) {
       setErrorMessage('An error occurred. Please try again.');
