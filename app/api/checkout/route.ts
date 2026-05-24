@@ -1,14 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import Stripe from 'stripe';
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2026-04-22.dahlia',
-});
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { amount, email, metadata } = body;
+    const { amount } = body;
 
     if (!amount || amount <= 0) {
       return NextResponse.json(
@@ -17,30 +12,16 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Build payment intent options
-    const paymentIntentOptions: any = {
-      amount: Math.round(amount * 100), // Convert to cents
-      currency: 'usd',
-      payment_method_types: ['card', 'paypal'],
-      metadata: metadata || {},
-    };
-
-    // Only add receipt_email if email is provided and not empty
-    if (email && email.trim()) {
-      paymentIntentOptions.receipt_email = email;
-    }
-
-    const paymentIntent = await stripe.paymentIntents.create(paymentIntentOptions);
-
+    // Demo route: Stripe API disabled for demo checkout.
     return NextResponse.json({
-      clientSecret: paymentIntent.client_secret,
-      paymentIntentId: paymentIntent.id,
+      clientSecret: 'demo',
+      paymentIntentId: 'demo-intent',
     });
   } catch (error) {
-    console.error('[v0] Payment intent error:', error);
+    console.error('[v0] Demo checkout error:', error);
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     return NextResponse.json(
-      { error: `Failed to create payment intent: ${errorMessage}` },
+      { error: `Demo checkout failed: ${errorMessage}` },
       { status: 500 }
     );
   }
