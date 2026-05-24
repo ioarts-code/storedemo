@@ -183,7 +183,10 @@ Edit `app/layout.tsx` to import different fonts from `next/font/google`
 ## 🔧 Configuration Options
 
 ### Environment Variables
-Create `.env.local`:
+Create `.env.local` or copy from the example:
+```bash
+cp .env.example .env.local
+```
 ```env
 NEXT_PUBLIC_HYGRAPH_ENDPOINT=https://api-eu-central-1.hygraph.com/content/...
 NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN=your_token_here

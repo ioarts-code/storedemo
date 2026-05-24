@@ -12,7 +12,10 @@ export async function POST(request: NextRequest) {
   try {
     if (!ENDPOINT) {
       return NextResponse.json(
-        { error: 'Hygraph configuration missing. Check HYGRAPH_ENDPOINT env var.' },
+        {
+          error:
+            'Hygraph configuration missing. Set HYGRAPH_ENDPOINT or NEXT_PUBLIC_HYGRAPH_ENDPOINT in your environment.',
+        },
         { status: 500 }
       );
     }
