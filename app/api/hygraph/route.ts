@@ -63,7 +63,15 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify({ query, variables }),
     });
 
-    const data = await response.json();
+    const contentType = response.headers.get('content-type') || '';
+    let data: unknown;
+
+    if (contentType.includes('application/json')) {
+      data = await response.json();
+    } else {
+      const text = await response.text();
+      data = { error: `Non-JSON response from Hygraph: ${text}` };
+    }
 
     if (!response.ok) {
       return NextResponse.json(data, { status: response.status });
