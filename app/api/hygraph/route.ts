@@ -5,7 +5,9 @@ export async function POST(request: NextRequest) {
   // Prefer the private server-only names; fall back to NEXT_PUBLIC_ variants
   // so existing deployments keep working during migration.
   const ENDPOINT =
-    process.env.HYGRAPH_ENDPOINT || process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT;
+    process.env.HYGRAPH_ENDPOINT ||
+    process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT ||
+    'https://eu-west-2.cdn.hygraph.com/content/cmpjovcr70si407l7900pduzc/master';
   const AUTH_TOKEN =
     process.env.HYGRAPH_AUTH_TOKEN || process.env.NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN;
 
